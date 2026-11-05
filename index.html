@@ -1,48 +1,289 @@
-<!DOCTYPE html>
+<!doctype html>
+<!--
+  =====================================================================
+    STEPHY PAK — HOMEPAGE  (index.html)
+  =====================================================================
+
+    This file is WHAT is on the page (the words, images and links).
+    styles/style.css is HOW it looks.
+
+    WHAT'S IN HERE (top to bottom)
+    ---------------------------------------------------------------
+    1. HEAD ............ page title, font + style file (not visible)
+    2. TOP ROW ......... floating name, intro, contact, links, eye GIF ✏️
+    3. SLOGAN .......... "pretty smart. / pretty, smart."           ✏️
+    4. FLOPPY ARROW .... scrolls down to your work
+    5. WORK LIST ....... "Selected work" + your 4 projects           ✏️
+    6. TYPEWRITER ...... the script that types the slogan
+
+    ✏️ = things you'll want to edit
+
+    ---------------------------------------------------------------
+    HOW HTML WORKS (the 30-second version)
+    ---------------------------------------------------------------
+    <p class="hero-info-text">Hello</p>
+     ↑  ↑                      ↑      ↑
+     |  class = name used in   |      closing tag (same word with a /)
+     |  style.css to style it  the content you see on the page
+     opening tag (p = paragraph)
+
+    <a href="project-1.html">  = a link. href = where it goes.
+    <img src="assets/…" alt="…"> = an image. src = the file,
+                                   alt = a description for screen readers.
+    Notes like this whole block start with  < ! - -  and end with  - - >
+    (written without the spaces). Browsers ignore them; they're just for you.
+  =====================================================================
+-->
 <html lang="en">
+
+  <!-- =================================================================
+       1. HEAD — information about the page (nothing here is visible)
+       ================================================================= -->
   <head>
-    <title>Free Creative Portfolio Template: October 2025 Version | Holding Page</title>
-    <meta name="description" content="When writing a meta description, keep it between 140 and 160 characters so Google can display your entire message. Don’t forget to include your keyword!" />
+    <!-- ✏️ Text in the browser tab -->
+    <title>Stephy Pak — Designer</title>
+    <!-- ✏️ The description Google shows under your site in search results -->
+    <meta name="description" content="Stephy Pak is a Vancouver-based designer working across branding, print, digital and packaging." />
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="10; url=work.html" />
+    <!-- Makes the site fit phone screens properly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="assets/branding-images/favicon.svg" />
-    <link rel="icon" type="image/png" href="assets/branding-images/favicon.png" />
-    <meta property="og:image" content="screenshot.jpg" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Connects your style file -->
     <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/interactive-blobs.css" />
+    <!-- Hides the slogan for a split second until the typewriter starts, so
+         it doesn't flash. Laptops only — phones just show the slogan. -->
+    <script>
+      if (window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches) document.documentElement.classList.add("js-typing");
+    </script>
   </head>
-  <body class="holding-page">
-    <div class="blob-container">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-    </div>
 
-    <div class="noise-overlay"></div>
-    <div class="holding-page-wrapper">
-      <div class="holding-page-inner-container">
-        <a href="work.html">
-          <figure class="holding-page-animation">
-            <img src="assets/branding-images/logo.svg" alt="Your portfolio logo" />
-          </figure>
-          <h1 class="holding-page-title">Portfolio Launching Soon</h1>
-        </a>
+  <body class="work-page" id="top">
+
+    <!-- FLOATING NAME — same size and position as on every other page.
+         Stays pinned at the top while you scroll. -->
+    <header class="project-header">
+      <a href="index.html#top" class="project-header-name">Stephy Pak</a>
+    </header>
+
+    <!-- The first screen everyone sees (the "hero") -->
+    <section class="hero hero-dark">
+
+      <!-- ===============================================================
+           2. TOP ROW
+           =============================================================== -->
+      <header class="hero-top">
+
+        <!-- LEFT: your intro and contact (your name floats above, see the top of <body>) -->
+        <div class="hero-id">
+          <div class="hero-info">
+            <!-- ✏️ Your intro. <br /> = start a new line. -->
+            <p class="hero-info-text">A designer working across print,<br />
+              digital and packaging.</p>
+            <!-- ✏️ Location + email -->
+            <p class="hero-info-contact hero-info-text">
+              Vancouver, BC<br />
+              <a href="mailto:stephypak@gmail.com">stephypak@gmail.com</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT: links + the eye GIF -->
+        <nav class="hero-nav" aria-label="Links">
+          <ul class="hero-links">
+            <!-- ✏️ Replace each # with your real link, e.g.
+                 href="https://www.behance.net/yourname"
+                 target="_blank" = opens in a new tab -->
+            <li><a href="#" target="_blank">Behance</a></li>
+            <li><a href="#" target="_blank">Instagram</a></li>
+            <li><a href="#" target="_blank">LinkedIn</a></li>
+            <!-- mailto: opens the visitor's email app -->
+            <li><a href="mailto:stephypak@gmail.com">Contact</a></li>
+
+            <!-- 👁 The eye GIF → goes to the Peek page (play.html).
+                 Hovering shows the pink "PEEK" pill.
+                 ✏️ To swap the GIF, replace assets/branding-images/play.gif
+                 (keep the same file name). -->
+            <li class="play-door-item">
+              <a href="play.html" class="play-door" aria-label="Peek — photos and things I love">
+                <img src="assets/branding-images/play.gif" width="60" height="60" class="play-door-gif" alt="" />
+                <span class="play-door-label">Peek</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- ===============================================================
+           3. SLOGAN
+           Each line is its own <span>. The pink comma is its own <span>
+           so it can have a different colour.
+           (If you change the words, also update the typewriter in section 6 —
+           it types "cute" then deletes it, so it expects "pretty " first.)
+           =============================================================== -->
+      <div class="hero-slogan-wrapper">
+        <h1 class="hero-slogan">
+          <span class="hero-slogan-line">pretty smart.</span>
+          <span class="hero-slogan-line hero-slogan-indent">pretty<span class="hero-comma">,</span> smart.</span>
+        </h1>
       </div>
 
-      <div class="holding-page-footer">
-        <p class="holding-page-copyright">
-          &copy; <span id="copyright-years">2020-</span>. Hand crafted with
-          <span class="heart">❤</span>
-          by James Neufeld.
-        </p>
-        <script>
-          document.getElementById("copyright-years").textContent += new Date().getFullYear();
-        </script>
-      </div>
-    </div>
-    <script src="./js/interactive-blobs.js"></script>
+      <!-- ===============================================================
+           4. FLOPPY DISK ARROW
+           Clicking it jumps down to "Selected work" (#works-heading).
+           =============================================================== -->
+      <a href="#works-heading" class="hero-scroll" aria-label="Scroll down to selected work">
+        <span class="hero-scroll-sprite" aria-hidden="true"></span>
+      </a>
+
+    </section>
+
+    <!-- =================================================================
+         5. WORK LIST
+         Laptops: hover a title → its cover image fades in behind the list.
+         Phones: each cover image shows under its title.
+         ================================================================= -->
+    <main class="main-work-section">
+      <section class="project-index" aria-labelledby="works-heading">
+
+        <!-- "SELECTED WORK (4)" with the sparkly star.
+             The <svg> is the star drawing — you don't need to edit it.
+             ✏️ Change the (4) if you add or remove projects. -->
+        <h2 class="project-index-heading" id="works-heading">
+          <svg class="star" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path class="star-main" d="M12 3c.7 5 2.5 6.8 7.5 7.5-5 .7-6.8 2.5-7.5 7.5-.7-5-2.5-6.8-7.5-7.5C9.5 9.8 11.3 8 12 3z" />
+            <path class="star-sparkle star-sparkle-1" d="M20 1.5l.45 1.55L22 3.5l-1.55.45L20 5.5l-.45-1.55L18 3.5l1.55-.45z" />
+            <path class="star-sparkle star-sparkle-2" d="M19 16.5l.35 1.15 1.15.35-1.15.35L19 19.5l-.35-1.15L17.5 18l1.15-.35z" />
+          </svg>
+          Selected work <span class="project-index-count">(4)</span>
+        </h2>
+
+        <!-- THE PROJECTS
+             Each project is one <li> … </li> block. In each one:
+               href="project-1.html" ........ which page it opens
+               project-index-title .......... ✏️ project name
+               project-index-category ....... ✏️ small label on the right
+               img src="…" .................. ✏️ cover image
+                 (put your image in assets/projects/ and write its name here,
+                  e.g. src="assets/projects/booth-fest-cover.jpg")
+               alt="…" ...................... ✏️ short description of the image
+             To add a project: copy a whole <li> … </li> block and paste it below. -->
+        <ul class="project-index-list">
+
+          <!-- Project 1 -->
+          <li class="project-index-item">
+            <a href="project-1.html" class="project-index-link">
+              <span class="project-index-title">Booth Fest</span>
+              <span class="project-index-category">[Category]</span>
+              <img src="assets/projects/placeholder.svg" width="1920" height="1080" class="project-index-preview" loading="lazy" alt="Booth Fest project cover" />
+            </a>
+          </li>
+
+          <!-- Project 2 -->
+          <li class="project-index-item">
+            <a href="project-2.html" class="project-index-link">
+              <span class="project-index-title">Patches</span>
+              <span class="project-index-category">[Category]</span>
+              <img src="assets/projects/placeholder.svg" width="1920" height="1080" class="project-index-preview" loading="lazy" alt="Patches project cover" />
+            </a>
+          </li>
+
+          <!-- Project 3 -->
+          <li class="project-index-item">
+            <a href="project-3.html" class="project-index-link">
+              <span class="project-index-title">Feral By Design</span>
+              <span class="project-index-category">Campaign</span>
+              <img src="assets/projects/placeholder.svg" width="1920" height="1080" class="project-index-preview" loading="lazy" alt="Feral By Design project cover" />
+            </a>
+          </li>
+
+          <!-- Project 4 -->
+          <li class="project-index-item">
+            <a href="project-4.html" class="project-index-link">
+              <span class="project-index-title">Deep Breakfast</span>
+              <span class="project-index-category">[Category]</span>
+              <img src="assets/projects/placeholder.svg" width="1920" height="1080" class="project-index-preview" loading="lazy" alt="Deep Breakfast project cover" />
+            </a>
+          </li>
+
+        </ul>
+      </section>
+    </main>
+
+
+    <!-- =================================================================
+         6. TYPEWRITER  (JavaScript — the part that makes things move)
+         What it does:
+           • types "pretty cute", pauses, backspaces "cute",
+             then types "smart." and the second line
+           • a pink cursor leads the typing and disappears at the end
+           • hovering over the slogan replays it
+           • off on phones and for people who turn off motion
+         You don't need to edit this. The only easy tweak:
+           ✏️ change "cute" on the line marked FAKE WORD to another word.
+         ================================================================= -->
+    <script>
+      (function () {
+        var h = document.querySelector(".hero-slogan");
+        // Phones / reduced motion: stop here and just show the slogan
+        if (!h || !document.documentElement.classList.contains("js-typing")) return;
+
+        var lines = Array.prototype.slice.call(h.querySelectorAll(".hero-slogan-line"));
+        var originalHTML = lines.map(function (l) { return l.innerHTML; });
+        var texts = lines.map(function (l) { return l.textContent; });
+        h.setAttribute("aria-label", texts.join(" "));   // screen readers read the full slogan
+
+        // Keeps the pink comma pink while typing
+        function esc(t) {
+          return t.replace(/&/g, "&amp;").replace(/</g, "&lt;")
+                  .replace(/,/g, '<span class="hero-comma">,</span>');
+        }
+        // Draws one line: typed part + cursor + the invisible not-yet-typed part
+        function draw(k, typed, rest, caret) {
+          lines[k].innerHTML =
+            esc(typed) + (caret ? '<span class="type-caret" aria-hidden="true"></span>' : "") +
+            '<span class="type-rest" aria-hidden="true">' + esc(rest) + "</span>";
+        }
+
+        // The "script" of the animation: every step + how long to wait after it
+        var frames = [], t1 = texts[0], t2 = texts[1], i;
+        function pace(ch) { return 60 + Math.random() * 70 + (ch === "." ? 300 : 0); }   // typing speed (ms)
+        for (i = 1; i <= 7; i++) frames.push([0, t1.slice(0, i), t1.slice(i), pace(t1[i - 1])]);                     // types "pretty "
+        var fake = "cute";                                                                                            // ✏️ FAKE WORD
+        for (i = 1; i <= fake.length; i++) frames.push([0, t1.slice(0, 7) + fake.slice(0, i), t1.slice(7 + i), pace()]); // types "cute"
+        frames[frames.length - 1][3] = 650;                                                                           // pause… hmm
+        for (i = fake.length - 1; i >= 0; i--) frames.push([0, t1.slice(0, 7) + fake.slice(0, i), t1.slice(7 + i), 90]);  // backspaces it
+        frames[frames.length - 1][3] = 250;
+        for (i = 8; i <= t1.length; i++) frames.push([0, t1.slice(0, i), t1.slice(i), pace(t1[i - 1])]);              // types "smart."
+        for (i = 1; i <= t2.length; i++) frames.push([1, t2.slice(0, i), t2.slice(i), pace(t2[i - 1])]);              // types line 2
+
+        var playing = false;
+        function run(n) {
+          if (n >= frames.length) {
+            // Finished: remove the cursor and put the slogan back to normal
+            setTimeout(function () {
+              lines.forEach(function (l, k) { l.innerHTML = originalHTML[k]; });
+              playing = false;
+            }, 700);
+            return;
+          }
+          var f = frames[n];
+          if (f[0] === 1) draw(0, t1, "", false);   // line 1 done → cursor moves to line 2
+          draw(f[0], f[1], f[2], true);
+          setTimeout(function () { run(n + 1); }, f[3]);
+        }
+        function play() {
+          playing = true;
+          h.classList.add("is-ready");
+          draw(0, "", t1, true);
+          draw(1, "", t2, false);
+          setTimeout(function () { run(0); }, 300);
+        }
+        setTimeout(play, 300);   // start shortly after the page loads
+
+        // Replay when someone hovers over the slogan (only after it's finished)
+        h.addEventListener("mouseenter", function () {
+          if (!playing) play();
+        });
+      })();
+    </script>
   </body>
 </html>

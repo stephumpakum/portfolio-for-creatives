@@ -1,1 +1,120 @@
-<!--To create a page for project 4, copy one of the previous project pages-->
+<!doctype html>
+<!--
+  =====================================================================
+    PROJECT PAGE 4 — DEEP BREAKFAST  (project-4.html)
+  =====================================================================
+    All four project pages are built the same way, so once you know
+    one, you know them all.
+
+    WHAT'S IN HERE (top to bottom)
+    ---------------------------------------------------------------
+    1. FLOATING NAME ..... "Stephy Pak" — goes back to the homepage
+    2. HERO IMAGE ........ first big image                        ✏️
+    3. BRIEF + CREDITS ... short description + role, year, etc.   ✏️
+    4. MORE IMAGES ....... full-width, two side by side, full-width ✏️
+    5. NEXT PROJECT ...... link to the next page
+
+    ✏️ = things you'll want to edit
+    Anything in [square brackets] is a placeholder — replace it.
+
+    ADDING YOUR IMAGES
+      1. Put the image file in the  assets/projects/  folder
+         (simple names work best: booth-fest-01.jpg — no spaces).
+      2. Change  src="assets/projects/placeholder.svg"
+         to      src="assets/projects/booth-fest-01.jpg"
+      3. Change the alt="…" text to a short description of the image
+         (screen readers read this out loud for people who can't see it).
+  =====================================================================
+-->
+<html lang="en">
+  <head>
+    <!-- ✏️ Text in the browser tab -->
+    <title>Deep Breakfast | Stephy Pak</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+
+  <body class="project-page">
+
+    <!-- =================================================================
+         1. FLOATING NAME
+         Stays in the corner as you scroll. Clicking it goes back to the
+         top of the homepage.
+         ================================================================= -->
+    <header class="project-header">
+      <a href="index.html#top" class="project-header-name">Stephy Pak</a>
+    </header>
+
+    <main class="project">
+
+      <!-- ===============================================================
+           2. HERO IMAGE — your strongest image of this project ✏️
+           =============================================================== -->
+      <figure class="project-figure">
+        <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="eager" alt="[Describe the image]" />
+      </figure>
+
+      <!-- ===============================================================
+           3. BRIEF + CREDITS ✏️
+           Brief: 2–3 sentences. Credits: each <div> is one row.
+           To add a row, copy a whole  <div class="project-credit">…</div>  line.
+           To remove one, delete its line.
+           =============================================================== -->
+      <section class="project-about" aria-label="About this project">
+        <p class="project-brief">[Two or three sentences on the brief: what Deep Breakfast is and what you set out to make.]</p>
+        <dl class="project-credits">
+          <div class="project-credit"><dt>Project</dt><dd>Deep Breakfast</dd></div>
+          <div class="project-credit"><dt>Role</dt><dd>Designer</dd></div>
+          <div class="project-credit"><dt>Context</dt><dd>Mentorship project</dd></div>
+          <div class="project-credit"><dt>Mentor</dt><dd>Dominic Prevost, Executive Creative Director, Resonance</dd></div>
+          <div class="project-credit"><dt>Year</dt><dd>[Year]</dd></div>
+        </dl>
+      </section>
+
+      <!-- ===============================================================
+           4. MORE IMAGES ✏️
+           Each <figure> … </figure> is one image.
+             • copy a figure block to add an image
+             • delete a figure block to remove one
+             • <figcaption> is an optional caption — delete it if you don't want one
+           =============================================================== -->
+
+      <!-- Full-width image -->
+      <figure class="project-figure">
+        <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe the image]" />
+        <figcaption>[Optional caption]</figcaption>
+      </figure>
+
+      <!-- Two images side by side (they stack on phones) -->
+      <div class="project-pair">
+        <figure class="project-figure">
+          <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe the image]" />
+        </figure>
+        <figure class="project-figure">
+          <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe the image]" />
+        </figure>
+      </div>
+
+      <!-- Full-width image -->
+      <figure class="project-figure">
+        <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe the image]" />
+      </figure>
+
+    </main>
+
+    <!-- =================================================================
+         5. NEXT PROJECT
+         Left: back to the work list. Right: the next project's page.
+         (The pages loop: 1 → 2 → 3 → 4 → back to 1.)
+         ================================================================= -->
+    <footer class="project-footer">
+      <a href="index.html#works-heading" class="project-back">← All work</a>
+      <a href="project-1.html" class="project-next">
+        <span class="project-next-label">Next</span>
+        <span class="project-next-title">Booth Fest →</span>
+      </a>
+    </footer>
+
+  </body>
+</html>

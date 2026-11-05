@@ -1,0 +1,23 @@
+STEPHY PAK PORTFOLIO — HOW TO USE
+
+1. Open in VS Code:  File → Open Folder → choose this "stephy-pak-portfolio" folder.
+2. Preview it:       right-click index.html → "Open with Live Server".
+                     (Install the "Live Server" extension first if you don't have it.)
+3. Save (Cmd+S) and the browser updates by itself.
+
+WHAT'S WHERE
+  index.html            homepage (hero + work list)
+  project-1.html        Booth Fest
+  project-2.html        Patches
+  project-3.html        Feral By Design
+  project-4.html        Deep Breakfast
+  play.html             Peek page (placeholder for now)
+  styles/style.css      all the styling — colours and font are at the very top
+  assets/branding-images/   the eye GIF + floppy arrow
+  assets/projects/          PUT YOUR PROJECT IMAGES HERE
+
+TO ADD YOUR OWN STUFF
+  - Anything in [square brackets] is a placeholder — replace it.
+  - Images: drop them in assets/projects/, then change
+    src="assets/projects/placeholder.svg"  →  src="assets/projects/your-image.jpg"
+  - Social links: search for  href="#"  in each page and paste your real links.

@@ -1,153 +1,285 @@
-<!DOCTYPE html>
+<!doctype html>
+<!--
+  =====================================================================
+    PEEK PAGE  (play.html)
+  =====================================================================
+    The page the eye GIF on the homepage opens.
+    About me at the top, then the casual "peek" into my world as you scroll.
+
+    WHAT'S IN HERE (top to bottom)
+    ---------------------------------------------------------------
+    1. FLOATING NAME ..... "Stephy Pak" — goes back to the homepage
+    2. ABOUT ............. big statement, photo, bio, facts, links   ✏️
+    3. COLLECTION ........ cut-out objects scattered around          ✏️
+    4. FEED .............. loose grid of photos + illustrations      ✏️
+    5. FOOTER ............ back home / back to top
+    6. DRAGGING .......... the script that makes Collection draggable
+
+    ✏️ = things you'll want to edit
+    Anything in [square brackets] is a placeholder — replace it.
+
+    ADDING YOUR IMAGES
+      1. Put Peek images in a new folder:  assets/peek/
+         (simple names, no spaces: holga-01.jpg, ticket.png)
+      2. Change  src="assets/projects/placeholder.svg"
+         to      src="assets/peek/holga-01.jpg"
+      3. Update the alt="…" text so screen readers can describe it.
+      4. Update width="" and height="" to the image's real size
+         (stops the page jumping while images load).
+
+    COLLECTION TIP: objects look best as PNGs with transparent
+    backgrounds (cut-outs), like the floating objects in your reference.
+  =====================================================================
+-->
 <html lang="en">
   <head>
-    <title>Free Creative Portfolio Template: October 2025 Version | Play Page</title>
-    <meta name="description" content="When writing a meta description, keep it between 140 and 160 characters so Google can display your entire message. Don’t forget to include your keyword!" />
+    <title>Peek | Stephy Pak</title>
+    <meta name="description" content="About Stephy Pak, plus photos, drawings and the things she loves." />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="assets/branding-images/favicon.svg" />
-    <link rel="icon" type="image/png" href="assets/branding-images/favicon.png" />
-    <meta property="og:image" content="screenshot.jpg" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./styles/masonry.css" />
-    <link rel="stylesheet" href="./lightbox2/dist/css/lightbox.min.css" />
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
-  <body class="play-page">
-    <section class="hero">
-      <header class="hero-header">
-        <ul class="nav-branding">
-          <li><a href="work.html" class="custom-navigation">Work</a></li>
-          <li class="nav-branding-logo">
-            <a href="index.html"><img src="assets/branding-images/logo.svg" alt="Describe your project" /></a>
-          </li>
-          <li><a href="about.html" class="custom-navigation">About</a></li>
-        </ul>
-      </header>
-      <div class="hero-headline-wrapper">
-        <h1 class="hero-headline">
-          A <span class="highlight-primary"><strong>masonry</strong></span> layout with <span class="highlight-gradient"><strong>Lightbox</strong></span> and <span class="highlight-gradient"><strong>rotate</strong></span> effects—perfect for a fun playground for creatives or a <em>Work</em> page for illustrators!
+  <body class="project-page peek-page" id="top">
+
+    <!-- =================================================================
+         1. FLOATING NAME (same as the project pages)
+         ================================================================= -->
+    <header class="project-header">
+      <a href="index.html#top" class="project-header-name">Stephy Pak</a>
+    </header>
+
+    <main class="peek">
+
+      <!-- ===============================================================
+           2. ABOUT ✏️
+           Left: big statement + bio + facts. Right: your photo.
+           (Phones: everything stacks.)
+           =============================================================== -->
+      <section class="peek-about" aria-labelledby="about-heading">
+
+        <!-- ✏️ The big statement. The final full stop is pink, like the
+             comma in "pretty, smart." on the homepage. -->
+        <h1 class="peek-statement" id="about-heading">
+          I always end up in cool places doing cool things<span class="hero-comma">.</span>
         </h1>
-      </div>
-    </section>
-    <main class="main-work-section">
-      <section class="portfolio">
-        <ul class="masonry-grid padding-jumbo">
-          <li class="masonry-item">
-            <a href="css-masonry/files/images/cherry-plant.jpg" data-lightbox="project-1" data-title="Cherry plant">
-              <figure class="project-image border">
-                <img src="css-masonry/files/images/cherry-plant.jpg" width="800" height="1200" loading="lazy" class="rotate" alt="Cherry plant" title="Cherry plant" />
-              </figure>
-            </a>
-          </li>
-          <li class="masonry-item">
-            <a href="css-masonry/files/images/oranges-pomegranates.jpg" data-lightbox="project-2" data-title="Oranges and Pomegranates">
-              <figure class="project-image border">
-                <img src="css-masonry/files/images/oranges-pomegranates.jpg" width="1152" height="768" loading="lazy" class="rotate" alt="Oranges and Pomegranates" title="Oranges and Pomegranates" />
-              </figure>
-            </a>
-          </li>
-          <li class="masonry-item">
-            <a href="css-masonry/files/images/strawberry.jpg" data-lightbox="project-3" data-title="Strawberry">
-              <figure class="project-image border">
-                <img src="css-masonry/files/images/strawberry.jpg" width="1072" height="657" loading="lazy" class="rotate" alt="Strawberry" title="Strawberry" />
-              </figure>
-            </a>
-          </li>
-          <li class="masonry-item">
-            <a href="css-masonry/files/images/blueberries.jpg" data-lightbox="project-4" data-title="Blueberries">
-              <figure class="project-image border">
-                <img src="css-masonry/files/images/blueberries.jpg" width="986" height="657" loading="lazy" class="rotate" alt="Blueberries" title="Blueberries" />
-              </figure>
-            </a>
-          </li>
-          <li class="masonry-item">
-            <a href="css-masonry/files/images/pears.jpg" data-lightbox="project-5" data-title="Pears">
-              <figure class="project-image border">
-                <img src="css-masonry/files/images/pears.jpg" width="1028" height="657" loading="lazy" class="rotate" alt="Pears" title="Pears" />
-              </figure>
-            </a>
-          </li>
-          <li class="masonry-item">
-            <a href="css-masonry/files/images/easter-eggs.jpg" data-lightbox="project-6" data-title="Easter eggs">
-              <figure class="project-image border">
-                <img src="css-masonry/files/images/easter-eggs.jpg" width="523" height="657" loading="lazy" class="rotate" alt="Easter eggs" title="Easter eggs" />
-              </figure>
-            </a>
-          </li>
-          <li class="masonry-item">
-            <a href="css-masonry/files/images/lemons.jpg" data-lightbox="project-7" data-title="Lemons">
-              <figure class="project-image border">
-                <img src="css-masonry/files/images/lemons.jpg" width="493" height="657" loading="lazy" class="rotate" alt="Lemons" title="Lemons" />
-              </figure>
-            </a>
-          </li>
-          <li class="masonry-item">
-            <a href="css-masonry/files/images/cherries.jpg" data-lightbox="project-8" data-title="Cherries">
-              <figure class="project-image border">
-                <img src="css-masonry/files/images/cherries.jpg" width="985" height="657" loading="lazy" class="rotate" alt="Cherries" title="Cherries" />
-              </figure>
-            </a>
-          </li>
-          <li class="masonry-item">
-            <a href="css-masonry/files/images/grapes.jpg" data-lightbox="project-9" data-title="Grapes">
-              <figure class="project-image border">
-                <img src="css-masonry/files/images/grapes.jpg" width="985" height="657" loading="lazy" class="rotate" alt="Grapes" title="Grapes" />
-              </figure>
-            </a>
-          </li>
-        </ul>
-      </section>
-      <section class="full-width-section">
-        <div class="full-width-headline-wrapper">
-          <h1 class="h1-full-width">🍨 Finally, dessert:</h1>
-          <h2 class="h2-full-width">The Playground page</h2>
-          <p class="max-text-width">A Playground page is often a scattered grid of half-finished projects, random ideas, personal experiments, and rejected work we don’t usually get to see in a polished portfolio. It’s the space where the rules don’t apply—you don’t need to fit a brief, explain your process, or curate what stays and what goes.</p>
-          <p class="max-text-width">This is the low-pressure zone.</p>
-          <p class="max-text-width">If you’re feeling unsure about sharing your work, start with a Play page.</p>
-          <p class="max-text-width">It’s a space for dreams and ideas still finding their footing.</p>
+
+        <!-- ✏️ Your photo. Replace the src with e.g. assets/peek/me.jpg -->
+        <figure class="peek-portrait">
+          <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="eager" alt="[Photo of Stephy]" />
+        </figure>
+
+        <div class="peek-bio">
+          <!-- ✏️ Your bio. Each <p> is one paragraph. -->
+          <p class="project-brief">Hi, I'm Stephy, a designer focused on branding.</p>
+          <p class="peek-bio-text">I'm drawn to the fun side of branding: pop-ups, launches and brands you can step into. My favourite projects are the collaborative ones that get out into the world, especially if there's travel and new people involved.</p>
+          <p class="peek-bio-text">Outside of design, I'm following the music.</p>
+
+          <!-- ✏️ Quick facts — same style as the credits on project pages.
+               Copy a <div class="project-credit">…</div> line to add one. -->
+          <dl class="project-credits peek-facts">
+            <div class="project-credit"><dt>Based in</dt><dd>Vancouver, BC</dd></div>
+            <div class="project-credit"><dt>Studying</dt><dd>Visual Communication, Branding — IDEA School of Design</dd></div>
+            <div class="project-credit"><dt>Graduating</dt><dd>Spring 2027</dd></div>
+            <div class="project-credit"><dt>Recognition</dt><dd>Honourable Mention, Interactive/UX/UI — DesCan Vancouver Salazar Awards 2025</dd></div>
+            <div class="project-credit"><dt>Member</dt><dd>RGD (Student)</dd></div>
+            <!-- Optional — delete the  < ! - -  and  - - >  around this line to show it:
+            <div class="project-credit"><dt>Currently</dt><dd>[Something you're up to right now]</dd></div>
+            -->
+          </dl>
+
+          <!-- ✏️ Links. Replace each # with your real link.
+               RÉSUMÉ: save your résumé as a PDF named  stephy-pak-resume.pdf
+               and put it in the  assets/  folder. The link opens it in a new tab. -->
+          <ul class="peek-links">
+            <li><a href="mailto:stephypak@gmail.com">Email</a></li>
+            <li><a href="#" target="_blank">Instagram</a></li>
+            <li><a href="#" target="_blank">LinkedIn</a></li>
+            <li><a href="assets/stephy-pak-resume.pdf" target="_blank">Résumé ↗</a></li>
+          </ul>
         </div>
       </section>
+
+
+      <!-- ===============================================================
+           3. COLLECTION ✏️
+           Objects floating around the space, each with a small number.
+           Laptops: each object's spot is set with three numbers in style="":
+             --x = distance from the left   (0% = left edge, 100% = right)
+             --y = distance from the top    (0% = top, 100% = bottom)
+             --w = how wide it is           (% of the section's width)
+           Laptops: visitors can DRAG the objects around (hover = a little
+           wiggle to hint at it). "Tidy up" puts them back where you placed them.
+           Phones: they line up in a neat 2-column grid instead.
+           To add one: copy a whole <li> … </li> block, give it a new number
+           and new --x/--y, and add a matching line to the list underneath.
+           =============================================================== -->
+      <section class="peek-section" aria-labelledby="collection-heading">
+        <h2 class="peek-heading" id="collection-heading">
+          <span>(01)</span> Collection
+          <span class="peek-heading-note">Things I keep<span class="peek-drag-hint"> — drag them around</span></span>
+        </h2>
+
+        <ul class="peek-collection">
+          <li class="peek-object" style="--x: 6%;  --y: 18%; --w: 13%;">
+            <span class="peek-object-num">01.</span>
+            <img src="assets/projects/placeholder.svg" width="600" height="600" loading="lazy" alt="[Object 1]" />
+          </li>
+          <li class="peek-object" style="--x: 30%; --y: 4%;  --w: 11%;">
+            <span class="peek-object-num">02.</span>
+            <img src="assets/projects/placeholder.svg" width="600" height="600" loading="lazy" alt="[Object 2]" />
+          </li>
+          <li class="peek-object" style="--x: 55%; --y: 14%; --w: 15%;">
+            <span class="peek-object-num">03.</span>
+            <img src="assets/projects/placeholder.svg" width="600" height="600" loading="lazy" alt="[Object 3]" />
+          </li>
+          <li class="peek-object" style="--x: 82%; --y: 6%;  --w: 12%;">
+            <span class="peek-object-num">04.</span>
+            <img src="assets/projects/placeholder.svg" width="600" height="600" loading="lazy" alt="[Object 4]" />
+          </li>
+          <li class="peek-object" style="--x: 20%; --y: 58%; --w: 14%;">
+            <span class="peek-object-num">05.</span>
+            <img src="assets/projects/placeholder.svg" width="600" height="600" loading="lazy" alt="[Object 5]" />
+          </li>
+          <li class="peek-object" style="--x: 46%; --y: 62%; --w: 10%;">
+            <span class="peek-object-num">06.</span>
+            <img src="assets/projects/placeholder.svg" width="600" height="600" loading="lazy" alt="[Object 6]" />
+          </li>
+          <li class="peek-object" style="--x: 72%; --y: 54%; --w: 13%;">
+            <span class="peek-object-num">07.</span>
+            <img src="assets/projects/placeholder.svg" width="600" height="600" loading="lazy" alt="[Object 7]" />
+          </li>
+        </ul>
+
+        <!-- ✏️ What each object is. Keep the numbers matching the objects above.
+             This scrolls past in a loop, like a ticker. (The script at the bottom
+             copies the list so the loop never has a gap; you only edit it here.) -->
+        <div class="peek-marquee">
+          <ol class="peek-legend">
+            <li>01.[Name] – [short note]</li>
+            <li>02.[Name] – [short note]</li>
+            <li>03.[Name] – [short note]</li>
+            <li>04.[Name] – [short note]</li>
+            <li>05.[Name] – [short note]</li>
+            <li>06.[Name] – [short note]</li>
+            <li>07.[Name] – [short note]</li>
+          </ol>
+        </div>
+
+        <!-- Puts every object back in its starting spot (laptops only) -->
+        <div class="peek-tidy-row"><button type="button" class="peek-tidy">Tidy up ↺</button></div>
+      </section>
+
+
+      <!-- ===============================================================
+           4. FEED ✏️
+           A loose grid of photos and illustrations. Images keep their own
+           shape (tall, wide, square), so mix them freely.
+           To add one: copy a <figure> … </figure> line.
+           The caption is optional — delete <figcaption> … </figcaption> if not needed.
+           =============================================================== -->
+      <section class="peek-section" aria-labelledby="feed-heading">
+        <h2 class="peek-heading" id="feed-heading">
+          <span>(02)</span> Feed
+          <span class="peek-heading-note">Photos, drawings, bits and pieces</span>
+        </h2>
+
+        <div class="peek-feed">
+          <figure><img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe image]" /><figcaption>[Caption, e.g. Holga 120]</figcaption></figure>
+          <figure><img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
+          <figure><img src="assets/projects/placeholder.svg" width="1200" height="1200" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
+          <figure><img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
+          <figure><img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
+          <figure><img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
+          <figure><img src="assets/projects/placeholder.svg" width="1200" height="1200" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
+          <figure><img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
+        </div>
+      </section>
+
     </main>
 
-    <ul class="footer-global">
-      <li class="footer-tagline">
-        <h2>Let's Connect!</h2>
-        <p>Feel free to reach out with any questions, collaborations, or just to chat about design.</p>
-      </li>
-      <li class="footer-highlights">
-        <h2>Awards & Recognition</h2>
-        <ul class="footer-awards-list">
-          <li class="footer-item"><a href="#">Dean’s List – Year or Term</a></li>
-          <li class="footer-item"><a href="#">Your Award – Name of Student Award and Year</a></li>
-          <li class="footer-item"><a href="#">Honourable Mention – Project or Competition Name</a></li>
-          <li class="footer-item"><a href="#">Other Recognition or Accolade</a></li>
-        </ul>
-      </li>
+    <!-- =================================================================
+         5. FOOTER
+         ================================================================= -->
+    <footer class="project-footer">
+      <a href="index.html#top" class="project-back">← Back home</a>
+      <a href="#top" class="project-back">Back to top ↑</a>
+    </footer>
 
-      <li class="footer-contact-social">
-        <h2>Contact & Social</h2>
-        <ul class="footer-socials-list">
-          <li class="footer-item"><a href="#">Insta</a></li>
-          <li class="footer-item"><a href="#">LinkedIn</a></li>
-          <li class="footer-item"><a href="#">Behance</a></li>
-        </ul>
-      </li>
+    <!-- =================================================================
+         6. DRAGGING  (JavaScript — makes the Collection objects movable)
+         Laptops only. Phones keep the tidy grid so scrolling isn't blocked.
+         You don't need to edit this.
+         ================================================================= -->
+    <script>
+      (function () {
+        var area = document.querySelector(".peek-collection");
+        var tidy = document.querySelector(".peek-tidy");
+        if (!area) return;
+        var wide = window.matchMedia("(min-width: 768px)");
+        var items = Array.prototype.slice.call(area.querySelectorAll(".peek-object"));
+        var top = 10;
 
-      <li class="footer-full-width">
-        <p><a href="#top">Smooth scroll to the top</a></p>
-        <p class="footer-fineprint">
-          &copy; <span id="copyright-years">2020-</span>. Hand crafted with
-          <span class="heart">❤</span>
-          by James Neufeld.
-        </p>
-        <script>
-          document.getElementById("copyright-years").textContent += new Date().getFullYear();
-        </script>
-      </li>
-    </ul>
-    <script src="./lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
+        // Remember where you placed everything, for "Tidy up"
+        var start = items.map(function (el) {
+          return { x: el.style.getPropertyValue("--x"), y: el.style.getPropertyValue("--y") };
+        });
+
+        items.forEach(function (el) {
+          var img = el.querySelector("img");
+          if (img) img.draggable = false;   // stops the browser's own image dragging
+
+          el.addEventListener("pointerdown", function (e) {
+            if (!wide.matches || e.button !== 0) return;
+            e.preventDefault();
+            var box = area.getBoundingClientRect();
+            var r = el.getBoundingClientRect();
+            var offX = e.clientX - r.left, offY = e.clientY - r.top;
+            el.style.zIndex = ++top;          // the one you grab comes to the front
+            el.classList.add("is-dragging");
+            el.setPointerCapture(e.pointerId);
+
+            function move(ev) {
+              // New spot as a % of the area, kept inside the edges
+              var x = (ev.clientX - box.left - offX) / box.width * 100;
+              var y = (ev.clientY - box.top - offY) / box.height * 100;
+              x = Math.max(0, Math.min(x, 100 - r.width / box.width * 100));
+              y = Math.max(0, Math.min(y, 100 - r.height / box.height * 100));
+              el.style.setProperty("--x", x + "%");
+              el.style.setProperty("--y", y + "%");
+            }
+            function up() {
+              el.classList.remove("is-dragging");
+              el.removeEventListener("pointermove", move);
+              el.removeEventListener("pointerup", up);
+              el.removeEventListener("pointercancel", up);
+            }
+            el.addEventListener("pointermove", move);
+            el.addEventListener("pointerup", up);
+            el.addEventListener("pointercancel", up);
+          });
+        });
+
+        // Ticker: copy the list a couple of times so the loop never shows a gap,
+        // even on very wide screens
+        var list = document.querySelector(".peek-legend");
+        if (list) {
+          for (var c = 0; c < 2; c++) {
+            var copy = list.cloneNode(true);
+            copy.setAttribute("aria-hidden", "true");   // screen readers only read it once
+            list.parentNode.appendChild(copy);
+          }
+        }
+
+        if (tidy) tidy.addEventListener("click", function () {
+          area.classList.add("is-tidying");   // glides them back
+          items.forEach(function (el, i) {
+            el.style.setProperty("--x", start[i].x);
+            el.style.setProperty("--y", start[i].y);
+          });
+          setTimeout(function () { area.classList.remove("is-tidying"); }, 600);
+        });
+      })();
+    </script>
   </body>
 </html>

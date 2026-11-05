@@ -1,147 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
+<!--
+  =====================================================================
+    PROJECT PAGE 1 — BOOTH FEST  (project-1.html)
+  =====================================================================
+    All four project pages are built the same way, so once you know
+    one, you know them all.
+
+    WHAT'S IN HERE (top to bottom)
+    ---------------------------------------------------------------
+    1. FLOATING NAME ..... "Stephy Pak" — goes back to the homepage
+    2. HERO IMAGE ........ first big image                        ✏️
+    3. BRIEF + CREDITS ... short description + role, year, etc.   ✏️
+    4. MORE IMAGES ....... full-width, two side by side, full-width ✏️
+    5. NEXT PROJECT ...... link to the next page
+
+    ✏️ = things you'll want to edit
+    Anything in [square brackets] is a placeholder — replace it.
+
+    ADDING YOUR IMAGES
+      1. Put the image file in the  assets/projects/  folder
+         (simple names work best: booth-fest-01.jpg — no spaces).
+      2. Change  src="assets/projects/placeholder.svg"
+         to      src="assets/projects/booth-fest-01.jpg"
+      3. Change the alt="…" text to a short description of the image
+         (screen readers read this out loud for people who can't see it).
+  =====================================================================
+-->
 <html lang="en">
   <head>
-    <title>Free Creative Portfolio Template: October 2025 Version | Project Page</title>
-    <meta name="description" content="When writing a meta description, keep it between 140 and 160 characters so Google can display your entire message. Don’t forget to include your keyword!" />
+    <!-- ✏️ Text in the browser tab -->
+    <title>Booth Fest | Stephy Pak</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="assets/branding-images/favicon.svg" />
-    <link rel="icon" type="image/png" href="assets/branding-images/favicon.png" />
-    <meta property="og:image" content="screenshot.jpg" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
-  <body class="project-1">
-    <header class="hero-header">
-      <ul class="nav-branding">
-        <li><a href="work.html" class="custom-navigation">Work</a></li>
-        <li class="nav-branding-logo">
-          <a href="index.html"><img src="assets/branding-images/logo.svg" alt="Your portfolio logo" /></a>
-        </li>
-        <li><a href="about.html" class="custom-navigation">About</a></li>
-      </ul>
+  <body class="project-page">
+
+    <!-- =================================================================
+         1. FLOATING NAME
+         Stays in the corner as you scroll. Clicking it goes back to the
+         top of the homepage.
+         ================================================================= -->
+    <header class="project-header">
+      <a href="index.html#top" class="project-header-name">Stephy Pak</a>
     </header>
-    <div class="project-wrapper">
-      <aside class="project-aside">
-        <div class="project-info">
-          <h1 class="project-title">Project One Title</h1>
-          <p class="project-description">A brief description of your project goes here. The temporary colours are like pencil lines in a sketch—they shape the layout, but you’ll paint over them later. Don’t worry if they clash—they’re just placeholders for now.</p>
-          <p class="project-description">This is a sticky sidebar (<em>.project-aside</em>). To remove the sticky sidebar, see <em>Sidebar on Large Devices</em> in style.css.</p>
-          <p class="project-description"><a href="project-lightbox.html">Lightbox</a> is now available for project pages plus a new <a href="project-full-width.html">Full Width Project Page Template</a>.</p>
-        </div>
-        <ul class="project-navigation">
-          <li class="arrow">
-            <a href="project-3.html" class="navigation-arrow"><i class="fa-sharp fa-solid fa-arrow-left fa-2x"></i></a>
-          </li>
-          <li class="arrow">
-            <a href="project-2.html" class="navigation-arrow"><i class="fa-sharp fa-solid fa-arrow-right fa-2x"></i></a>
-          </li>
-        </ul>
-      </aside>
-      <main class="project-details">
-        <figure class="project-image border">
-          <img src="assets/temp/first-name-last-name--project-title--category--placeholder-neo-classical-1.jpg" width="1920" height="1080" loading="lazy" alt="Describe your project" />
+
+    <main class="project">
+
+      <!-- ===============================================================
+           2. HERO IMAGE — your strongest image of this project ✏️
+           =============================================================== -->
+      <figure class="project-figure">
+        <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="eager" alt="[Describe the image]" />
+      </figure>
+
+      <!-- ===============================================================
+           3. BRIEF + CREDITS ✏️
+           Brief: 2–3 sentences. Credits: each <div> is one row.
+           To add a row, copy a whole  <div class="project-credit">…</div>  line.
+           To remove one, delete its line.
+           =============================================================== -->
+      <section class="project-about" aria-label="About this project">
+        <p class="project-brief">[Two or three sentences on the brief: what Booth Fest is, who it&#x27;s for, and what you set out to make.]</p>
+        <dl class="project-credits">
+          <div class="project-credit"><dt>Project</dt><dd>Booth Fest</dd></div>
+          <div class="project-credit"><dt>Role</dt><dd>Designer</dd></div>
+          <div class="project-credit"><dt>Context</dt><dd>[Course or client]</dd></div>
+          <div class="project-credit"><dt>Year</dt><dd>[Year]</dd></div>
+        </dl>
+      </section>
+
+      <!-- ===============================================================
+           4. MORE IMAGES ✏️
+           Each <figure> … </figure> is one image.
+             • copy a figure block to add an image
+             • delete a figure block to remove one
+             • <figcaption> is an optional caption — delete it if you don't want one
+           =============================================================== -->
+
+      <!-- Full-width image -->
+      <figure class="project-figure">
+        <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe the image]" />
+        <figcaption>[Optional caption]</figcaption>
+      </figure>
+
+      <!-- Two images side by side (they stack on phones) -->
+      <div class="project-pair">
+        <figure class="project-figure">
+          <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe the image]" />
         </figure>
-        <div class="project-description-container">
-          <div class="project-title col-2">
-            <h2>Project Description Block</h2>
-            <h3>Use this two-column layout to separate project context from detailed case study text.</h3>
-          </div>
-          <div class="project-description col-2">
-            <p>To create new project pages: copy this file, rename it, and update the navigation arrows. The responsive layout works automatically.</p>
-            <p><strong>Pro tip:</strong> Find more ready-to-use components in <a href="components.html">components.html</a> to build faster.</p>
-          </div>
-        </div>
-        <figure class="project-image">
-          <img src="assets/temp/first-name-last-name--project-title--category--placeholder-neo-classical-2.jpg" width="1920" height="1080" loading="lazy" alt="Describe your project" />
+        <figure class="project-figure">
+          <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe the image]" />
         </figure>
-        <figure class="project-image">
-          <img src="assets/temp/first-name-last-name--project-title--category--placeholder-neo-classical-3.jpg" width="1920" height="1080" loading="lazy" alt="Describe your project" />
-        </figure>
-        <div class="project-description-container">
-          <div class="project-title col-2">
-            <h2>Embed Video!</h2>
-            <h3>Faster loading time is an advantage that’s impossible to overlook.</h3>
-          </div>
-          <div class="project-description col-2"><p>Embedded videos from platforms like Vimeo boost your site’s speed and SEO, keeping visitors engaged without extra load. When hosted on powerful platforms like YouTube or Vimeo, your embedded videos load much faster than if self-hosted.</p></div>
-        </div>
-        <div class="project-video-container"><iframe src="https://player.vimeo.com/video/228122256" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="responsive-iframe"></iframe></div>
-        <div class="project-image-container">
-          <figure class="project-image">
-            <img src="assets/temp/first-name-last-name--project-title--category--placeholder-neo-classical-2.jpg" width="1920" height="1080" loading="lazy" alt="Describe your project" />
-          </figure>
-          <figure class="project-image">
-            <img src="assets/temp/first-name-last-name--project-title--category--placeholder-neo-classical-3.jpg" width="1920" height="1080" loading="lazy" alt="Describe your project" />
-          </figure>
-        </div>
-        <figure class="project-image border">
-          <img src="assets/temp/first-name-last-name--project-title--category--placeholder-neo-classical-1.jpg" width="1920" height="1080" loading="lazy" alt="Describe your project" />
-        </figure>
-        <div class="project-image-container">
-          <figure class="project-image">
-            <img src="assets/temp/first-name-last-name--project-title--category--placeholder-neo-classical-2.jpg" width="1920" height="1080" loading="lazy" alt="Describe your project" />
-          </figure>
-          <figure class="project-image">
-            <img src="assets/temp/first-name-last-name--project-title--category--placeholder-neo-classical-3.jpg" width="1920" height="1080" loading="lazy" alt="Describe your project" />
-          </figure>
-        </div>
-      </main>
-    </div>
-    <ul class="footer-global">
-      <li class="footer-tagline">
-        <h2>Let's Connect!</h2>
-        <p>Feel free to reach out with any questions, collaborations, or just to chat about design.</p>
-      </li>
+      </div>
 
-      <li class="footer-highlights">
-        <h2>Awards & Recognition</h2>
-        <ul class="footer-awards-list">
-          <li class="footer-item"><a href="#">Dean’s List – Year or Term</a></li>
-          <li class="footer-item"><a href="#">Your Award – Name of Student Award and Year</a></li>
-          <li class="footer-item"><a href="#">Honourable Mention – Project or Competition Name</a></li>
-          <li class="footer-item"><a href="#">Other Recognition or Accolade</a></li>
-        </ul>
-      </li>
+      <!-- Full-width image -->
+      <figure class="project-figure">
+        <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe the image]" />
+      </figure>
 
-      <li class="footer-contact-social">
-        <h2>Contact & Social</h2>
-        <ul class="footer-socials-list">
-          <li class="footer-item"><a href="#">Insta</a></li>
-          <li class="footer-item"><a href="#">LinkedIn</a></li>
-          <li class="footer-item"><a href="#">Behance</a></li>
-        </ul>
-      </li>
+    </main>
 
-      <li class="footer-full-width">
-        <p><a href="#top">Smooth scroll to the top</a></p>
-        <p class="footer-fineprint">
-          &copy; <span id="copyright-years">2020-</span>. Hand crafted with
-          <span class="heart">❤</span>
-          by James Neufeld.
-        </p>
-        <script>
-          document.getElementById("copyright-years").textContent += new Date().getFullYear();
-        </script>
-      </li>
-    </ul>
+    <!-- =================================================================
+         5. NEXT PROJECT
+         Left: back to the work list. Right: the next project's page.
+         (The pages loop: 1 → 2 → 3 → 4 → back to 1.)
+         ================================================================= -->
+    <footer class="project-footer">
+      <a href="index.html#works-heading" class="project-back">← All work</a>
+      <a href="project-2.html" class="project-next">
+        <span class="project-next-label">Next</span>
+        <span class="project-next-title">Patches →</span>
+      </a>
+    </footer>
 
-    <div id="myID" class="bottomMenu hide"><a href="project-2.html">Next Project</a></div>
-
-    <script>
-      myID = document.getElementById("myID");
-
-      var myScrollFunc = function () {
-        var y = window.scrollY;
-        if (y >= 800) {
-          myID.className = "bottomMenu show";
-        } else {
-          myID.className = "bottomMenu hide";
-        }
-      };
-
-      window.addEventListener("scroll", myScrollFunc);
-    </script>
   </body>
 </html>

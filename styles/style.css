@@ -1,1656 +1,1094 @@
 /*
- * =============================================
- * PORTFOLIO FOR CREATIVES – MAIN STYLESHEET
- * =============================================
- * Author: James Neufeld
- * Version: 2.1 | Last Updated: April 13, 2025
- * License: GNU General Public License v3.0 (GPL-3.0)
- * https://www.gnu.org/licenses/gpl-3.0.en.html
- * 
- * CONTENTS:                    DESIGN SYSTEM:
- * 1. Base Styles               - Comprehensive color & font theming 🎨
- * 2. Typography                - Mobile-first responsive architecture 📱
- * 3. Layout Components
- * 4. Page Templates
- * 5. Responsive Breakpoints
- * =============================================
+ * =====================================================================
+ *   STEPHY PAK — PORTFOLIO STYLES
+ * =====================================================================
+ *
+ *   This one file controls how EVERY page looks (colours, fonts,
+ *   sizes, spacing, hover effects).
+ *
+ *   CONTENTS                                   (Cmd+F to jump to one)
+ *   ---------------------------------------------------------------
+ *   1. FONT + COLOURS ........ the whole look lives here ✏️
+ *   2. BASICS ................ makes every browser start the same
+ *   3. HOMEPAGE — TOP ROW .... your name, intro, links, the eye GIF
+ *   4. HOMEPAGE — SLOGAN ..... "pretty smart." + the typewriter
+ *   5. HOMEPAGE — ARROW ...... the floppy disk scroll arrow
+ *   6. HOMEPAGE — WORK LIST .. "Selected work", star, project titles
+ *   7. HOMEPAGE — BIGGER SCREENS (tablets + laptops)
+ *   8. HOMEPAGE — MOUSE HOVER EFFECTS (laptops only)
+ *   9. PROJECT PAGES ......... project-1.html … project-4.html
+ *  10. PEEK PAGE ............. play.html
+ *  11. REDUCED MOTION ........ calmer version for people who need it
+ *
+ *   ✏️  = a value you might want to change
+ *
+ *   ---------------------------------------------------------------
+ *   HOW CSS WORKS (the 30-second version)
+ *   ---------------------------------------------------------------
+ *   .hero-name {            ← "selector": WHICH thing to style.
+ *     font-size: 3rem;      ← "property: value;" = WHAT to change.
+ *   }                         A dot (.) means a class name from the HTML,
+ *                             e.g. class="hero-name" in index.html.
+ *
+ *   Handy units:
+ *     px   = pixels (fixed size)
+ *     rem  = relative to normal text size (1rem ≈ 16px)
+ *     em   = relative to the text size of that element
+ *     vw   = % of the screen width (10vw = 10% of the width)
+ *     clamp(min, ideal, max) = grows with the screen but never goes
+ *                              smaller than min or bigger than max
+ *
+ *   @media (min-width: 768px) { … }
+ *     = "only apply these rules on screens 768px wide or more"
+ *       (tablets and laptops). Everything outside is the phone version.
+ * =====================================================================
  */
 
-/* 
-███████  ██████  ███    ██ ████████ ███████ 
-██      ██    ██ ████   ██    ██    ██      
-█████   ██    ██ ██ ██  ██    ██    ███████ 
-██      ██    ██ ██  ██ ██    ██         ██ 
-██       ██████  ██   ████    ██    ███████ 
-*/
 
-/* ------------------------------- */
-/* 🌐 Google Fonts - Customize Your Site's Typography */
-/* You can add your own fonts here, but be mindful of performance */
-/* ------------------------------- */
+/* =====================================================================
+   1. FONT + COLOURS  ✏️
+   Change these and the whole site updates.
+   ===================================================================== */
 
-/* TODO: Replace these Google Fonts with the ones you want to use on your site. */
-/* Remember, the more fonts you load, the longer it can take for your page to load. */
+/* The font: Instrument Sans from Google Fonts.
+   ✏️ To try another font, swap the link below AND the name in "body" (section 2). */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap");
+/* A small typewriter-style font for labels (the Collection numbers + ticker). */
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap");
 
-/* Eczar Font (for headers or special text) */
-@import url("https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap");
-
-/* Rubik Font (clean and modern for body text) */
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;900&display=swap");
-
-/* Inter Font (great for readability and minimal design) */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
-/*
-
-/* 
-██ ███    ███ ██████   ██████  ██████  ████████      ██████ ███████ ███████ 
-██ ████  ████ ██   ██ ██    ██ ██   ██    ██        ██      ██      ██      
-██ ██ ████ ██ ██████  ██    ██ ██████     ██        ██      ███████ ███████ 
-██ ██  ██  ██ ██      ██    ██ ██   ██    ██        ██           ██      ██ 
-██ ██      ██ ██       ██████  ██   ██    ██         ██████ ███████ ███████ 
-*/
-
-/* ------------------------------- */
-/* 🔗 Imported Stylesheets */
-/* These are external CSS files that add extra effects to your site. */
-/* ------------------------------- */
-
-/* TODO: Delete any stylesheets you don't plan to use on your site. */
-
-/* File for animation effects that make elements move (e.g., flying) */
-@import url("make-something-fly.css");
-
-/* File for animation effects that make elements blink */
-@import url("make-something-blink.css");
-
-/* File for adding a smooth animated gradient background */
-@import url("animated-gradient.css");
-
-/* File for adding a glitch animation to your 404 error page */
-@import url("error.css");
-
-/* File for adding text stroke (outline) effect */
-@import url("text-stroke.css");
-
-/* File for adding stroke shadow effect around text */
-@import url("stroke-shadow.css");
-
-/* File with extra experimental styles (e.g., fun animations or effects) */
-@import url("experiments.css");
-
-/* File for adding a scroll-to-top button or effect */
-@import url("scroll-to-top.css");
-
-/* File for adding accordion functionality to expand/collapse content sections */
-@import url("accordian.css");
-
-/* 
-██    ██  █████  ██████  ██  █████  ██████  ██      ███████ ███████ 
-██    ██ ██   ██ ██   ██ ██ ██   ██ ██   ██ ██      ██      ██      
-██    ██ ███████ ██████  ██ ███████ ██████  ██      █████   ███████ 
- ██  ██  ██   ██ ██   ██ ██ ██   ██ ██   ██ ██      ██           ██ 
-  ████   ██   ██ ██   ██ ██ ██   ██ ██████  ███████ ███████ ███████ 
-*/
-
-/* ------------------------------- */
-/* 🎨 Theme Design Variables */
-/* Use CSS variables to quickly change your site's color scheme and typography */
-/* ------------------------------- */
-
-/* These design variables store important elements like colours and fonts.
-   You can easily change the look and feel of your site by adjusting these values. */
-
-/* TODO: Customize these variables to fit your design. You can add new ones or delete ones you don’t need. */
-
+/* Colour "variables" — nicknames you can reuse anywhere as var(--name). */
 :root {
-  /* Typography */
-  --font-family-body: "Inter", sans-serif;
-  --font-family-heading: "Funnel Display", serif;
-  --font-family-project-title: "Funnel Display", serif;
-  /* Core Colours */
-  --color-text-primary: #222;
-  --color-text-secondary: #333;
-  --color-accent-primary: #14092b;
-  --color-accent-secondary: #ff057c;
-  --color-overlay-primary: rgba(82, 0, 255, 0.5);
-  --color-highlight: lemonchiffon;
-  --color-fallback: #ff057c; /* Fallback color for glitch effect on 404 page */
-  /* Backgrounds */
-  --color-bg: #fdfdfd;
-  --color-bg-about: #f5f5f5;
-  --color-bg-footer: #f5f5f5;
-  --color-bg-holding-page: rgba(82, 0, 255, 0.6);
-  /* Headings */
-  --h1-color: #5200ff;
-  --h2-color: #5200ff;
-  --h3-color: #5200ff;
-  --h4-color: #5200ff;
-  --h5-color: #5200ff;
-  --h6-color: #5200ff;
-  /* Special Text Colours */
-  --color-text-holding-title: #ebedf0;
-  --color-text-project-category: #ffffff;
-  --color-text-project-description: #222;
-  --color-text-project-sidebar: #222;
-  --color-text-project-title: #5200ff;
-  --color-text-work-grid-title: #ffffff;
-  /* Link States */
-  --color-link: #5200ff;
-  --color-link-hover: #111;
-  --color-link-visited: #5200ff;
-  /* Navigation */
-  --color-nav-link: #5200ff;
-  --color-nav-link-hover: #321575;
-  --color-nav-arrow: #5200ff;
-  --color-nav-arrow-hover: #000;
-  --color-nav-arrow-stroke: #5200ff;
-  --color-nav-arrow-stroke-hover: #000;
-  /* Components */
-  --color-bg-full-width: #f5f5f5;
-  --color-bg-project-description: #f5f5f5;
-  --color-bg-sidebar-project: orangered;
-  --color-bg-sidebar-work: lemonchiffon;
-  --color-gradient-hero: linear-gradient(90deg, #ff00ff, #00ffff);
-  --color-gradient-project-details: linear-gradient(-225deg, #ff057c 0%, #8d0b93 50%, #321575 100%);
-  /* Special Elements */
-  --color-icon-heart: darkred;
-  --color-text-holding-footer: #f8f8ff;
-  --color-bg-selection: #5200ff;
-  --color-shadow-stroke: rgba(0, 0, 0, 0.4);
-  /* Assets */
-  --image-noise-texture: url(/assets/temp/noise.svg);
-  /* Animation Durations */
-  --duration-fast: 0.15s; /* Quick interactions (hover states) */
-  --duration-normal: 0.3s; /* Standard transitions (button clicks) */
-  --duration-slow: 0.75s; /* Prominent animations (page transitions) */
-  /* Rounded Corners */
-  --radius-sm: 0.5rem; /* Small interactive elements */
-  --radius-md: 1rem; /* Cards/containers */
-  --radius-lg: 2rem; /* Large decorative elements */
-  --radius-full: 50%; /* Circles/pills */
-  /* Padding Scale */
-  --padding-tiny: 0.5rem; /* Micro-spacing: icon padding, toggle switches */
-  --padding-small: 1rem; /* Compact spacing: mobile buttons, form tags */
-  --padding-medium: 2rem; /* Standard spacing: desktop buttons, card content */
-  --padding-large: 3rem; /* Section spacing: content blocks, banner padding */
-  --padding-jumbo: 4rem; /* Hero elements: full-width containers, page headers */
-  --padding-ultra: 8rem; /* Full-bleed spacing: edge-to-edge layouts, super-sized headers */
-  /* Flex Gap Scale */
-  --gap-tiny: 0.5rem; /* Micro-gap: icon spacing, small button groups */
-  --gap-small: 1rem; /* Compact gap: card elements, form fields */
-  --gap-medium: 2rem; /* Standard gap: desktop card grids, section items */
-  --gap-large: 3rem; /* Section gap: major content blocks, banner spacing */
-  --gap-jumbo: 4rem; /* Hero gap: full-width containers, large card spacing */
-  --gap-ultra: 8rem; /* Edge-to-edge spacing: mega sections, spacious layouts */
+  --color-ink: #0c0a24;                  /* ✏️ blue-black */
+  --color-paper: #fdfdfd;                /* ✏️ near-white */
+  --color-pink: #d6338a;                 /* ✏️ the comma, typing cursor, hovers, PEEK pill */
+
+  --color-page-bg: var(--color-paper);   /* page background */
+  --color-page-text: var(--color-ink);   /* text colour */
+                                         /* (swap these two to flip to a dark site) */
+
+  --font-mono: "DM Mono", ui-monospace, monospace;   /* ✏️ the label font */
+
+  --duration-fast: 0.15s;                /* speed of quick hover effects */
+  --duration-normal: 0.3s;               /* speed of normal hover effects */
 }
 
-/* ======================
-   #BASE STYLES
-   ====================== */
 
-/* 
-███    ███  ██████  ██████  ██ ██      ███████     ███████ ██ ██████  ███████ ████████ 
-████  ████ ██    ██ ██   ██ ██ ██      ██          ██      ██ ██   ██ ██         ██    
-██ ████ ██ ██    ██ ██████  ██ ██      █████       █████   ██ ██████  ███████    ██    
-██  ██  ██ ██    ██ ██   ██ ██ ██      ██          ██      ██ ██   ██      ██    ██    
-██      ██  ██████  ██████  ██ ███████ ███████     ██      ██ ██   ██ ███████    ██    
-*/
+/* =====================================================================
+   2. BASICS
+   Removes the browser's built-in spacing and sets the default font,
+   so every page starts from a clean slate. You won't need to touch this.
+   ===================================================================== */
 
-/* ------------------------------- */
-/* 📱 Responsive Design for Small Devices (Portrait Phones) */
-/* No media query needed for small devices like phones under 576px. This is the default in Bootstrap. */
-/* ------------------------------- */
-
-/* Add border-box sizing to make layout easier and enable smooth scrolling behavior */
-html {
-  box-sizing: border-box; /* Makes sure padding and borders don't add extra width to elements */
-  scroll-behavior: smooth; /* Adds smooth scrolling between sections */
-  cursor: url("../assets/temp/up-cursor.png"), auto !important; /* Custom cursor (change the URL below to use your own) */
-
-  /* TODO: Replace the URL above to add a custom cursor. 
-     If you want to use the default browser cursor, just delete this line. */
-}
-
-/* Ensure all elements, including pseudo-elements, follow border-box sizing */
+/* Makes width/height include padding — much easier to size things. */
 *,
-*:before,
-*:after {
-  box-sizing: inherit; /* Inherits the border-box setting from the html tag */
-}
-
-body {
-  font-family: var(--font-family-body);
-  color: var(--color-text-primary);
-  background: var(--color-bg);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* ------------------------------- */
-/* 🖍️ Text Highlight Styles */
-/* This changes the background color when you highlight text (like when you click and drag to select it) */
-/* ------------------------------- */
-
-::selection {
-  background: var(--color-bg-selection); /* Uses your custom color for highlighted text */
-}
-
-/* ---------------------------------------- */
-/* 🖼️ Responsive Image Styles */
-/* These styles make your images and icons look good on any screen size */
-/* ---------------------------------------- */
-
-/* Make all images and SVGs scale nicely */
-img,
-svg {
-  max-width: 100%; /* Keeps the image from getting too big */
-  height: auto; /* Keeps the image’s original proportions */
-  vertical-align: top; /* Removes little gaps under images (from line-height) */
-  object-fit: contain; /* Optional: Makes sure the whole image fits inside its box */
-  /* Try 'cover' if you want it to fill the space, or remove this line if not needed */
-}
-
-/* ---------------------------------------- */
-/* 🎨 Utility Classes for Styling Elements  */
-/* Use these helper classes to quickly apply 
-   common styles across your portfolio site */
-/* ---------------------------------------- */
-
-/* ------------------------ */
-/* 📐 Layout & Spacing Tools */
-/* ------------------------ */
-
-/* Horizontally centers a block element (must have a defined width) */
-.centered-block {
-  margin: 0 auto;
-}
-
-/* Vertical layout – stacks items in a column (mobile-first) */
-.flex-row {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Puts the box on its own line and adds space underneath */
-.margin-bottom {
-  display: block; /* Makes it a block so it stacks nicely */
-  margin-bottom: 1rem; /* Adds space below – helps with layout breathing room */
-}
-
-.width-third,
-.width-two-thirds {
-  width: 100%;
-}
-
-/* Adds a dashed border to help you see the box while you're designing */
-.border {
-  border: 1px dashed var(--color-accent-primary); /* This uses your custom accent color */
-  /* TODO: Delete this later – it’s just here to help you see the box while you work */
-}
-
-/* ---------------------- */
-/* ✍️  Typography Helpers */
-/* ---------------------- */
-
-/* Optimal line length for readability (~60 characters) */
-.max-text-width {
-  max-width: 60ch;
-}
-
-/* Centers your text (great for headings or buttons) */
-.centered-text {
-  text-align: center;
-}
-
-/* ------------------------------ */
-/* 🌀 Animation & Interaction Tools */
-/* ------------------------------ */
-
-/* Smooth transition when applying transformations – improves hover experience */
-.rotate {
-  transition: transform 0.3s ease;
-}
-
-/* Rotates the element slightly on hover – adds a playful effect */
-.rotate:hover {
-  transform: rotate(4deg);
-}
-
-/* ----------------------------- */
-/* 📦 Padding Utilities (Mobile First) */
-/* ----------------------------- */
-
-.padding-tiny {
-  padding: var(--padding-tiny);
-}
-
-.padding-small {
-  padding: var(--padding-small);
-}
-
-.padding-medium {
-  padding: var(--padding-small); /* smaller, mobile-safe default */
-}
-
-.padding-large {
-  padding: var(--padding-small); /* smaller, mobile-safe default */
-}
-
-.padding-jumbo {
-  padding: var(--padding-small); /* smaller, mobile-safe default */
-}
-
-.padding-ultra {
-  padding: var(--padding-small); /* smaller, mobile-safe default */
-}
-
-/* ----------------------------- */
-/* 🧩 Flex Gap Utilities (Mobile First) */
-/* ----------------------------- */
-.gap-tiny {
-  gap: var(--gap-tiny);
-}
-.gap-small {
-  gap: var(--gap-small);
-}
-.gap-medium {
-  gap: var(--gap-small); /* smaller, mobile-safe default */
-}
-.gap-large {
-  gap: var(--gap-small); /* smaller, mobile-safe default */
-}
-.gap-jumbo {
-  gap: var(--gap-small); /* smaller, mobile-safe default */
-}
-.gap-ultra {
-  gap: var(--gap-small); /* smaller, mobile-safe default */
-}
-
-/* ------------------------------ */
-/* 🧱 Border Radius Shortcuts */
-/* ------------------------------ */
-
-/* Small interactive elements (buttons, inputs) */
-.rounded-small {
-  border-radius: var(--radius-sm);
-}
-
-/* Default containers (cards, dropdowns) */
-.rounded-medium {
-  border-radius: var(--radius-md);
-}
-
-/* Large decorative elements (modals, banners) */
-.rounded-large {
-  border-radius: var(--radius-lg);
-}
-
-/* Perfect circles (avatars, icons) */
-.rounded-full {
-  border-radius: var(--radius-full);
-}
-
-/* ---------------------------------------- */
-/* 🎥 Responsive Embedded Video Styles      */
-/* These styles keep your videos looking sharp and correctly sized on any device */
-/* ---------------------------------------- */
-
-/* The container holds the video and maintains a 16:9 aspect ratio */
-.project-video-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio (because 9 ÷ 16 = 0.5625) */
-  margin-bottom: 1rem;
-}
-/* The iframe is absolutely positioned to fill the container */
-.responsive-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* ---------------------------------------- */
-/* 🧭 Responsive Navigation (Coming Soon)   */
-/* This section is in progress — you'll build a mobile-friendly nav bar here */
-/* ---------------------------------------- */
-
-.responsive-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background: lightblue;
-  padding: var(--padding-small);
-}
-
-/* ------------------------------------------------------------------ */
-/* 🔤 Global & Mobile Typography                                      */
-/* Heading styles that scale nicely for mobile-first, responsive sites */
-/* ------------------------------------------------------------------ */
-
-/* 
-████████ ██    ██ ██████   ██████   ██████  ██████   █████  ██████  ██   ██ ██    ██ 
-   ██     ██  ██  ██   ██ ██    ██ ██       ██   ██ ██   ██ ██   ██ ██   ██  ██  ██  
-   ██      ████   ██████  ██    ██ ██   ███ ██████  ███████ ██████  ███████   ████   
-   ██       ██    ██      ██    ██ ██    ██ ██   ██ ██   ██ ██      ██   ██    ██    
-   ██       ██    ██       ██████   ██████  ██   ██ ██   ██ ██      ██   ██    ██    
-*/
-
-/* Heading Styles (h1 - h6) */
-
-h1 {
-  font-size: 2.2rem;
-  font-family: var(--font-family-heading);
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  color: var(--h1-color);
-}
-
-h2 {
-  font-size: 2rem;
-  font-family: var(--font-family-heading);
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  color: var(--h2-color);
-}
-
-h3 {
-  font-size: 1.325rem;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-  color: var(--h3-color);
-}
-
-h4 {
-  font-size: 1.2rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  color: var(--h4-color);
-}
-
-h5 {
-  font-size: 1.1rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  color: var(--h5-color);
-}
-
-h6 {
-  font-size: 1rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  color: var(--h6-color);
-}
-
-/* ------------------------------------------------------------------ */
-/* 📝 Paragraph and Text Styles                                       */
-/* Base text styles for body copy, bold, italic, and fine print       */
-/* ------------------------------------------------------------------ */
-
-p {
-  font-size: 1rem;
-  line-height: 1.3;
-  margin-bottom: 1rem;
-}
-
-strong {
-  font-weight: 700; /* Makes text bold */
-}
-
-em {
-  font-style: italic; /* Adds emphasis with italic style */
-}
-
-sup {
-  font-size: 0.6em; /* smaller than the surrounding text */
-  vertical-align: super; /* ensures it sits above the baseline */
-  font-weight: normal; /* optional: adjust weight */
-}
-
-/* ------------------------------------------------------------------ */
-/* 🎨 Custom Class Styles for Headlines, Projects, and Highlights     */
-/* Use these utility classes to style key text elements across pages  */
-/* ------------------------------------------------------------------ */
-
-/* Main hero headline — usually sits in the intro section */
-.hero-headline {
-  color: var(--color-accent-primary); /* Uses your brand's dominant color */
-  max-width: 40ch; /* Optimal line length for readability (~40 characters) */
-  text-wrap: balance; /* Prevents awkward line breaks (like elegant typography) */
-  margin-inline: auto; /* Horizontally centers the text in its container */
-}
-
-/* Large project title — appears on individual project pages */
-.project-title {
-  font-size: 3.625rem;
-  font-family: var(--font-family-project-title);
-  color: var(--color-text-project-title);
-  margin-bottom: 1rem;
-}
-
-/* Project description text — pairs with the project title */
-.project-description {
-  font-size: 1.225rem;
-  line-height: 1.2;
-  color: var(--color-text-project-description);
-  margin-bottom: 1rem;
-}
-
-/* 🧱 Full-width headings — useful in layouts that span edge-to-edge */
-.h1-full-width,
-.h2-full-width {
-  width: 100%;
-  padding: var(--padding-small);
-}
-
-/* ✨ Highlighted text — great for emphasis */
-.highlight-primary {
-  color: var(--color-accent-secondary);
-}
-
-.highlight-gradient {
-  background: var(--color-gradient-hero);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-weight: bold;
-}
-
-/* 📂 Project grid title — used in grid view (like a portfolio gallery) */
-.work-grid-project-title {
-  font-size: 2.875rem;
-  color: var(--color-text-work-grid-title);
-  text-wrap: balance;
-}
-
-/* 🏷️ Project category label — displays the type or role of the project */
-.work-grid-project-category {
-  color: var(--color-text-project-category);
-}
-
-/*
-
-██   ██ ██    ██ ██████  ███████ ██████  ██      ██ ███    ██ ██   ██ ███████ 
-██   ██  ██  ██  ██   ██ ██      ██   ██ ██      ██ ████   ██ ██  ██  ██      
-███████   ████   ██████  █████   ██████  ██      ██ ██ ██  ██ █████   ███████ 
-██   ██    ██    ██      ██      ██   ██ ██      ██ ██  ██ ██ ██  ██       ██ 
-██   ██    ██    ██      ███████ ██   ██ ███████ ██ ██   ████ ██   ██ ███████ 
-
-*/
-
-/* -------------------------------------------------------------------------- */
-/* 🔗 Hyperlink Styles — LVHFA                                                */
-/* LVHFA = Link, Visited, Hover, Focus, Active                                */
-/* These are the five main states a hyperlink can be in                       */
-/* -------------------------------------------------------------------------- */
-
-/* Unvisited link */
-a:link {
-  color: var(--color-link);
-  text-decoration: none; /* Removes underline */
-}
-
-/* Visited link — after a user clicks and returns */
-a:visited {
-  color: var(--color-link-visited);
-}
-
-/* Hover — when a user hovers their mouse over the link */
-a:hover {
-  color: var(--color-link-hover);
-}
-
-/* Focus — when a link is focused (keyboard navigation) */
-a:focus {
-  outline: 1px solid var(--color-accent-primary);
-}
-
-/* Active — when the link is actively being clicked or tapped */
-a:active {
-  color: var(--color-link-hover);
-  /* Useful for mobile tap interactions */
-}
-
-/* -------------------------------------------------------------------------- */
-/* 🧭 Hyperlink Class Styles                                                  */
-/* These are custom styles for specific types of navigation links             */
-/* -------------------------------------------------------------------------- */
-
-a.nav-link-primary {
-  color: var(--color-nav-link);
-}
-a.nav-link-primary:hover {
-  color: var(--color-nav-link-hover);
-}
-
-/* -------------------------------------------------------------------------- */
-/* 🧭 Previous & Next Project Navigation Arrows                               */
-/* These styles are for the left and right arrows used to move between       */
-/* individual project pages in your portfolio. Includes stroke effect styles.*/
-/* -------------------------------------------------------------------------- */
-
-/* Default and visited state for navigation arrows */
-
-.navigation-arrow:link,
-.navigation-arrow:visited {
-  color: var(--color-nav-arrow);
-}
-
-/* Hover and active (clicked) states — makes arrows feel interactive */
-.navigation-arrow:active,
-.navigation-arrow:hover {
-  color: var(--color-nav-arrow-hover);
-}
-
-/* 🖋️ Optional stroke effect for a bold, outlined arrow look */
-
-.stroke:link,
-.stroke:visited {
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: var(--color-nav-arrow-stroke);
-}
-
-.stroke:active,
-.stroke:hover {
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: var(--color-nav-arrow-stroke-hover);
-}
-
-/* 
-
-██   ██ ███████ ██████   ██████  
-██   ██ ██      ██   ██ ██    ██ 
-███████ █████   ██████  ██    ██ 
-██   ██ ██      ██   ██ ██    ██ 
-██   ██ ███████ ██   ██  ██████  
-                                 
-*/
-
-/* -------------------------------------------------------------------------- */
-/* 🦸 Hero Section Layout                                                     */
-/* Full-page intro area with logo, headline, icon, and footer nav            */
-/* Great place for first impression and personal branding                    */
-/* -------------------------------------------------------------------------- */
-
-.hero {
-  width: 100%;
-  min-height: 80vh; /* Takes up most of the screen height */
-  display: flex;
-  flex-direction: column;
-}
-.hero-header {
-  min-height: 6rem; /* Space reserved for logo + nav */
-}
-
-.nav-branding {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: var(--padding-small);
-  align-items: center;
-}
-
-.nav-branding-group {
-  display: flex;
-  flex-direction: row;
-}
-.nav-branding-item {
-  padding: var(--padding-tiny);
-}
-
-.nav-branding-logo {
-  width: 3rem;
-  /* TODO: Adjust the width of the logo on mobile devices here */
-}
-
-.hero-headline-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 3rem;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-small);
-  text-align: center; /* Keeps text centered */
-}
-
-.hero-icon {
-  font-size: 4rem;
-}
-
-.hero-footer {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-.hero-footer-navigation {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: var(--padding-small);
-}
-
-/*
-
- ██████  ██████  ███    ███ ██████   ██████  ███    ██ ███████ ███    ██ ████████ ███████ 
-██      ██    ██ ████  ████ ██   ██ ██    ██ ████   ██ ██      ████   ██    ██    ██      
-██      ██    ██ ██ ████ ██ ██████  ██    ██ ██ ██  ██ █████   ██ ██  ██    ██    ███████ 
-██      ██    ██ ██  ██  ██ ██      ██    ██ ██  ██ ██ ██      ██  ██ ██    ██         ██ 
- ██████  ██████  ██      ██ ██       ██████  ██   ████ ███████ ██   ████    ██    ███████ 
-                                                                                          
-*/
-
-/* -------------------------------------------------------------------------- */
-/* 🔧 Full-Width Section Components                                             */
-/* These components create flexible, full-screen sections for your portfolio   */
-/* Perfect for highlighting key information and projects                      */
-/* -------------------------------------------------------------------------- */
-
-.full-width-section {
-  width: 100%;
-  min-height: 80vh; /* Takes up most of the screen height */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-bg-full-width); /* Background color for full-width sections */
-  margin-bottom: 1rem;
-}
-
-.full-width-headline-wrapper {
-  width: 100%;
-  min-height: 60vh; /* Ensures the headline takes up a good portion of the screen */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-small);
-  text-align: center; /* Keeps the text centered */
-}
-
-.section-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-small);
-  margin-bottom: 1rem;
-}
-.section-item {
-  padding: var(--padding-small);
-  margin: 1rem;
-}
-
-/* 
-
-██     ██  ██████  ██████  ██   ██     ██████   █████   ██████  ███████ 
-██     ██ ██    ██ ██   ██ ██  ██      ██   ██ ██   ██ ██       ██      
-██  █  ██ ██    ██ ██████  █████       ██████  ███████ ██   ███ █████   
-██ ███ ██ ██    ██ ██   ██ ██  ██      ██      ██   ██ ██    ██ ██      
- ███ ███   ██████  ██   ██ ██   ██     ██      ██   ██  ██████  ███████ 
-
-*/
-
-/* -------------------------------------------------------------------------- */
-/* 🔲 Work Page Layout Components                                               */
-/* These styles create the layout for your work portfolio and project pages    */
-/* The goal is to showcase your projects and provide a responsive, clean UI  */
-/* -------------------------------------------------------------------------- */
-
-/* Work wrapper (takes up available space) */
-.main-work-section {
-  flex: 1;
-}
-
-/* Padding around work grid and project page */
-.portfolio,
-.project-wrapper,
-.work-sidebar-wrapper {
-  padding: var(--padding-tiny); /* Padding to keep content from touching edges */
-}
-
-/* Work Sidebar on Mobile */
-.work-sidebar {
-  width: 100%;
-  background: var(--color-bg-sidebar-work); /* Background color for the sidebar */
-}
-
-/* Main Work Area with Sidebar on Mobile */
-.work-details {
-  width: 100%;
-}
-
-/* Defining the work page grid */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Creates a responsive grid */
-  grid-gap: 1rem; /* Space between grid items */
-  /* The auto-fit and minmax() function help ensure responsiveness across screen sizes */
-}
-
-/* Individual Work Grid Item */
-.work-page-grid-item,
-.overlay-container {
-  width: 100%;
-  height: auto;
-  position: relative; /* Needed to position the overlay */
-}
-/* Masonry Overlay Text */
-.overlay-container:hover .overlay {
-  opacity: 1;
-}
-
-/* Project container for background and padding */
-.project-container {
-  background: var(--color-accent-primary); /* Set project background color */
-  padding: var(--padding-medium);
-}
-
-/* Overlay (appears on hover) */
-.overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0; /* Initially invisible */
-  transition: var(--duration-slow) ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: var(--padding-small);
-  background-color: var(--color-overlay-primary); /* Background color of the overlay */
-  transition:
-    opacity var(--duration-normal),
-    visibility var(--duration-normal);
-}
-
-/* Hover effect on work page grid items */
-.work-page-grid-item:hover .overlay {
-  visibility: visible; /* Make overlay visible on hover */
-  opacity: 1; /* Set opacity on hover */
-}
-
-/* Optional container for future overlay customization */
-.project-details-overlay {
-  /* Placeholder: no custom styles yet */
-}
-
-/*
-
-███████ ██ ██████  ███████ ██████   █████  ██████  
-██      ██ ██   ██ ██      ██   ██ ██   ██ ██   ██ 
-███████ ██ ██   ██ █████   ██████  ███████ ██████  
-     ██ ██ ██   ██ ██      ██   ██ ██   ██ ██   ██ 
-███████ ██ ██████  ███████ ██████  ██   ██ ██   ██ 
-                                                   
-                                                   
-*/
-
-/* -------------------------------------------------------------------------- */
-/* 🗂️ Sidebar Navigation Styles                                                 */
-/* This section contains styles for the sidebar navigation on the portfolio    */
-/* website. The aim is to create a simple and clean sidebar for better access. */
-/* -------------------------------------------------------------------------- */
-
-/* Sidebar navigation list styles */
-.sidebar-nav-list {
-  padding: var(--padding-small); /* Adds padding around the navigation list */
-}
-
-/* Individual navigation item styles */
-.sidebar-nav-item {
-  margin-bottom: 1rem; /* Space between each navigation item */
-}
-
-/* 
-
- █████  ██████   ██████  ██    ██ ████████ 
-██   ██ ██   ██ ██    ██ ██    ██    ██    
-███████ ██████  ██    ██ ██    ██    ██    
-██   ██ ██   ██ ██    ██ ██    ██    ██    
-██   ██ ██████   ██████   ██████     ██    
-                                           
-*/
-
-/* -------------------------------------------------------------------------- */
-/* 📚 About Page Grid Styles                                                   */
-/* These styles structure the layout of the "About" page using a grid system.  */
-/* The grid has 3 main sections: an image, text, and footer.                   */
-/* -------------------------------------------------------------------------- */
-
-/* Grid container for the About section */
-.about-grid {
-  display: grid; /* Set to grid layout */
-  grid-template-columns: 1fr; /* Single column layout for mobile and smaller screens */
-  grid-gap: 3rem; /* Space between grid items */
-  background: var(--color-bg-about); /* Background color for the section */
-  padding: var(--padding-small); /* Padding around the grid */
-  flex: 1; /* Flex-grow to take up available space */
-}
-
-/* Image section in the About page grid */
-.about-grid-image {
-  grid-column: 1 / 2; /* Image spans the first column */
-  grid-row: 1 / 2; /* Image spans the first row */
-}
-
-/* Text section in the About page grid */
-.about-grid-text {
-  grid-column: 1 / 2; /* Text spans the first column */
-  grid-row: 2 / 3; /* Text spans the second row */
-}
-
-/* 
-
-███████  ██████   ██████  ████████ ███████ ██████  
-██      ██    ██ ██    ██    ██    ██      ██   ██ 
-█████   ██    ██ ██    ██    ██    █████   ██████  
-██      ██    ██ ██    ██    ██    ██      ██   ██ 
-██       ██████   ██████     ██    ███████ ██   ██ 
-                                                   
-*/
-
-/* -------------------------------------------------------------------------- */
-/* 📱 MOBILE FOOTER LAYOUT                                                    */
-/* Designed with mobile-first approach using CSS Grid                          */
-/* -------------------------------------------------------------------------- */
-
-.footer-global {
-  display: grid;
-  grid-template-columns: 1fr; /* Single column layout */
-  grid-gap: 3rem; /* Consistent spacing between sections */
-  min-height: auto; /* Allows footer to expand based on content, no fixed height */
-  background: var(--color-bg-footer); /* Using CSS variable for theming */
-  padding: var(--padding-small); /* Internal spacing */
-
-  /* Note: Using 'fr' units ensures proper scaling across devices */
-}
-
-/* -------------------------------------------------------------------------- */
-/* 🧩 FOOTER SECTION PLACEMENT                                                */
-/* Each component stacks vertically in mobile view                             */
-/* -------------------------------------------------------------------------- */
-
-.footer-tagline {
-  grid-column: 1 / 2; /* Full width (single column) */
-  grid-row: 1 / 2;
-}
-.footer-highlights {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-}
-.footer-contact-social {
-  grid-column: 1 / 2;
-  grid-row: 3 / 4;
-}
-/* -------------------------------------------------------------------------- */
-/* 🌊 FULL-WIDTH BOTTOM SECTION                                               */
-/* Typically used for copyright/legal information                             */
-/* -------------------------------------------------------------------------- */
-.footer-full-width {
-  grid-column: 1 / 2;
-  grid-row: 4 / 5;
-  text-align: center; /* Center copyright text */
-  align-self: end; /* Push to bottom */
-}
-
-/* ------------------------------- */
-/* 📜 Reusable footer list styles */
-/* ------------------------------- */
-.footer-list {
-  margin-bottom: 2rem;
-}
-.footer-awards-list {
-  margin-bottom: 2rem;
-}
-.footer-works-list {
-  margin-bottom: 2rem;
-}
-.footer-socials-list {
-  margin-bottom: 2rem;
-}
-
-/* -------------------------------------------------------------------------- */
-/* 📏 Footer Item Spacing                                                     */
-/* -------------------------------------------------------------------------- */
-
-/* Apply this class to ALL list items (awards, works, social, bullets) */
-.footer-item {
-  line-height: 1.2; /* Consistent line height for footer items to improve spacing */
-  margin-bottom: 0.25rem;
-}
-
-/* ------------------------------- */
-/* ▪️ Bullet List Style */
-/* Square bullets with compact spacing */
-/* ------------------------------- */
-
-.footer-bullet-list {
-  list-style-type: square;
-  list-style-position: inside;
-  margin-bottom: 1rem;
-}
-
-.footer-bullet-list .footer-item {
-  margin-bottom: 0.25rem;
-  padding-left: 0.5rem;
-  text-indent: -0.5rem; /* Pulls text back toward bullet */
-}
-
-/* -------------------------------------------------------------------------- */
-/* ✨ Footer Special Elements                                                 */
-/* -------------------------------------------------------------------------- */
-
-/* Heart icon for copyright/love notes */
-.heart {
-  color: var(--color-icon-heart); /* Color for heart icon */
-}
-
-.footer-fineprint {
-  font-size: 0.875rem; /* Slightly smaller for disclaimers or captions */
-  color: var(--color-text-secondary); /* Themed color */
-}
-
-/* New item badges */
-.badge-new {
-  background: var(--color-highlight);
-  padding: 0.1rem;
-  font-size: 0.8125rem;
-  text-transform: uppercase;
-}
-
-/* -------------------------------------------------------------------------- */
-/* 🌐 MINIMAL FOOTER (ALTERNATIVE VERSION)                                    */
-/* A simpler alternative to the CSS Grid footer - ideal for beginners          */
-/* -------------------------------------------------------------------------- */
-
-.footer-global-wrapper {
-  padding: var(--padding-small);
-}
-
-/* 
-
-██████  ██████   ██████       ██ ███████  ██████ ████████     ██████   █████   ██████  ███████ 
-██   ██ ██   ██ ██    ██      ██ ██      ██         ██        ██   ██ ██   ██ ██       ██      
-██████  ██████  ██    ██      ██ █████   ██         ██        ██████  ███████ ██   ███ █████   
-██      ██   ██ ██    ██ ██   ██ ██      ██         ██        ██      ██   ██ ██    ██ ██      
-██      ██   ██  ██████   █████  ███████  ██████    ██        ██      ██   ██  ██████  ███████ 
-                                                                                               
-*/
-
-/* ---------------------------------------------------------------------------------- */
-/* Project Page Layout - This section contains the layout for project pages,         */
-/* including the project image, description, sidebar, and navigation arrows.         */
-/* ---------------------------------------------------------------------------------- */
-
-/* Wrapper for the main project section and sidebar */
-.project-wrapper,
-.work-sidebar-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Full-width wrapper for the project section */
-.project-wrapper-full-width {
-  width: 100%;
-  padding: var(--padding-small);
-}
-
-/* Container for the project content with full-width display */
-.project-full-width {
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-/* Sidebar Styles */
-.project-aside {
-  width: 100%;
-  padding: var(--padding-small);
-  display: flex;
-  flex-direction: column;
-  color: var(--color-text-project-sidebar);
-  background: var(--color-bg-sidebar-project);
-}
-
-/* Container for project images with center alignment */
-.project-image-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 1rem; /* Space below the image */
-}
-
-/* Container for project description */
-.project-description-container {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-  background: var(--color-bg-project-description);
-  padding: var(--padding-small);
-  width: 100%;
-  margin-bottom: 1rem; /* Space below the description */
-}
-
-/* Column styles for one-column, two-column and four-column layouts (mobile-first) */
-.col-1,
-.col-2,
-.col-4 {
-  width: 100%;
-  padding: var(--padding-small);
-}
-
-/* Project image styling */
-.project-image {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-/* Project details section */
-.project-details {
-  width: 100%;
-  padding: var(--padding-small);
-  background: var(--color-gradient-project-details); /* TODO: Remove gradient background if you prefer a simpler design */
-}
-
-/* Previous/Next Arrow Styles */
-
-.project-navigation {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: 100%;
-}
-
-/* Styling for left and right arrows */
-.arrow-left,
-.arrow-right {
-  width: 50%;
-}
-.arrow-right {
-  text-align: right;
-}
-
-.arrow {
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Removes default gaps around headings, paragraphs, lists, etc. */
+html,
+body,
+h1, h2, h3, p, ul, ol, li, figure, figcaption, dl, dt, dd {
+  margin: 0;
   padding: 0;
 }
 
-/* ------------------------------- */
-/* 📜 Project info list styles */
-/* ------------------------------- */
-
-.project-info-list {
-  margin-bottom: 1rem;
-}
-.project-item {
-  font-size: 1rem;
-  line-height: 1.2; /* Consistent line height for project items to improve spacing */
-  margin-bottom: 0.25rem;
+/* Smooth scrolling when you click the floppy arrow. */
+html {
+  scroll-behavior: smooth;
 }
 
-/*
+/* The default font + colours for the whole site. */
+body {
+  font-family: "Instrument Sans", sans-serif;
+  background: var(--color-page-bg);
+  color: var(--color-page-text);
+  -webkit-font-smoothing: antialiased;   /* crisper text on Macs */
+}
 
-██████  ██       ██████   ██████      ██ ██████  ███████ ███████ ██    ██ ███    ███ ███████ 
-██   ██ ██      ██    ██ ██          ██  ██   ██ ██      ██      ██    ██ ████  ████ ██      
-██████  ██      ██    ██ ██   ███   ██   ██████  █████   ███████ ██    ██ ██ ████ ██ █████   
-██   ██ ██      ██    ██ ██    ██  ██    ██   ██ ██           ██ ██    ██ ██  ██  ██ ██      
-██████  ███████  ██████   ██████  ██     ██   ██ ███████ ███████  ██████  ██      ██ ███████ 
-                                                                                             
-*/
+/* Images never spill out of their box. */
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
 
-/* Blog and Resume page styles */
+/* No underlines on links. */
+a {
+  text-decoration: none;
+}
 
-.text-section {
+/* Colour when you highlight text with your mouse. */
+::selection {
+  background: var(--color-pink);
+  color: #ffffff;
+}
+
+
+/* =====================================================================
+   3. HOMEPAGE — TOP ROW
+   Your name, intro + contact on the left. Links + eye GIF on the right.
+   (On phones everything stacks; see section 7 for the laptop layout.)
+   ===================================================================== */
+
+/* The whole homepage (the <body class="work-page"> in index.html). */
+.work-page {
+  background: var(--color-page-bg);
+}
+
+/* The outline you see when moving through links with the Tab key. */
+.work-page a:focus {
+  outline-color: var(--color-page-text);
+}
+
+/* The first screen ("hero"): stacks the top row, slogan and arrow. */
+.hero {
   width: 100%;
-  background: var(--color-bg);
-  padding: var(--padding-small);
-}
-.list-item {
-  line-height: 1.3;
-  list-style-type: disc;
-  margin-left: 1.2rem;
-}
-
-/* 
-
-██   ██  ██████  ██      ██████  ██ ███    ██  ██████  
-██   ██ ██    ██ ██      ██   ██ ██ ████   ██ ██       
-███████ ██    ██ ██      ██   ██ ██ ██ ██  ██ ██   ███ 
-██   ██ ██    ██ ██      ██   ██ ██ ██  ██ ██ ██    ██ 
-██   ██  ██████  ███████ ██████  ██ ██   ████  ██████  
-                                                       
-*/
-
-/* ----------------------------------------------------------------
-   Holding Page Styles
-   ----------------------------------------------------------------
-   Includes layout, typography, and visual effects for the demo
-   landing page (index.html).
-
-   Related files:
-     • CSS: styles/interactive-blobs.css
-     • JS:  js/interactive-blobs.js
----------------------------------------------------------------- */
-
-.holding-page-animation {
-  width: 10rem;
-  margin: 0 auto;
-  margin-bottom: 3rem;
-}
-
-.holding-page-title {
-  font-size: 1.5rem;
-  color: var(--color-text-holding-title);
-}
-
-.holding-page-footer {
-  display: grid;
-  place-items: center;
-  min-height: 10vh;
-  width: 100%;
-  padding: var(--padding-small);
-}
-
-.holding-page-copyright {
-  font-size: 0.8rem; /* Smaller font size for copyright text */
-  color: var(--color-text-holding-footer); /* Custom color for the footer text */
-  margin-bottom: 0; /* Removes default margin from the bottom of the copyright text */
-}
-
-/*
-███████ ██████  ██████   ██████  ██████  
-██      ██   ██ ██   ██ ██    ██ ██   ██ 
-█████   ██████  ██████  ██    ██ ██████  
-██      ██   ██ ██   ██ ██    ██ ██   ██ 
-███████ ██   ██ ██   ██  ██████  ██   ██ 
-*/
-
-/* TODO: Customize your 404 Error Page */
-
-/* A great 404 page is a chance to leave a memorable impression when visitors land on a page that doesn't exist. Consider customizing this page to be more engaging, humorous, or on-brand with your site. Check out error.css for the gradient and glitch effect. */
-
-.error-headline-wrapper {
-  width: 85%;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-small);
-  text-align: center;
-  margin: 0 auto;
+}
+.hero-dark {
+  /* ✏️ Slightly shorter than the screen (minus 7rem) so the first
+     project title peeks up from the bottom. */
+  min-height: calc(100vh - 7rem);
+  min-height: calc(100svh - 7rem);
+  justify-content: space-between;
+  gap: 2.5rem;
+  padding: 0.5rem clamp(1rem, 2.5vw, 2.25rem) 2.25rem;   /* ✏️ edge spacing (top is small because the floating name sits above) */
+  background: var(--color-page-bg);
+  color: var(--color-page-text);
 }
 
-.error-page-animation {
-  width: 25rem;
+/* Links in the hero: normal colour, pink on hover. */
+.hero-dark a:link,
+.hero-dark a:visited {
+  color: var(--color-page-text);
+}
+.hero-dark a:hover,
+.hero-dark a:focus-visible {
+  color: var(--color-pink);
 }
 
-/*
-
-██████  ██       █████  ██    ██ 
-██   ██ ██      ██   ██  ██  ██  
-██████  ██      ███████   ████   
-██      ██      ██   ██    ██    
-██      ███████ ██   ██    ██    
-*/
-
-/* Play Page Styles
-––––––––––––––––––––––––––––––––––––––––––––––––––
-Custom styles specific to the "Play" page layout and content.
-
-✅ Masonry layout is defined separately in masonry.css  
-✅ Lightbox functionality is handled via Lightbox2 (in /lightbox2 folder)  
-✅ Rotate and other utility classes are already included in the base styles (this file)
-
-Use this section to style elements that are *unique to the Play page*.
-For common layout or effects, continue using the base utility classes
-to keep your styles reusable and consistent.
-*/
-
-.play-page {
-  /* Add page-specific layout or container styles here */
-}
-
-/*
-
-███████ ██   ██ ███████ ████████  ██████ ██   ██ ██████   ██████   ██████  ██   ██ 
-██      ██  ██  ██         ██    ██      ██   ██ ██   ██ ██    ██ ██    ██ ██  ██  
-███████ █████   █████      ██    ██      ███████ ██████  ██    ██ ██    ██ █████   
-     ██ ██  ██  ██         ██    ██      ██   ██ ██   ██ ██    ██ ██    ██ ██  ██  
-███████ ██   ██ ███████    ██     ██████ ██   ██ ██████   ██████   ██████  ██   ██ 
-
-*/
-
-/* Sketchbook Page Styles */
-
-.sketchbook-page {
+/* The top row (phone version: one column). */
+.hero-top {
   display: grid;
-  place-items: center;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
 }
 
-/*
+/* Left side: name with the intro + contact stacked underneath. */
+.hero-id {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+}
 
-███    ███ ███████ ██████  ██  █████       ██████  ██    ██ ███████ ██████  ██ ███████ ███████ 
-████  ████ ██      ██   ██ ██ ██   ██     ██    ██ ██    ██ ██      ██   ██ ██ ██      ██      
-██ ████ ██ █████   ██   ██ ██ ███████     ██    ██ ██    ██ █████   ██████  ██ █████   ███████ 
-██  ██  ██ ██      ██   ██ ██ ██   ██     ██ ▄▄ ██ ██    ██ ██      ██   ██ ██ ██           ██ 
-██      ██ ███████ ██████  ██ ██   ██      ██████   ██████  ███████ ██   ██ ██ ███████ ███████ 
+/* "A designer working across print, digital and packaging." + location/email */
+.hero-info-text {
+  font-size: 0.8rem;   /* ✏️ size */
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+.hero-info-contact {
+  margin-top: 0.75rem;   /* gap between the intro and Vancouver/email */
+}
 
-*/
+/* BEHANCE · INSTAGRAM · LINKEDIN · CONTACT */
+.hero-links,
+.project-index-list {
+  list-style: none;   /* removes the bullet points */
+  margin: 0;
+  padding: 0;
+}
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;      /* ✏️ space between links */
+  font-size: 0.9rem;       /* ✏️ size */
+  font-weight: 400;
+  letter-spacing: 0.06em;  /* a little extra space between letters */
+  text-transform: uppercase;
+}
 
-/* Media Queries for Layout Adjustments */
+/* 👁 The eye GIF that goes to the Peek page */
+.play-door-item {
+  position: relative;      /* lets the PEEK pill sit right under the eye */
+}
+.play-door {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;        /* big enough to tap with a finger */
+}
+.play-door-gif {
+  display: block;
+  width: 60px;                    /* ✏️ size of the eye */
+  height: auto;
+  image-rendering: pixelated;     /* keeps it crisp + low-res */
+  transition: transform var(--duration-normal);
+}
+/* The pink "PEEK" pill */
+.play-door-label {
+  font-family: inherit;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 1.5px solid var(--color-pink);
+  border-radius: 999px;           /* fully rounded ends */
+  color: var(--color-pink);
+  background: var(--color-page-bg);
+}
+/* On hover, the eye does a little hop up. */
+.play-door:hover .play-door-gif,
+.play-door:focus-visible .play-door-gif {
+  transform: translateY(-4px);    /* ✏️ how high it hops */
+}
 
-/* Medium devices (tablets, 768px and up) */
+
+/* =====================================================================
+   4. HOMEPAGE — SLOGAN
+   "pretty smart. / pretty, smart." and the typewriter effect.
+   (The typing itself is the <script> at the bottom of index.html.)
+   ===================================================================== */
+
+/* Centres the slogan vertically in the space between the top row and the arrow. */
+.hero-slogan-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.hero-slogan {
+  font-size: clamp(3.125rem, 11vw, 11rem);   /* ✏️ size */
+  font-weight: 500;
+  line-height: 0.98;                          /* ✏️ space between the two lines */
+  letter-spacing: -0.03em;                    /* ✏️ space between letters (closer to 0 = looser) */
+  margin-bottom: 0;
+  color: var(--color-page-text);
+}
+
+/* Puts each line of the slogan on its own row. */
+.hero-slogan-line {
+  display: block;
+}
+
+/* Pushes the second line in, for the stagger (phone amount; laptop amount is in section 7). */
+.hero-slogan-indent {
+  padding-left: 0.6em;
+}
+
+/* The pink comma in "pretty, smart." */
+.hero-comma {
+  color: var(--color-pink);
+}
+
+/* --- Typewriter --- */
+
+/* Hides the slogan for a split second before typing starts (no flash). */
+.js-typing .hero-slogan:not(.is-ready) {
+  visibility: hidden;
+}
+/* The not-yet-typed letters: invisible but still take up space, so nothing jumps around. */
+.type-rest {
+  visibility: hidden;
+}
+/* The blinking pink typing cursor */
+.type-caret {
+  position: relative;
+}
+.type-caret::after {
+  content: "";
+  position: absolute;
+  bottom: 0.08em;
+  left: 0.02em;
+  width: 0.05em;                 /* ✏️ cursor thickness */
+  height: 0.75em;                /* ✏️ cursor height */
+  background: var(--color-pink);
+  animation: caret-blink 1s steps(1) infinite;
+}
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+/* =====================================================================
+   5. HOMEPAGE — FLOPPY DISK ARROW
+   The little pixel arrow at the bottom-left of the first screen.
+   The image (scroll-arrow-sprite.png) has all 7 animation frames side
+   by side, like a film strip — the animation slides through them.
+   ===================================================================== */
+
+.hero-scroll {
+  align-self: flex-start;
+  position: relative;
+  top: 1.25rem;            /* ✏️ nudges it down, closer to "Selected work" */
+  display: inline-flex;
+  padding: 0.5rem;         /* bigger click area */
+  margin-left: -0.5rem;    /* keeps it lined up with the left edge */
+}
+.hero-scroll-sprite {
+  display: block;
+  width: 37px;             /* one frame wide */
+  height: 72px;
+  background: url("../assets/branding-images/scroll-arrow-sprite.png") 0 0 / 259px 72px no-repeat;
+  image-rendering: pixelated;
+  animation: floppy-drop 0.7s steps(7) infinite;   /* ✏️ 0.7s = speed of one loop */
+}
+@keyframes floppy-drop {
+  to {
+    background-position: -259px 0;
+  }
+}
+
+
+/* =====================================================================
+   6. HOMEPAGE — WORK LIST
+   "SELECTED WORK (4)" with the star, then the big project titles.
+   On phones each cover image shows under its title.
+   (On laptops the image appears on hover instead; see section 8.)
+   ===================================================================== */
+
+/* The whole work section */
+.project-index {
+  position: relative;      /* the hover images are placed inside this box */
+  isolation: isolate;      /* lets the hover image sit behind the titles */
+  padding: 1rem clamp(1rem, 2.5vw, 2.25rem) 3rem;
+  color: var(--color-page-text);
+}
+
+/* "SELECTED WORK (4)" — kept small so it doesn't read as part of the slogan. */
+.project-index-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  margin-bottom: 1.25rem;
+  border-top: 1px solid var(--color-page-text);   /* the line above it */
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-page-text);
+  cursor: default;
+  scroll-margin-top: 4.5rem;   /* the floppy arrow stops here, just below the floating name */
+}
+
+/* ✦ The star: an outline that gently twinkles.
+   On hover it spins, fills pink, and two tiny sparkles pop out. */
+.star {
+  flex-shrink: 0;
+  overflow: visible;       /* lets the sparkles poke outside the box */
+}
+.star path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+.star-main {
+  transform-origin: 12px 10.5px;                          /* spins around its centre */
+  animation: star-twinkle 2.4s ease-in-out infinite;      /* ✏️ 2.4s = twinkle speed */
+  transition: fill var(--duration-normal), stroke var(--duration-normal);
+}
+.star-sparkle {
+  fill: var(--color-pink) !important;
+  stroke: none !important;
+  opacity: 0;              /* hidden until hover */
+  transform: scale(0.2);
+  transition: opacity var(--duration-normal), transform var(--duration-normal);
+}
+.star-sparkle-1 { transform-origin: 20px 3.5px; }
+.star-sparkle-2 { transform-origin: 19px 18px; transition-delay: 0.08s; }
+
+.project-index-heading:hover .star-main {
+  fill: var(--color-pink);
+  stroke: var(--color-pink);
+  animation: star-spin 0.6s ease-out;
+}
+.project-index-heading:hover .star-sparkle {
+  opacity: 1;
+  transform: scale(1);
+}
+@keyframes star-twinkle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.82); }
+}
+@keyframes star-spin {
+  from { transform: rotate(0deg) scale(0.7); }
+  to { transform: rotate(180deg) scale(1.1); }
+}
+
+/* Thin lines between the projects */
+.project-index-item {
+  border-top: 1px solid rgba(12, 10, 36, 0.2);
+}
+.project-index-item:last-child {
+  border-bottom: 1px solid rgba(12, 10, 36, 0.2);
+}
+
+/* One row: title on the left, category on the right */
+.project-index-link {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  padding: 1rem 0;         /* ✏️ space above/below each title */
+  transition: opacity var(--duration-normal);
+}
+.project-index a:link,
+.project-index a:visited {
+  color: var(--color-page-text);
+}
+
+/* Big project titles (Booth Fest, Patches…) */
+.project-index-title {
+  font-size: clamp(2rem, 6vw, 5.5rem);   /* ✏️ size */
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  transition: color var(--duration-fast);
+}
+
+/* Small category on the right (BRAND, CAMPAIGN…) */
+.project-index-category {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Cover image — phone version: shows under its title. */
+.project-index-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;    /* ✏️ image shape (16/9 = wide, 4/5 = tall) */
+  object-fit: cover;       /* fills the shape without squishing */
+}
+
+/* Title turns pink on hover */
+.project-index-link:hover .project-index-title,
+.project-index-link:focus-visible .project-index-title {
+  color: var(--color-pink);
+}
+
+
+/* =====================================================================
+   7. HOMEPAGE — BIGGER SCREENS (768px wide and up: tablets + laptops)
+   Changes the phone layout into the side-by-side layout.
+   ===================================================================== */
 
 @media (min-width: 768px) {
-  /* TODO: Adjust  layout for tablets */
+
+  /* Slogan moves to the right side… */
+  .hero-slogan-wrapper {
+    justify-content: flex-end;
+  }
+  /* …and its second line steps in further. */
+  .hero-slogan-indent {
+    padding-left: 1.1em;   /* ✏️ amount of stagger */
+  }
+
+  /* Top row: name + info on the left, links on the right. */
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+  .hero-nav {
+    margin-top: -3.4rem;   /* ✏️ pulls the links up level with the floating name */
+  }
+  .hero-links {
+    align-items: flex-start;
+  }
+  .play-door {
+    margin-top: -1.2rem;   /* centres the eye on the row of links */
+  }
+  .hero-info {
+    max-width: 22rem;      /* how wide the intro text can get */
+  }
 }
 
-/* Large devices (desktops, 992px and up) */
 
-/* Switch from mobile to desktop navigation */
+/* =====================================================================
+   8. HOMEPAGE — MOUSE HOVER EFFECTS (laptops/desktops with a mouse)
+   Phones can't hover, so these only switch on when there's a mouse.
+   ===================================================================== */
 
-@media (min-width: 992px) {
-  /* TODO: Add or adjust styles here for large devices. */
+@media (hover: hover) and (min-width: 768px) {
 
-  .flex-row {
-    flex-direction: row; /* Changes to row layout on larger screens */
+  /* "PEEK" pill: hidden until you hover the eye, then fades in underneath. */
+  .play-door-label {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -0.25rem);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-fast), transform var(--duration-fast);
   }
-
-  .width-third {
-    width: 33.333%;
-  }
-  .width-two-thirds {
-    width: 66.666%;
-  }
-  .holding-page-title {
-    font-size: 2rem;
-  }
-
-  h1 {
-    font-size: 4.275rem;
-  }
-
-  h2 {
-    font-size: 2.25rem;
+  .play-door:hover .play-door-label,
+  .play-door:focus-visible .play-door-label {
+    opacity: 1;
+    transform: translate(-50%, 0.25rem);
   }
 
-  h3 {
-    font-size: 1.625rem;
-  }
-
-  .h1-full-width,
-  .h2-full-width {
-    width: 70%;
-    padding: var(--padding-small);
-  }
-
-  /* ----------------------------- */
-  /* 📦 Padding Utilities (Desktop) */
-  /* ----------------------------- */
-  .padding-large {
-    padding: var(--padding-large);
-  }
-  .padding-jumbo {
-    padding: var(--padding-jumbo);
-  }
-  .padding-ultra {
-    padding: var(--padding-ultra);
-  }
-
-  /* ----------------------------- */
-  /* 🧩 Flex Gap Utilities (Desktop) */
-  /* ----------------------------- */
-
-  .gap-medium {
-    gap: var(--gap-medium);
-  }
-  .gap-large {
-    gap: var(--gap-large);
-  }
-  .gap-jumbo {
-    gap: var(--gap-jumbo);
-  }
-  .gap-ultra {
-    gap: var(--gap-ultra);
-  }
-
-  .nav-branding {
-    flex-direction: row;
-  }
-
-  .nav-branding-logo {
-    width: 5rem;
-    /* TODO: Adjust the width of the logo on large devices here. */
-  }
-
-  .hero {
+  /* Work section fills the screen so the hover image has room. */
+  .project-index {
     min-height: 100vh;
   }
 
-  .hero-headline-wrapper {
-    padding-top: var(--padding-jumbo);
-    padding-bottom: var(--padding-jumbo);
-    padding-left: var(--padding-ultra);
-    padding-right: var(--padding-ultra);
+  /* Cover images: hidden, centred BEHIND the titles, fade in on hover. */
+  .project-index-preview {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;                       /* behind the titles */
+    width: min(70vw, 1100px);          /* ✏️ how big the hover image is */
+    transform: translate(-50%, -50%);  /* centres it */
+    opacity: 0;
+    pointer-events: none;              /* never blocks clicks on the titles */
+    transition: opacity var(--duration-normal);
   }
-  .error-headline-wrapper {
-    padding-top: var(--padding-small);
-    padding-bottom: var(--padding-small);
-    padding-left: var(--padding-ultra);
-    padding-right: var(--padding-ultra);
-  }
-
-  .error-404 {
-    font-size: 5rem;
-  }
-
-  /* Work Page Grid for Large Devices */
-
-  .grid {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-gap: 1rem;
+  .project-index-link:hover .project-index-preview,
+  .project-index-link:focus-visible .project-index-preview {
+    opacity: 1;
   }
 
-  /* Grayscale filter with full-colour on hover and tap */
-
-  .work-page-grid-item a.grayscale img {
-    filter: grayscale(100);
+  /* While you hover one title, the others fade back. */
+  .project-index-list:hover .project-index-link {
+    opacity: 0.35;   /* ✏️ how faded the others get (0 = invisible, 1 = normal) */
   }
-
-  .work-page-grid-item > a.grayscale:active img,
-  .work-page-grid-item > a.grayscale:hover img {
-    filter: grayscale(0);
-  }
-
-  /* Padding around work grid and project page */
-
-  .portfolio,
-  .project-wrapper,
-  .work-sidebar-wrapper {
-    padding: var(--padding-small);
-  }
-
-  /* Project Page Flex Direction on Large Devices */
-
-  .project-wrapper,
-  .work-sidebar-wrapper {
-    flex-direction: row;
-  }
-
-  /* Project Full Width Styles */
-
-  .project-wrapper-full-width {
-    padding: var(--padding-small);
-  }
-
-  /* Sidebar on Large Devices */
-
-  .project-aside {
-    width: 35%;
-    height: 80vh;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 8rem;
-    padding-right: 2rem;
-  }
-
-  /* Main Project Image Area on Large Devices */
-
-  .project-details {
-    width: 65%;
-  }
-
-  .project-image-container,
-  .project-description-container {
-    flex-direction: row;
-  }
-
-  .section-container {
-    width: 80%; /* Adjust this width for larger screens if needed */
-    flex-direction: row;
-  }
-
-  /* Column styles for two-column and four-column layouts (desktop) */
-  .col-2 {
-    width: 50%;
-  }
-  .col-4 {
-    width: 25%;
-  }
-
-  .project-navigation {
-    justify-content: flex-start;
-  }
-
-  .arrow {
-    padding-right: 1rem;
-  }
-
-  /* About Page Grid for Large Devices */
-
-  .about-grid {
-    padding: var(--padding-jumbo);
-    grid-template-columns: 2fr 3fr;
-  }
-
-  .about-grid-image {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-  }
-  .about-grid-text {
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
-  }
-
-  /* ------------------------------- */
-  /* 🖥️ FOOTER GRID - DESKTOP LAYOUT */
-  /* ------------------------------- */
-
-  .footer-global {
-    padding-top: var(--padding-jumbo);
-    padding-right: var(--padding-jumbo);
-    padding-bottom: 0;
-    padding-left: var(--padding-jumbo);
-    grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
-  }
-
-  /* Column 1: Tagline/Message */
-  .footer-tagline {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-  }
-
-  /* Column 2: Awards & Works */
-  .footer-highlights {
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
-  }
-
-  /* Column 3: Contact & Social */
-  .footer-contact-social {
-    grid-row: 1 / 2;
-    grid-column: 3 / 4;
-  }
-
-  /* ------------------------------- */
-  /* 📏 FULL-WIDTH BOTTOM SECTION */
-  /* ------------------------------- */
-  .footer-full-width {
-    grid-row: 2 / 3;
-    grid-column: 1 / 4; /* Spans all three columns */
-    text-align: center;
-    align-self: end; /* Aligns content to bottom */
-  }
-
-  /* Work Sidebar on Large Devices */
-
-  .work-sidebar {
-    width: 25%;
-    height: 80vh;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 1rem;
-  }
-
-  /* Main Work Area on Large Devices */
-
-  .work-details {
-    width: 75%;
+  .project-index-list:hover .project-index-link:hover {
+    opacity: 1;
   }
 }
 
-/* X-Large devices (large desktops, 1200px and up)*/
+
+/* =====================================================================
+   9. PROJECT PAGES  (project-1.html … project-4.html)
+   Order on the page: floating name → image 1 → brief + credits →
+   more images → "Next" project.
+   ===================================================================== */
+
+/* The whole project page */
+.project-page {
+  background: var(--color-page-bg);
+  color: var(--color-page-text);
+}
+.project-page a:link,
+.project-page a:visited {
+  color: var(--color-page-text);
+}
+.project-page a:hover,
+.project-page a:focus-visible {
+  color: var(--color-pink);
+}
+.project-page a:focus {
+  outline-color: var(--color-page-text);
+}
+
+/* Floating "Stephy Pak" in the corner — on EVERY page (homepage too).
+   No background — it stays pinned as you scroll and floats over the
+   images. "difference" flips its colour so it's readable on white,
+   dark and light images. Clicking it goes back to the homepage. */
+.project-header {
+  position: sticky;          /* stays at the top while scrolling */
+  top: 0;
+  z-index: 10;               /* sits on top of everything */
+  padding: 1.25rem clamp(1rem, 2.5vw, 2.25rem);
+  background: transparent;
+  pointer-events: none;      /* only the name itself is clickable */
+  mix-blend-mode: difference;
+}
+.project-header-name {
+  pointer-events: auto;
+  font-size: 1.5rem;         /* ✏️ size */
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.project-page .project-header-name:link,
+.project-page .project-header-name:visited,
+.project-page .project-header-name:hover,
+.work-page .project-header-name:link,
+.work-page .project-header-name:visited,
+.work-page .project-header-name:hover {
+  color: #ffffff;            /* shows up as near-black on the white page because of "difference" */
+}
+.project-header-name:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Space around the project content */
+.project {
+  padding: 0.5rem clamp(1rem, 2.5vw, 2.25rem) 0;
+}
+
+/* Small caps labels: ROLE, CONTEXT, NEXT, captions */
+.project-credit dt,
+.project-next-label,
+.project-figure figcaption {
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Images */
+.project-figure {
+  margin: 0 0 1rem;          /* ✏️ 1rem = gap under each image */
+}
+.project-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  background: #ecebe8;       /* grey that shows while an image loads */
+}
+.project-figure figcaption {
+  margin-top: 0.5rem;
+}
+/* Two images side by side (phones: stacked; laptops: see bottom of this section) */
+.project-pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Brief (left) + credits list (right) */
+.project-about {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 3rem 0 4rem;
+}
+.project-brief {
+  max-width: 34ch;           /* about 34 characters per line — easy to read */
+  font-size: clamp(1.25rem, 2.2vw, 1.875rem);   /* ✏️ size */
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.project-credits {
+  display: grid;
+  gap: 0;
+  align-content: start;
+}
+/* One credit row: label on the left (ROLE), answer on the right (Designer) */
+.project-credit {
+  display: grid;
+  grid-template-columns: 7rem 1fr;   /* ✏️ 7rem = width of the label column */
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid rgba(12, 10, 36, 0.2);
+  font-size: 0.9375rem;
+  line-height: 1.35;
+}
+.project-credit:last-child {
+  border-bottom: 1px solid rgba(12, 10, 36, 0.2);
+}
+
+/* Bottom of the page: "← ALL WORK" and "NEXT  Patches →" */
+.project-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-top: 4rem;
+  padding: 2rem clamp(1rem, 2.5vw, 2.25rem) 3rem;
+  border-top: 1px solid var(--color-page-text);
+}
+.project-back {
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.project-next {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+}
+.project-next-title {
+  font-size: clamp(2rem, 6vw, 5rem);   /* ✏️ size of the next project's name */
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+/* Project pages on bigger screens (768px and up) */
+@media (min-width: 768px) {
+  .project-pair {
+    grid-template-columns: 1fr 1fr;      /* two images side by side */
+  }
+  .project-next {
+    justify-items: end;                  /* "Next" sits on the right */
+    text-align: right;
+  }
+  .project-about {
+    grid-template-columns: 3fr 2fr;      /* ✏️ brief gets 3 parts, credits get 2 */
+    gap: 4rem;
+  }
+}
+
+
+/* =====================================================================
+   10. PEEK PAGE  (play.html)
+   About me at the top, then Collection → Feed.
+   Re-uses the project page styles (floating name, credits list, footer).
+   ===================================================================== */
+
+/* Space around everything on the Peek page */
+.peek {
+  padding: 0.5rem clamp(1rem, 2.5vw, 2.25rem) 0;
+}
+
+/* --- ABOUT --- */
+
+/* Phones: statement → photo → bio, stacked. (Laptop layout is at the bottom.) */
+/* Everything in one narrow, centred column (statement → photo → bio) */
+.peek-about {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 2.5rem;
+  max-width: 40rem;          /* ✏️ how wide the centred column gets */
+  margin: 0 auto;
+  padding: 3rem 0 7rem;      /* ✏️ space above / below the About section */
+  text-align: center;
+}
+
+/* "I always end up in cool places doing cool things." */
+.peek-statement {
+  max-width: 14ch;                             /* ✏️ how many letters per line (smaller = more lines) */
+  font-size: clamp(2.25rem, 4.2vw, 4.25rem);   /* ✏️ size */
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+/* Your photo */
+.peek-portrait {
+  width: 100%;
+  max-width: 15rem;          /* ✏️ how big the photo gets */
+}
+.peek-portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;       /* ✏️ photo shape (4/5 = portrait, 1/1 = square) */
+  object-fit: cover;
+  background: #ecebe8;
+}
+
+/* Bio column */
+.peek-bio {
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;
+  align-content: start;
+}
+/* "Hi, I'm Stephy…" — a bit smaller here than the project briefs */
+.peek-bio .project-brief {
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);   /* ✏️ size */
+}
+.peek-bio-text {
+  max-width: 46ch;
+  font-size: 0.9375rem;      /* ✏️ size of the rest of the bio */
+  line-height: 1.5;
+}
+/* Quick facts — smaller and narrower than on project pages */
+.peek-facts {
+  width: 100%;
+  max-width: 30rem;          /* ✏️ how wide the facts list gets */
+  margin-top: 1rem;
+  text-align: left;          /* rows read left to right, the list itself is centred */
+}
+.peek-facts .project-credit {
+  grid-template-columns: 6.5rem 1fr;
+  padding: 0.45rem 0;
+  font-size: 0.8125rem;      /* ✏️ size */
+}
+.peek-facts .project-credit dt {
+  font-size: 0.6875rem;
+}
+
+/* EMAIL · INSTAGRAM · LINKEDIN · RÉSUMÉ */
+.peek-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* --- SECTION HEADINGS: "(01) COLLECTION   Things I keep" --- */
+
+.peek-section {
+  padding-bottom: 6rem;      /* ✏️ space between sections */
+}
+.peek-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  padding-top: 0.75rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid var(--color-page-text);   /* same line as "Selected work" */
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.peek-heading-note {
+  margin-left: auto;         /* pushes the little note to the right */
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.6;
+}
+
+/* --- COLLECTION (floating objects) --- */
+
+/* Phones: a tidy 2-column grid */
+.peek-collection {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 1rem;
+}
+.peek-object {
+  position: relative;
+}
+.peek-object img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform var(--duration-normal);
+}
+/* The little "01." next to each object */
+.peek-object-num {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-100%);
+  z-index: 1;                /* keeps the number on top while the object moves */
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+}
+/* "— drag them around" and "Tidy up" only make sense on laptops */
+.peek-drag-hint,
+.peek-tidy {
+  display: none;
+}
+
+/* The list explaining each object — a looping ticker, centred */
+.peek-marquee {
+  display: flex;
+  overflow: hidden;
+  margin-top: 2.5rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(12, 10, 36, 0.2);
+  border-bottom: 1px solid rgba(12, 10, 36, 0.2);
+  /* soft fade at both edges */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.peek-legend {
+  list-style: none;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2.5rem;               /* ✏️ space between items */
+  padding-right: 2.5rem;     /* same as the gap, so the loop is even */
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;      /* ✏️ size */
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: peek-ticker 30s linear infinite;   /* ✏️ 30s = speed (bigger = slower) */
+}
+/* Hovering pauses it so people can read */
+.peek-marquee:hover .peek-legend {
+  animation-play-state: paused;
+}
+@keyframes peek-ticker {
+  to { transform: translateX(-100%); }
+}
+
+/* "Tidy up" sits centred under the ticker */
+.peek-tidy-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* Feed captions */
+.peek-feed figcaption {
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* --- FEED (loose photo grid) --- */
+
+/* "columns" makes a masonry grid: images keep their own shape */
+.peek-feed {
+  columns: 2;                /* ✏️ phones: 2 columns */
+  column-gap: 1rem;
+}
+.peek-feed figure {
+  break-inside: avoid;       /* never splits an image between columns */
+  margin-bottom: 1.25rem;
+}
+.peek-feed img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #ecebe8;
+  transition: opacity var(--duration-normal);
+}
+.peek-feed figcaption {
+  margin-top: 0.4rem;
+}
+.peek-feed figure:hover img {
+  opacity: 0.85;
+}
+
+/* --- Bigger screens (768px and up) --- */
+@media (min-width: 768px) {
+
+  .peek-about {
+    gap: 3.5rem;
+    padding-top: 5rem;
+  }
+
+  /* Collection: objects float at their --x / --y spots */
+  .peek-collection {
+    display: block;
+    position: relative;
+    height: clamp(32rem, 55vw, 48rem);   /* ✏️ height of the floating area */
+  }
+  .peek-object {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--w);
+    cursor: grab;
+    touch-action: none;      /* lets fingers drag on tablets */
+    user-select: none;
+  }
+
+  /* Hover: a little wiggle that says "pick me up" */
+  .peek-object:hover img {
+    animation: peek-wiggle 0.9s ease-in-out infinite;   /* ✏️ 0.9s = wiggle speed */
+  }
+
+  /* While being dragged: lifted up with a slight tilt (no shadow —
+     shadows left smeary trails behind the object in some browsers) */
+  .peek-object.is-dragging {
+    cursor: grabbing;
+  }
+  .peek-object.is-dragging img {
+    animation: none;
+    transform: rotate(-3deg) scale(1.08);
+  }
+
+  /* "Tidy up": objects glide back instead of jumping */
+  .peek-collection.is-tidying .peek-object {
+    transition: left 0.5s ease, top 0.5s ease;
+  }
+
+  .peek-drag-hint {
+    display: inline;
+  }
+  /* The "TIDY UP ↺" button */
+  .peek-tidy {
+    display: inline-block;
+    margin-top: 1.25rem;
+    padding: 0.3rem 0.8rem;
+    border: 1.5px solid var(--color-page-text);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-page-text);
+    font: inherit;
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color var(--duration-fast), border-color var(--duration-fast);
+  }
+  .peek-tidy:hover,
+  .peek-tidy:focus-visible {
+    color: var(--color-pink);
+    border-color: var(--color-pink);
+  }
+
+  .peek-feed {
+    columns: 3;              /* ✏️ tablets: 3 columns */
+  }
+}
 
 @media (min-width: 1200px) {
-  /* TODO: Add styles here for X-large devices. */
-
-  .grid {
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  .peek-feed {
+    columns: 4;              /* ✏️ big screens: 4 columns */
   }
 }
 
-/* XX-Large devices (larger desktops, 1400px and up) */
-
-@media (min-width: 1400px) {
-  /* TODO: Add styles here for XX-large devices. */
-
-  .grid {
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  }
+@keyframes peek-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-4deg) scale(1.03); }   /* ✏️ how far it tips */
+  75% { transform: rotate(3deg) scale(1.03); }
 }
 
-/*
 
-███████ ██ ███    ██
-██      ██ ████   ██
-█████   ██ ██ ██  ██
-██      ██ ██  ██ ██
-██      ██ ██   ████
-                                              
-That’s a wrap, class! 🧑‍🎓✨
+/* =====================================================================
+   11. REDUCED MOTION
+   Some people turn on "Reduce motion" on their computer (it can help
+   with dizziness or focus). For them, animations stop and hovers
+   change instantly. Keep this at the very bottom of the file.
+   ===================================================================== */
 
-*/
-
-/* 🎉 You made it to the end! */
-/* This is a great place to celebrate your progress, add Easter eggs, or leave notes for your future self. */
-/* Happy coding, and don’t forget to take breaks, stay hydrated, and share your work proudly. 💻✨🎨 */
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-sprite,
+  .star-main,
+  .peek-object img,
+  .peek-legend {
+    animation: none !important;
+  }
+  /* No ticker: show the list once, centred and wrapping */
+  .peek-marquee {
+    justify-content: center;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .peek-legend {
+    flex-wrap: wrap;
+    justify-content: center;
+    white-space: normal;
+    gap: 0.5rem 2rem;
+    padding-right: 0;
+  }
+  .peek-legend[aria-hidden="true"] {
+    display: none;
+  }
+  .play-door-gif,
+  .play-door-label,
+  .star path,
+  .project-index-link,
+  .project-index-title,
+  .project-index-preview,
+  .peek-object img,
+  .peek-feed img {
+    transition: none;
+  }
+}
