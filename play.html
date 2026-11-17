@@ -9,7 +9,7 @@
     WHAT'S IN HERE (top to bottom)
     ---------------------------------------------------------------
     1. CROP MARKS + MASTHEAD ... name, back to work
-    2. ABOUT .................. bio + facts                            ✏️
+    2. ABOUT .................. label column + intro + 2-column bio   ✏️
     3. PHOTO GRID ............. photos + a "New batch" button         ✏️
        (the photos themselves are listed in the script at the bottom)
     4. COLOPHON ............... footer
@@ -78,6 +78,7 @@
       /* 2. ABOUT */
       .about {
         display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem var(--edge);
+        align-items: stretch;                        /* label column and writing share top + bottom */
         padding: clamp(2.5rem, 5vw, 4rem) 0 1rem;   /* ✏️ last number = space above the photos */
       }
       .statement {
@@ -88,17 +89,19 @@
       .portrait { grid-column: 1 / 4; }
       .portrait .frame { aspect-ratio: 4 / 5; background: #ecebe8; display: grid; place-items: center; color: var(--grey); }
       .portrait figcaption { margin-top: 0.5rem; }
-      .bio { grid-column: 1 / 8; }
-      .bio-lead { text-wrap: balance; max-width: 30ch; font-weight: 400; font-size: clamp(1.25rem, 1.9vw, 1.6rem); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 1.25rem; }
-      .bio-p { font-size: 0.95rem; line-height: 1.5; max-width: 50ch; margin-bottom: 0.9rem;
-        text-wrap: pretty;   /* evens out the ragged right edge: no lonely words, smoother line lengths */ }
-      .facts { grid-column: 9 / 13; }
-      .facts dl { border-top: 1px solid var(--ink); }
-      .facts .project-credit { padding: 0.55rem 0; border-bottom: 1px solid #d9d8e0; }
-      .facts dt { color: var(--grey); margin-bottom: 0.15rem; }
-      .facts a { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
-      .facts a:hover, .links a:hover { color: var(--pink); }
-      .links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin-top: 1rem; }
+      /* Label column on the left, writing on the right (like a magazine feature) */
+      .about-side { grid-column: 1 / 4; display: flex; flex-direction: column; gap: 0.9rem; border-top: 1px solid var(--ink); padding-top: 0.6rem; }
+      .about-side .label { margin-bottom: 0; }
+      .links { display: flex; flex-direction: column; gap: 0.15rem; margin-top: auto; }
+      .links a { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+      .bio { grid-column: 5 / 13; border-top: 1px solid var(--ink); padding-top: 0.6rem; }
+      .bio-lead {                                    /* the standfirst */
+        font-weight: 400; font-size: clamp(1.15rem, 1.6vw, 1.5rem);   /* ✏️ size of the intro line */
+        line-height: 1.2; letter-spacing: -0.015em; text-wrap: balance; max-width: 30ch;
+        margin-bottom: 1.75rem;
+      }
+      .bio-cols { columns: 2; column-gap: var(--edge); }   /* ✏️ bio in two columns */
+      .bio-p { font-size: 0.8125rem; line-height: 1.5; margin-bottom: 0.7rem; text-wrap: pretty; break-inside: avoid;   /* ✏️ bio text size */ }
 
       /* 3. PHOTO GRID */
       .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -170,7 +173,9 @@
 
       /* PHONES */
       @media (max-width: 760px) {
-        .bio, .facts { grid-column: 1 / -1; }
+        .bio, .about-side { grid-column: 1 / -1; }
+        .bio-cols { columns: 1; }
+        .about-side { order: 2; }
         .photos { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
         .new-batch-label { opacity: 1; transform: none; }   /* phones can't hover, so always show it */
       }
@@ -193,10 +198,24 @@
 
       <!-- 2. ABOUT ✏️ -->
       <section class="about" aria-labelledby="about-heading">
+        <!-- LEFT: small label column, like a magazine's section marker -->
+        <aside class="about-side mono">
+          <p class="label">About</p>
+          <p>Stephy Pak<br />Brand designer<br />Vancouver, BC</p>
+          <!-- ✏️ Replace each # with your real link -->
+          <ul class="links">
+            <li><a href="mailto:stephypak@gmail.com">Email</a></li>
+            <li><a href="#" target="_blank">Instagram</a></li>
+            <li><a href="#" target="_blank">LinkedIn</a></li>
+            <li><a href="assets/stephy-pak-resume.pdf" target="_blank">Resume ↗</a></li>
+          </ul>
+        </aside>
 
-
+        <!-- RIGHT: standfirst (the intro line) + the bio in two columns -->
         <div class="bio">
           <h1 class="bio-lead" id="about-heading">Hi, I'm Stephy. I design brands, but mostly I'm curious about how people live, dress and spend their time.</h1>
+          <!-- ✏️ Your bio. Each <p> is one paragraph; they flow across two columns. -->
+          <div class="bio-cols">
           <p class="bio-p">I feel electrified wandering new cities, islands and the side streets nobody put on the map, and I always come home with a camera roll full of shop signs, packaging and street style.</p>
           <p class="bio-p">Fashion is how I read a place. I work in luxury retail, and I love the details people feel before they notice them: how a store sounds, how a bag gets wrapped, what a colour says before anyone speaks. (For the record, I'm&nbsp;a&nbsp;True&nbsp;Summer.)</p>
           <p class="bio-p">Wherever I am, I go looking for galleries, record shops, zines and pop-ups, and I keep the small stuff: tickets, tags, receipts with good type. Some&nbsp;of&nbsp;it is in the photos below.</p>
@@ -204,24 +223,7 @@
           <!-- ✏️ Song: skydiiiving by gush. To change it, paste a new Spotify song link into href="…" below
                (in Spotify: ••• → Share → Copy Song Link) -->
           <p class="bio-p">And outside of all that, I'm <a class="music" href="https://open.spotify.com/track/0mTtxGZIYFbSP0XNCcKNuS" title="skydiiiving by gush" target="_blank" rel="noopener">following the music ♫</a></p>
-
-        </div>
-
-        <div class="facts mono">
-          <p class="label">Quick facts</p>
-          <dl class="project-credits peek-facts">
-            <div class="project-credit"><dt>Based in</dt><dd>Vancouver, BC</dd></div>
-            <div class="project-credit"><dt>Studying</dt><dd>Visual Communication, Branding — <a href="https://www.ideaschoolofdesign.com/" target="_blank" rel="noopener">IDEA School of Design ↗</a></dd></div>
-            <div class="project-credit"><dt>Graduating</dt><dd>Spring 2027</dd></div>
-            <div class="project-credit"><dt>Recognition</dt><dd><a href="https://descan.ca/2025-salazar-student-award-winners/" target="_blank" rel="noopener">Honourable Mention, Interactive/UX/UI — DesCan Vancouver Salazar Student Awards 2025 ↗</a></dd></div>
-            <div class="project-credit"><dt>Member</dt><dd><a href="https://rgd.ca/" target="_blank" rel="noopener">RGD — Association of Registered Graphic Designers (Student) ↗</a></dd></div>
-          </dl>
-          <ul class="links">
-            <li><a href="mailto:stephypak@gmail.com">Email</a></li>
-            <li><a href="#" target="_blank">Instagram</a></li>
-            <li><a href="#" target="_blank">LinkedIn</a></li>
-            <li><a href="assets/stephy-pak-resume.pdf" target="_blank">Resume ↗</a></li>
-          </ul>
+          </div>
         </div>
       </section>
 
