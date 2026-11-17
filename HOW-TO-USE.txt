@@ -6,12 +6,13 @@ STEPHY PAK PORTFOLIO — HOW TO USE
 3. Save (Cmd+S) and the browser updates by itself.
 
 WHAT'S WHERE
-  index.html             homepage (hero + work list)
+  index.html             homepage (masthead + List / Grid view of your work)
   booth-fest.html        Booth Fest
   patches.html           Patches
   feral-by-design.html   Feral By Design
   deep-breakfast.html    Deep Breakfast
-  play.html              Peek page (about me + collection + feed)
+  play.html              Peek page (bio + photo grid, 🍥 = new batch)
+  assets/peek/           Peek photos + videos (list them at the bottom of play.html)
   404.html               "pretty lost." page for broken links
   cute.html              secret page (type "cute" on the homepage)
   favicon.ico            tab icon for old browsers

@@ -61,7 +61,7 @@
 :root {
   --color-ink: #0c0a24;                  /* ✏️ blue-black */
   --color-paper: #fdfdfd;                /* ✏️ near-white */
-  --color-pink: #d6338a;                 /* ✏️ the comma, typing cursor, hovers, PEEK pill */
+  --color-pink: #0c0a24;                 /* ✏️ accent colour (now black, same as the text): commas, hovers, PEEK pill */
 
   --color-page-bg: var(--color-paper);   /* page background */
   --color-page-text: var(--color-ink);   /* text colour */
@@ -176,8 +176,8 @@ a {
 
 /* Colour when you highlight text with your mouse. */
 ::selection {
-  background: var(--color-pink);
-  color: #ffffff;
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
 
@@ -1258,3 +1258,6 @@ a {
     display: none;
   }
 }
+
+/* Accent is black now, so hovers fade instead of changing colour */
+a:hover, a:focus-visible { opacity: 0.55; transition: opacity var(--duration-fast); }

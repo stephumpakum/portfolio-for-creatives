@@ -3,24 +3,15 @@
   =====================================================================
     EASTER EGG PAGE  (cute.html)
   =====================================================================
-    The secret page. There's no link to it anywhere — visitors find it
-    by typing the word "cute" on the homepage (the same word the
-    typewriter types and deletes). The little script at the bottom of
-    index.html listens for it. There's also a hint in the browser
+    The secret page. There's no link to it anywhere: visitors find it
+    by typing the word "cute" on the homepage (the script at the bottom
+    of index.html listens for it). There's also a hint in the browser
     console for the curious (right-click → Inspect → Console).
 
-    It's left out of sitemap.xml and marked "noindex" on purpose,
-    so Google doesn't spoil the surprise.
-
-    WHAT'S IN HERE
-    ---------------------------------------------------------------
-    1. FLOATING NAME
-    2. BIG LINE ......... "pretty cute."                         ✏️
-    3. OUTTAKES ......... a few things that didn't make the cut  ✏️
-    4. COMMA RAIN ....... falling pink commas (just for fun)
+    Left out of sitemap.xml and marked "noindex" on purpose, so Google
+    doesn't spoil the surprise.
 
     ✏️ = things you'll want to edit
-    Anything in [square brackets] is a placeholder — replace it.
   =====================================================================
 -->
 <html lang="en">
@@ -28,68 +19,99 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>You found it | Stephy Pak</title>
-    <!-- Keeps Google from listing the secret page -->
     <meta name="robots" content="noindex" />
-
     <link rel="icon" href="./favicon.ico" sizes="16x16 32x32" />
     <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="./assets/favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
     <link rel="icon" href="./assets/favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
-
-    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&display=swap" />
+    <style>
+      :root { --ink: #0c0a24; --paper: #fdfdfd; --pink: #0c0a24; --grey: #8a8899;
+              --mono: "DM Mono", ui-monospace, monospace; --edge: clamp(1rem, 2.5vw, 2.25rem); }
+      html { box-sizing: border-box; } *, *::before, *::after { box-sizing: inherit; } * { margin: 0; }
+      ul { padding: 0; list-style: none; } a { color: inherit; text-decoration: none; }
+      ::selection { background: var(--ink); color: var(--paper); }
+      body { font-family: "Instrument Sans", sans-serif; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+      .mono { font-family: var(--mono); font-size: 0.75rem; line-height: 1.3; letter-spacing: 0.02em; text-transform: uppercase; }
+      .label { color: var(--grey); margin-bottom: 0.35rem; }
+      .pink { color: var(--pink); }
+      /* crop marks */
+      .sheet { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; padding: 2.75rem var(--edge) 2rem; }
+      .crop { position: absolute; width: 18px; height: 18px; pointer-events: none; }
+      .crop::before, .crop::after { content: ""; position: absolute; background: var(--pink); }
+      .crop::before { width: 18px; height: 1px; top: 0; } .crop::after { width: 1px; height: 18px; left: 0; }
+      .crop.tl { top: 14px; left: 14px; } .crop.tr { top: 14px; right: 14px; transform: scaleX(-1); }
+      .crop.bl { bottom: 14px; left: 14px; transform: scaleY(-1); } .crop.br { bottom: 14px; right: 14px; transform: scale(-1); }
+      /* masthead */
+      .masthead { display: flex; justify-content: space-between; align-items: baseline; }
+      .masthead .name { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; }
+      a:hover, a:focus-visible { color: var(--pink); }
+      /* main */
+      .main { flex: 1; display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem var(--edge); align-content: center; padding: 4rem 0; position: relative; z-index: 1; }
+      .headline { grid-column: 1 / 11; font-size: clamp(3rem, 9vw, 9rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; text-wrap: balance; }
+      .note { grid-column: 1 / 6; }
+      .note p:not(.label) { text-transform: none; font-size: 0.8125rem; line-height: 1.45; max-width: 40ch; }
+      .go { grid-column: 8 / 13; }
+      .go li a { display: flex; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px solid #d9d8e0; }
+      .go li:first-child a { border-top: 1px solid var(--ink); }
+      .colophon { display: flex; justify-content: space-between; gap: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--ink); position: relative; z-index: 1; }
+      @media (max-width: 760px) { .headline, .note, .go { grid-column: 1 / -1; } }
+      /* Falling pink commas (decorative) */
+      .comma-rain { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+      .comma-rain span { position: absolute; top: -10vh; left: var(--x); font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 500;
+        color: var(--pink); opacity: 0.3; animation: fall var(--d) linear var(--w) infinite; }
+      @keyframes fall { to { transform: translateY(120vh) rotate(200deg); } }
+      @media (prefers-reduced-motion: reduce) { .comma-rain { display: none; } }
+          /* Accent is black now, so hovers fade instead of changing colour */
+      a:hover, a:focus-visible, .lb-btn:hover, .new-batch:hover { opacity: 0.55; }
+    </style>
   </head>
 
-  <body class="work-page lost-page egg-page">
-
-    <!-- 1. FLOATING NAME -->
-    <header class="project-header">
-      <a href="index.html#top" class="project-header-name">Stephy Pak</a>
-    </header>
-
-    <!-- 4. COMMA RAIN — purely decorative, hidden from screen readers.
-         Each comma gets its own position (--x), speed (--d) and delay (--w). -->
+  <body>
+    <!-- Falling pink commas: each has its own position (--x), speed (--d) and delay (--w) -->
     <div class="comma-rain" aria-hidden="true">
-      <span style="--x: 6%;  --d: 7s;  --w: 0s">,</span>
-      <span style="--x: 18%; --d: 9s;  --w: 2s">,</span>
-      <span style="--x: 29%; --d: 6s;  --w: 4s">,</span>
+      <span style="--x: 6%; --d: 7s; --w: 0s">,</span>
+      <span style="--x: 18%; --d: 9s; --w: 2s">,</span>
+      <span style="--x: 29%; --d: 6s; --w: 4s">,</span>
       <span style="--x: 41%; --d: 10s; --w: 1s">,</span>
-      <span style="--x: 53%; --d: 8s;  --w: 3s">,</span>
-      <span style="--x: 64%; --d: 7s;  --w: 5s">,</span>
-      <span style="--x: 76%; --d: 9s;  --w: 0.5s">,</span>
-      <span style="--x: 88%; --d: 6s;  --w: 2.5s">,</span>
+      <span style="--x: 53%; --d: 8s; --w: 3s">,</span>
+      <span style="--x: 64%; --d: 7s; --w: 5s">,</span>
+      <span style="--x: 76%; --d: 9s; --w: 0.5s">,</span>
+      <span style="--x: 88%; --d: 6s; --w: 2.5s">,</span>
       <span style="--x: 95%; --d: 11s; --w: 4.5s">,</span>
     </div>
 
-    <main class="lost">
-      <!-- 2. BIG LINE ✏️ -->
-      <h1 class="hero-slogan lost-slogan">
-        <span class="hero-slogan-line">ok fine<span class="hero-comma">,</span></span>
-        <span class="hero-slogan-line hero-slogan-indent">pretty cute.</span>
-      </h1>
+    <div class="sheet">
+      <span class="crop tl" aria-hidden="true"></span><span class="crop tr" aria-hidden="true"></span>
+      <span class="crop bl" aria-hidden="true"></span><span class="crop br" aria-hidden="true"></span>
 
-      <!-- ✏️ The note -->
-      <p class="lost-note">
-        <span class="lost-code">You found the secret word</span>
-        The typewriter on the homepage almost said it, then changed its mind.
-        Here are a few things that didn't make it into the portfolio.
-      </p>
+      <header class="masthead">
+        <a href="index.html" class="name">Stephy Pak</a>
+        <span class="mono label" style="margin:0">Secret page 🍥</span>
+      </header>
 
-      <!-- 3. OUTTAKES ✏️
-           Same rules as the Peek feed: put images in assets/peek/,
-           change the src, describe each one in alt="…".
-           To add one, copy a <figure> … </figure> line. -->
-      <div class="peek-feed egg-feed">
-        <figure><img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
-        <figure><img src="assets/projects/placeholder.svg" width="1200" height="1200" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
-        <figure><img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
-      </div>
+      <main class="main">
+        <!-- ✏️ The big line -->
+        <h1 class="headline">Okay fine<span class="pink">,</span> pretty cute.</h1>
 
-      <ul class="lost-links">
-        <li><a href="index.html">← Back to being smart</a></li>
-        <li><a href="play.html">Peek</a></li>
-      </ul>
-    </main>
+        <!-- ✏️ The note -->
+        <div class="note mono">
+          <p class="label">You found the secret word</p>
+          <p>Not many people make it here. Thanks for poking around. If you liked digging, you'll probably like the photos on Peek.</p>
+        </div>
 
+        <ul class="go mono">
+          <li><a href="index.html"><span>Back to the work</span><span>→</span></a></li>
+          <li><a href="play.html"><span>Peek</span><span>→</span></a></li>
+          <li><a href="mailto:stephypak@gmail.com?subject=I%20found%20the%20secret%20page"><span>Tell me you found it</span><span>→</span></a></li>
+        </ul>
+      </main>
+
+      <footer class="colophon mono">
+        <p>Set in Instrument Sans &amp; DM Mono.<br />Vibe-coded in Vancouver, BC.</p>
+        <p><a href="index.html">Back home ↩</a></p>
+      </footer>
+    </div>
   </body>
 </html>

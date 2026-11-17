@@ -3,43 +3,22 @@
   =====================================================================
     STEPHY PAK — HOMEPAGE  (index.html)
   =====================================================================
+    A trial run of the "magazine, not resume" direction. It sits next
+    to your real homepage (index.html) so you can compare the two in
+    Live Server. Nothing here changes your real site.
 
-    This file is WHAT is on the page (the words, images and links).
-    styles/style.css is HOW it looks.
+    Its styles are inside this file (in <style> below), so it doesn't
+    touch styles/style.css. If you like it, we'll move them over.
 
     WHAT'S IN HERE (top to bottom)
     ---------------------------------------------------------------
-    1. HEAD ............ page title, font + style file (not visible)
-    2. TOP ROW ......... floating name, intro, contact, links, eye GIF ✏️
-    3. SLOGAN .......... "pretty smart. / pretty, smart."           ✏️
-    4. FLOPPY ARROW .... scrolls down to your work
-    5. WORK LIST ....... "Selected work" + your 4 projects           ✏️
-    6. TYPEWRITER ...... the script that types the slogan
-    7. EASTER EGG ...... type "cute" → secret page (cute.html)
-
-    ✏️ = things you'll want to edit
-
-    ---------------------------------------------------------------
-    HOW HTML WORKS (the 30-second version)
-    ---------------------------------------------------------------
-    <p class="hero-info-text">Hello</p>
-     ↑  ↑                      ↑      ↑
-     |  class = name used in   |      closing tag (same word with a /)
-     |  style.css to style it  the content you see on the page
-     opening tag (p = paragraph)
-
-    <a href="booth-fest.html">  = a link. href = where it goes.
-    <img src="assets/…" alt="…"> = an image. src = the file,
-                                   alt = a description for screen readers.
-    Notes like this whole block start with  < ! - -  and end with  - - >
-    (written without the spaces). Browsers ignore them; they're just for you.
+    1. CROP MARKS ....... pink printer's marks in the corners
+    2. MASTHEAD ......... About / Contact / Available / Currently  ✏️
+    4. WORK ............. List view (your homepage list) + Grid view (every image)  ✏️
+    5. COLOPHON ......... footer, like the small print in a magazine ✏️
   =====================================================================
 -->
 <html lang="en">
-
-  <!-- =================================================================
-       1. HEAD — information about the page (nothing here is visible)
-       ================================================================= -->
   <head>
     <!-- charset first: tells the browser how to read the letters (é, —, etc.) -->
     <meta charset="utf-8" />
@@ -66,14 +45,165 @@
     <link rel="icon" href="./assets/favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
 
-    <!-- Connects your style file -->
-    <link rel="stylesheet" href="./styles/style.css" />
-    <!-- Hides the slogan for a split second until the typewriter starts, so
-         it doesn't flash. Laptops only — phones just show the slogan. -->
-    <script>
-      if (window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches) document.documentElement.classList.add("js-typing");
-    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&display=swap" />
 
+    <!-- Your main styles, so the project list works exactly like index.html -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <style>
+      :root {
+        --ink: #0c0a24;
+        --paper: #fdfdfd;
+        --pink: #0c0a24;
+        --grey: #8a8899;
+        --mono: "DM Mono", ui-monospace, monospace;
+        --edge: clamp(1rem, 2.5vw, 2.25rem);
+      }
+      html { box-sizing: border-box; }
+      *, *::before, *::after { box-sizing: inherit; }
+      * { margin: 0; }
+      ul, ol { padding: 0; list-style: none; }
+      img { display: block; max-width: 100%; height: auto; }
+      a { color: inherit; text-decoration: none; }
+      ::selection { background: var(--ink); color: var(--paper); }
+
+      body {
+        font-family: "Instrument Sans", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+      }
+      /* Small typewriter labels used everywhere (like magazine credits) */
+      .mono {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        line-height: 1.3;                /* ✏️ space between lines */
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      .label { color: var(--grey); margin-bottom: 0.35rem; }
+      .tbd { color: var(--grey); }
+
+      /* ---------- 1. CROP MARKS ---------- */
+      .sheet { position: relative; padding: 2.75rem var(--edge) 2rem; }
+      .crop { position: absolute; width: 18px; height: 18px; pointer-events: none; }
+      .crop::before, .crop::after { content: ""; position: absolute; background: var(--pink); }
+      .crop::before { width: 18px; height: 1px; top: 0; }
+      .crop::after  { width: 1px; height: 18px; left: 0; }
+      .crop.tl { top: 14px; left: 14px; }
+      .crop.tr { top: 14px; right: 14px; transform: scaleX(-1); }
+      .crop.bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+      .crop.br { bottom: 14px; right: 14px; transform: scale(-1); }
+      /* Registration mark (the target symbol printers use) */
+      .reg { width: 22px; height: 22px; color: var(--pink); }
+
+      /* ---------- 2. MASTHEAD ---------- */
+      .masthead {
+        margin-bottom: clamp(2.5rem, 6vw, 4.5rem);   /* ✏️ space between the masthead and the work */
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1.5rem var(--edge);
+      }
+      .mh-name   { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; }
+      .mh-name a { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; }
+      .mh-about  { grid-column: 1 / 6; }
+      .mh-about p { max-width: 44ch; }
+      .mh-about p:not(.label) { text-transform: none; font-size: 0.8125rem; line-height: 1.35; }   /* bio in normal case: easier to read */
+      .mh-contact   { grid-column: 6 / 8; }
+      .mh-view      { grid-column: 8 / 10; }
+      /* 👁 Floating eye: pinned to the bottom-right corner, follows you as you scroll */
+      .float-eye {
+        position: fixed;
+        right: clamp(1rem, 2.5vw, 2.25rem);          /* ✏️ distance from the right edge */
+        bottom: clamp(1rem, 2.5vw, 2rem);            /* ✏️ distance from the bottom */
+        z-index: 20;
+      }
+      .float-eye .play-door { margin: 0; }
+      /* The PEEK pill pops up ABOVE the eye here (there's no room below) */
+      @media (hover: hover) and (min-width: 768px) {
+        .float-eye .play-door-label { top: auto; bottom: 100%; transform: translate(-50%, 0.25rem); }
+        .float-eye .play-door:hover .play-door-label,
+        .float-eye .play-door:focus-visible .play-door-label { transform: translate(-50%, -0.25rem); }
+      }
+      .mh-currently { grid-column: 10 / 13; }
+      .mh a:hover, .view-btn:hover { color: var(--pink); }
+      .view-btn {
+        font: inherit; letter-spacing: inherit; text-transform: inherit;
+        background: none; border: 0; padding: 0; cursor: pointer; color: var(--grey);
+        text-align: left; white-space: nowrap;
+      }
+      .view-btn[aria-pressed="true"] { color: var(--ink); }
+      .view-btn[aria-pressed="true"]::before { content: "● "; color: var(--pink); }
+
+      /* ---------- 3. SLOGAN ---------- */
+      .slogan-row {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: var(--edge);
+        align-items: end;
+        padding: clamp(3rem, 8vw, 7rem) 0 clamp(2.5rem, 6vw, 5rem);
+      }
+      .slogan {
+        grid-column: 1 / 11;
+        font-size: clamp(3.125rem, 11vw, 11rem);
+        font-weight: 500;
+        line-height: 0.95;
+        letter-spacing: -0.035em;
+      }
+      .slogan > span { display: block; }
+      .slogan .indent { padding-left: 0.6em; }
+      .comma { color: var(--pink); }
+      .issue { grid-column: 11 / 13; text-align: right; }
+
+      /* ---------- 4. WORK ---------- */
+      /* LIST VIEW = your homepage list (styles come from style.css). GRID VIEW = the wall below. */
+      .work-grid { display: none; padding: 1rem 0 6rem; }
+      body.is-grid .main-work-section { display: none; }
+      body.is-grid .work-grid { display: block; }
+
+      .wall-head {
+        display: flex; justify-content: space-between;
+        padding: 0.6rem 0; margin-bottom: 1.5rem;
+        border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+      }
+      /* Pinterest-style "masonry": images stack in columns and keep their own shape. */
+      .wall { columns: 4; column-gap: 1rem; }          /* ✏️ number of columns on laptops */
+      .tile { break-inside: avoid; margin-bottom: 1.75rem; }
+      .tile a { display: block; }
+      .tile img, .tile video {
+        display: block; width: 100%; height: auto; background: #ecebe8;
+        transition: opacity var(--duration-fast, 0.15s);
+      }
+      .tile figcaption { margin-top: 0.5rem; display: flex; justify-content: space-between; gap: 1rem; }
+      .tile a:hover img, .tile a:hover video { opacity: 0.85; }
+      .tile a:hover .title { color: var(--pink); }
+      @media (max-width: 1100px) { .wall { columns: 3; } }
+      @media (max-width: 760px)  { .wall { columns: 2; column-gap: 0.75rem; } }
+
+      /* The list already sits inside the page margins here, so drop its own side padding */
+      .sheet .project-index { padding-left: 0; padding-right: 0; }
+      /* Category labels stay clear of the floating eye in the corner */
+      @media (min-width: 761px) { .sheet .project-index-category { margin-right: 5rem; } }
+
+      /* ---------- 5. COLOPHON ---------- */
+      .colophon {
+        display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--edge);
+        padding-top: 1.25rem; border-top: 1px solid var(--ink);
+      }
+      .colophon > :nth-child(1) { grid-column: 1 / 6; }
+      .colophon > :nth-child(2) { grid-column: 11 / 13; justify-self: end; margin-right: 5rem; }   /* leaves room for the floating eye */
+
+      /* ---------- PHONES ---------- */
+      @media (max-width: 760px) {
+        .mh-about, .mh-contact, .mh-currently, .mh-view, .slogan, .issue,
+        .colophon > * { grid-column: 1 / -1 !important; text-align: left; justify-self: start; }
+        .grid { row-gap: 3rem; }
+        .p1, .p2, .p3, .p4 { grid-column: 1 / -1; margin-top: 0; }
+        .p2 { grid-column: 3 / -1; }
+        .p3 { grid-column: 1 / 11; }
+      }
+          /* Accent is black now, so hovers fade instead of changing colour */
+      a:hover, a:focus-visible, .lb-btn:hover, .new-batch:hover { opacity: 0.55; }
+    </style>
     <!-- SEO / E-E-A-T: a hidden "ID card" about you that Google reads.
          It backs up your experience and credibility (school, award, membership).
          ✏️ When you have real Instagram / LinkedIn / Behance links, add them
@@ -99,92 +229,54 @@
     </script>
   </head>
 
-  <body class="work-page" id="top">
+  <body>
+    <div class="sheet">
+      <!-- 1. CROP MARKS -->
+      <span class="crop tl" aria-hidden="true"></span>
+      <span class="crop tr" aria-hidden="true"></span>
+      <span class="crop bl" aria-hidden="true"></span>
+      <span class="crop br" aria-hidden="true"></span>
 
-    <!-- FLOATING NAME — same size and position as on every other page.
-         Stays pinned at the top while you scroll. -->
-    <header class="project-header">
-      <a href="index.html#top" class="project-header-name">Stephy Pak</a>
-    </header>
-
-    <!-- The first screen everyone sees (the "hero") -->
-    <section class="hero hero-dark">
-
-      <!-- ===============================================================
-           2. TOP ROW
-           =============================================================== -->
-      <header class="hero-top">
-
-        <!-- LEFT: your intro and contact (your name floats above, see the top of <body>) -->
-        <div class="hero-id">
-          <div class="hero-info">
-            <!-- ✏️ Your intro. <br /> = start a new line. -->
-            <p class="hero-info-text">A designer working across print,<br />
-              digital and packaging.</p>
-            <!-- ✏️ Location + email -->
-            <p class="hero-info-contact hero-info-text">
-              Vancouver, BC<br />
-              <a href="mailto:stephypak@gmail.com">stephypak@gmail.com</a>
-            </p>
-          </div>
+      <!-- 2. MASTHEAD ✏️ -->
+      <header class="masthead mh">
+        <div class="mh-name">
+          <a href="index.html">Stephy Pak</a>
         </div>
 
-        <!-- RIGHT: links + the eye GIF -->
-        <nav class="hero-nav" aria-label="Links">
-          <ul class="hero-links">
-            <!-- ✏️ Replace each # with your real link, e.g.
-                 href="https://www.behance.net/yourname"
-                 target="_blank" = opens in a new tab -->
-            <li><a href="#" target="_blank">Behance</a></li>
-            <li><a href="#" target="_blank">Instagram</a></li>
-            <li><a href="#" target="_blank">LinkedIn</a></li>
-            <!-- mailto: opens the visitor's email app -->
-            <li><a href="mailto:stephypak@gmail.com">Contact</a></li>
+        <div class="mh-about mono">
+          <p class="label">About</p>
+          <p>Stephy Pak is a Vancouver-based brand designer working where identity, marketing and experience meet. She builds brands people can step into, from campaign systems and packaging to pop-ups and launches. Final year, Visual Communication, IDEA School of Design.</p>
+        </div>
 
-            <!-- 👁 The eye GIF → goes to the Peek page (play.html).
-                 Hovering shows the pink "PEEK" pill.
-                 ✏️ To swap the GIF, replace assets/branding-images/play.gif
-                 (keep the same file name). -->
-            <li class="play-door-item">
-              <a href="play.html" class="play-door" aria-label="Peek — photos and things I love">
-                <img src="assets/branding-images/play.gif" width="60" height="60" class="play-door-gif" alt="" />
-                <span class="play-door-label">Peek</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <div class="mh-contact mono">
+          <p class="label">Contact</p>
+          <p><a href="mailto:stephypak@gmail.com">stephypak@gmail.com</a><br />
+          <a href="#">Instagram</a><br />
+          <a href="#">LinkedIn</a><br />
+          <a href="play.html">Peek ↗</a></p>
+          <p class="label" style="margin-top:0.75rem">Available</p>
+          <p>Brand, marketing &amp; creative roles from Spring 2027</p>
+        </div>
+
+        <div class="mh-view mono">
+          <p class="label">View</p>
+          <p><button type="button" class="view-btn" data-view="list" aria-pressed="true">List view</button><br />
+          <button type="button" class="view-btn" data-view="grid" aria-pressed="false">Grid view</button></p>
+        </div>
+
+        <!-- ✏️ The part that shows you're tuned in. Update it whenever. -->
+        <div class="mh-currently mono">
+          <p class="label">Currently</p>
+          <p>Working in: luxury retail, studying how heritage brands create desire through service, space and product<br />
+          Researching: brand, marketing and experiential strategy</p>
+        </div>
+
       </header>
 
-      <!-- ===============================================================
-           3. SLOGAN
-           Each line is its own <span>. The pink comma is its own <span>
-           so it can have a different colour.
-           (If you change the words, also update the typewriter in section 6 —
-           it types "cute" then deletes it, so it expects "pretty " first.)
-           =============================================================== -->
-      <div class="hero-slogan-wrapper">
-        <h1 class="hero-slogan">
-          <span class="hero-slogan-line">pretty smart.</span>
-          <span class="hero-slogan-line hero-slogan-indent">pretty<span class="hero-comma">,</span> smart.</span>
-        </h1>
-      </div>
-
-      <!-- ===============================================================
-           4. FLOPPY DISK ARROW
-           Clicking it jumps down to "Selected work" (#works-heading).
-           =============================================================== -->
-      <a href="#works-heading" class="hero-scroll" aria-label="Scroll down to selected work">
-        <span class="hero-scroll-sprite" aria-hidden="true"></span>
-      </a>
-
-    </section>
-
-    <!-- =================================================================
-         5. WORK LIST
-         Laptops: hover a title → its cover image fades in behind the list.
-         Phones: each cover image shows under its title.
-         ================================================================= -->
-    <main class="main-work-section">
+      <!-- 4. WORK ✏️  Captions read like catalogue entries:
+           TITLE, DISCIPLINE, YEAR. -->
+      <!-- 4. WORK — the same hover list as your real homepage (index.html) -->
+      <main class="main-work-section">
       <section class="project-index" aria-labelledby="works-heading">
 
         <!-- "SELECTED WORK (4)" with the sparkly star.
@@ -225,7 +317,7 @@
             <a href="patches.html" class="project-index-link">
               <span class="project-index-title">Patches</span>
               <span class="project-index-category">Platform / identity</span>
-              <img src="assets/projects/placeholder.svg" width="1920" height="1080" class="project-index-preview" loading="lazy" alt="Patches project cover" />
+              <img src="assets/projects/patches/patches-hero.jpg" width="1920" height="1080" class="project-index-preview" loading="lazy" alt="Patches poster campaign" />
             </a>
           </li>
 
@@ -251,100 +343,105 @@
       </section>
     </main>
 
+      <!-- 4b. GRID VIEW ✏️ — every project image + video, Pinterest-style.
+           Each <figure class="tile"> is one image. Copy one to add more.
+           Swap placeholder.svg for your real images; they keep their own
+           shape, so mix tall, wide and square freely. -->
+      <section class="work-grid" aria-label="All project images">
+        <div class="wall-head mono"><span>Everything <span class="tbd">— Issue 01, 2025–27</span></span><span>(04)</span></div>
+        <div class="wall">
+          <figure class="tile"><a href="patches.html">
+            <video autoplay muted loop playsinline width="1920" height="1080" poster="assets/projects/patches/patches-hero.jpg" aria-label="Patches poster campaign: three posters and a video of friends hanging out">
+              <source src="assets/projects/patches/patches-hero.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="mono"><span><span class="num">(02)</span> <span class="title">Patches</span></span><span class="tbd">Campaign film</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="booth-fest.html">
+            <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe this Booth Fest image]" style="aspect-ratio:1200/1500;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(01)</span> <span class="title">Booth Fest</span></span><span class="tbd">Hero</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="feral-by-design.html">
+            <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe this Feral By Design image]" style="aspect-ratio:1920/1080;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(03)</span> <span class="title">Feral By Design</span></span><span class="tbd">Hero</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="deep-breakfast.html">
+            <img src="assets/projects/placeholder.svg" width="1200" height="1200" loading="lazy" alt="[Describe this Deep Breakfast image]" style="aspect-ratio:1200/1200;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(04)</span> <span class="title">Deep Breakfast</span></span><span class="tbd">Hero</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="booth-fest.html">
+            <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe this Booth Fest image]" style="aspect-ratio:1200/1500;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(01)</span> <span class="title">Booth Fest</span></span><span class="tbd">Detail</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="patches.html">
+            <img src="assets/projects/placeholder.svg" width="1080" height="1350" loading="lazy" alt="[Describe this Patches image]" style="aspect-ratio:1080/1350;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(02)</span> <span class="title">Patches</span></span><span class="tbd">Detail</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="feral-by-design.html">
+            <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe this Feral By Design image]" style="aspect-ratio:1920/1080;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(03)</span> <span class="title">Feral By Design</span></span><span class="tbd">Detail</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="deep-breakfast.html">
+            <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe this Deep Breakfast image]" style="aspect-ratio:1200/1500;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(04)</span> <span class="title">Deep Breakfast</span></span><span class="tbd">Detail</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="booth-fest.html">
+            <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe this Booth Fest image]" style="aspect-ratio:1920/1080;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(01)</span> <span class="title">Booth Fest</span></span><span class="tbd">Spread</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="patches.html">
+            <img src="assets/projects/placeholder.svg" width="1200" height="1200" loading="lazy" alt="[Describe this Patches image]" style="aspect-ratio:1200/1200;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(02)</span> <span class="title">Patches</span></span><span class="tbd">Spread</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="feral-by-design.html">
+            <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe this Feral By Design image]" style="aspect-ratio:1200/1500;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(03)</span> <span class="title">Feral By Design</span></span><span class="tbd">Spread</span></figcaption>
+          </a></figure>
+          <figure class="tile"><a href="deep-breakfast.html">
+            <img src="assets/projects/placeholder.svg" width="1080" height="1350" loading="lazy" alt="[Describe this Deep Breakfast image]" style="aspect-ratio:1080/1350;object-fit:cover" />
+            <figcaption class="mono"><span><span class="num">(04)</span> <span class="title">Deep Breakfast</span></span><span class="tbd">Spread</span></figcaption>
+          </a></figure>
+        </div>
+      </section>
 
-    <!-- =================================================================
-         6. TYPEWRITER  (JavaScript — the part that makes things move)
-         What it does:
-           • types "pretty cute", pauses, backspaces "cute",
-             then types "smart." and the second line
-           • a pink cursor leads the typing and disappears at the end
-           • hovering over the slogan replays it
-           • off on phones and for people who turn off motion
-         You don't need to edit this. The only easy tweak:
-           ✏️ change "cute" on the line marked FAKE WORD to another word.
-         ================================================================= -->
+      <!-- 5. COLOPHON ✏️ -->
+      <footer class="colophon mono">
+        <p>Set in Instrument Sans &amp; DM Mono.<br />Vibe-coded in Vancouver, BC.</p>
+        <p><a href="#top">Back to top ↑</a></p>
+      </footer>
+    </div>
+
+    <!-- 👁 FLOATING EYE → Peek page. Stays in the bottom-right corner while you scroll.
+         Hover shows the pink PEEK pill above it. -->
+    <span class="play-door-item float-eye">
+      <a href="play.html" class="play-door" aria-label="Peek — about me, photos and things I love">
+        <img src="assets/branding-images/play.gif" width="60" height="60" class="play-door-gif" alt="" />
+        <span class="play-door-label">Peek</span>
+      </a>
+    </span>
+
+    <!-- LIST / GRID switch -->
     <script>
-      (function () {
-        var h = document.querySelector(".hero-slogan");
-        // Phones / reduced motion: stop here and just show the slogan
-        if (!h || !document.documentElement.classList.contains("js-typing")) return;
-
-        var lines = Array.prototype.slice.call(h.querySelectorAll(".hero-slogan-line"));
-        var originalHTML = lines.map(function (l) { return l.innerHTML; });
-        var texts = lines.map(function (l) { return l.textContent; });
-        h.setAttribute("aria-label", texts.join(" "));   // screen readers read the full slogan
-
-        // Keeps the pink comma pink while typing
-        function esc(t) {
-          return t.replace(/&/g, "&amp;").replace(/</g, "&lt;")
-                  .replace(/,/g, '<span class="hero-comma">,</span>');
-        }
-        // Draws one line: typed part + cursor + the invisible not-yet-typed part
-        function draw(k, typed, rest, caret) {
-          lines[k].innerHTML =
-            esc(typed) + (caret ? '<span class="type-caret" aria-hidden="true"></span>' : "") +
-            '<span class="type-rest" aria-hidden="true">' + esc(rest) + "</span>";
-        }
-
-        // The "script" of the animation: every step + how long to wait after it
-        var frames = [], t1 = texts[0], t2 = texts[1], i;
-        function pace(ch) { return 60 + Math.random() * 70 + (ch === "." ? 300 : 0); }   // typing speed (ms)
-        for (i = 1; i <= 7; i++) frames.push([0, t1.slice(0, i), t1.slice(i), pace(t1[i - 1])]);                     // types "pretty "
-        var fake = "cute";                                                                                            // ✏️ FAKE WORD
-        for (i = 1; i <= fake.length; i++) frames.push([0, t1.slice(0, 7) + fake.slice(0, i), t1.slice(7 + i), pace()]); // types "cute"
-        frames[frames.length - 1][3] = 650;                                                                           // pause… hmm
-        for (i = fake.length - 1; i >= 0; i--) frames.push([0, t1.slice(0, 7) + fake.slice(0, i), t1.slice(7 + i), 90]);  // backspaces it
-        frames[frames.length - 1][3] = 250;
-        for (i = 8; i <= t1.length; i++) frames.push([0, t1.slice(0, i), t1.slice(i), pace(t1[i - 1])]);              // types "smart."
-        for (i = 1; i <= t2.length; i++) frames.push([1, t2.slice(0, i), t2.slice(i), pace(t2[i - 1])]);              // types line 2
-
-        var playing = false;
-        function run(n) {
-          if (n >= frames.length) {
-            // Finished: remove the cursor and put the slogan back to normal
-            setTimeout(function () {
-              lines.forEach(function (l, k) { l.innerHTML = originalHTML[k]; });
-              playing = false;
-            }, 700);
-            return;
-          }
-          var f = frames[n];
-          if (f[0] === 1) draw(0, t1, "", false);   // line 1 done → cursor moves to line 2
-          draw(f[0], f[1], f[2], true);
-          setTimeout(function () { run(n + 1); }, f[3]);
-        }
-        function play() {
-          playing = true;
-          h.classList.add("is-ready");
-          draw(0, "", t1, true);
-          draw(1, "", t2, false);
-          setTimeout(function () { run(0); }, 300);
-        }
-        setTimeout(play, 300);   // start shortly after the page loads
-
-        // Replay when someone hovers over the slogan (only after it's finished)
-        h.addEventListener("mouseenter", function () {
-          if (!playing) play();
+      document.querySelectorAll(".view-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.body.classList.toggle("is-grid", btn.dataset.view === "grid");
+          document.querySelectorAll(".view-btn").forEach(function (b) {
+            b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+          });
         });
-      })();
+      });
     </script>
 
-
-    <!-- =================================================================
-         7. EASTER EGG  (JavaScript)
-         Type the word "cute" anywhere on the homepage → opens cute.html.
-         Plus a little hint in the browser console for curious people
-         (right-click → Inspect → Console).
-         ✏️ To change the secret word, change "cute" on the SECRET WORD line.
-         ================================================================= -->
+    <!-- EASTER EGG: type the word "cute" anywhere on this page → cute.html
+         (plus a hint in the browser console: right-click → Inspect → Console).
+         ✏️ To change the secret word, change "cute" on the SECRET WORD line. -->
     <script>
       (function () {
         var secret = "cute";                                    // ✏️ SECRET WORD
         var typed = "";
-        console.log("%cpretty curious, huh? try typing the word the typewriter deletes.", "color:#d6338a;font-size:14px");
+        console.log("%cpretty curious, huh? type the word that describes the fish cake 🍥", "color:#0c0a24;font-size:14px");
         document.addEventListener("keydown", function (e) {
           if (e.metaKey || e.ctrlKey || e.altKey || e.key.length !== 1) return;
-          typed = (typed + e.key.toLowerCase()).slice(-secret.length);   // remembers the last few letters
+          typed = (typed + e.key.toLowerCase()).slice(-secret.length);
           if (typed === secret) window.location.href = "cute.html";
         });
       })();

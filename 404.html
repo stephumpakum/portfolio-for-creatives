@@ -7,12 +7,9 @@
     link (e.g. stephypak.com/oops). GitHub Pages finds this file on
     its own because it's called 404.html and sits in the main folder.
 
-    IMPORTANT: every link and file path on this page starts with "/"
-    (e.g. /styles/style.css), not "./". This page can appear at ANY
-    address, like stephypak.com/a/b/c, so paths have to start from
-    the main folder to work.
-    (Live Server tip: to preview it, open localhost:5500/404.html,
-    or type a fake address like localhost:5500/oops.)
+    IMPORTANT: every link and file path here starts with "/" (not "./"),
+    because this page can appear at ANY address, like stephypak.com/a/b/c.
+    (Live Server tip: preview it at localhost:5500/404.html)
 
     ✏️ = things you'll want to edit
   =====================================================================
@@ -22,47 +19,82 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page not found | Stephy Pak</title>
-    <!-- Keeps Google from listing this page in search results -->
+    <!-- Keeps Google from listing this page -->
     <meta name="robots" content="noindex" />
-
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" />
     <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/assets/favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
     <link rel="icon" href="/assets/favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png" />
-
-    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&display=swap" />
+    <style>
+      :root { --ink: #0c0a24; --paper: #fdfdfd; --pink: #0c0a24; --grey: #8a8899;
+              --mono: "DM Mono", ui-monospace, monospace; --edge: clamp(1rem, 2.5vw, 2.25rem); }
+      html { box-sizing: border-box; } *, *::before, *::after { box-sizing: inherit; } * { margin: 0; }
+      ul { padding: 0; list-style: none; } a { color: inherit; text-decoration: none; }
+      ::selection { background: var(--ink); color: var(--paper); }
+      body { font-family: "Instrument Sans", sans-serif; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+      .mono { font-family: var(--mono); font-size: 0.75rem; line-height: 1.3; letter-spacing: 0.02em; text-transform: uppercase; }
+      .label { color: var(--grey); margin-bottom: 0.35rem; }
+      .pink { color: var(--pink); }
+      /* crop marks */
+      .sheet { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; padding: 2.75rem var(--edge) 2rem; }
+      .crop { position: absolute; width: 18px; height: 18px; pointer-events: none; }
+      .crop::before, .crop::after { content: ""; position: absolute; background: var(--pink); }
+      .crop::before { width: 18px; height: 1px; top: 0; } .crop::after { width: 1px; height: 18px; left: 0; }
+      .crop.tl { top: 14px; left: 14px; } .crop.tr { top: 14px; right: 14px; transform: scaleX(-1); }
+      .crop.bl { bottom: 14px; left: 14px; transform: scaleY(-1); } .crop.br { bottom: 14px; right: 14px; transform: scale(-1); }
+      /* masthead */
+      .masthead { display: flex; justify-content: space-between; align-items: baseline; }
+      .masthead .name { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; }
+      a:hover, a:focus-visible { color: var(--pink); }
+      /* main */
+      .main { flex: 1; display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem var(--edge); align-content: center; padding: 4rem 0; position: relative; z-index: 1; }
+      .headline { grid-column: 1 / 11; font-size: clamp(3rem, 9vw, 9rem); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; text-wrap: balance; }
+      .note { grid-column: 1 / 6; }
+      .note p:not(.label) { text-transform: none; font-size: 0.8125rem; line-height: 1.45; max-width: 40ch; }
+      .go { grid-column: 8 / 13; }
+      .go li a { display: flex; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px solid #d9d8e0; }
+      .go li:first-child a { border-top: 1px solid var(--ink); }
+      .colophon { display: flex; justify-content: space-between; gap: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--ink); position: relative; z-index: 1; }
+      @media (max-width: 760px) { .headline, .note, .go { grid-column: 1 / -1; } }
+          /* Accent is black now, so hovers fade instead of changing colour */
+      a:hover, a:focus-visible, .lb-btn:hover, .new-batch:hover { opacity: 0.55; }
+    </style>
   </head>
 
-  <body class="work-page lost-page">
+  <body>
+    <div class="sheet">
+      <span class="crop tl" aria-hidden="true"></span><span class="crop tr" aria-hidden="true"></span>
+      <span class="crop bl" aria-hidden="true"></span><span class="crop br" aria-hidden="true"></span>
 
-    <!-- Floating name, same as every page -->
-    <header class="project-header">
-      <a href="/" class="project-header-name">Stephy Pak</a>
-    </header>
+      <header class="masthead">
+        <a href="/" class="name">Stephy Pak</a>
+        <span class="mono label" style="margin:0">Error 404</span>
+      </header>
 
-    <main class="lost">
-      <!-- ✏️ The big line — a twist on the homepage slogan.
-           The pink comma is its own <span>, like on the homepage. -->
-      <h1 class="hero-slogan lost-slogan">
-        <span class="hero-slogan-line">pretty lost.</span>
-        <span class="hero-slogan-line hero-slogan-indent">pretty<span class="hero-comma">,</span> lost.</span>
-      </h1>
+      <main class="main">
+        <!-- ✏️ The big line. Echoes the "side streets" line in your bio. -->
+        <h1 class="headline">Took a wrong side street<span class="pink">.</span></h1>
 
-      <!-- ✏️ The small note underneath -->
-      <p class="lost-note">
-        <span class="lost-code">Error 404</span>
-        This page wandered off. Probably following the music.<br />
-        Let's get you somewhere good:
-      </p>
+        <!-- ✏️ The small note -->
+        <div class="note mono">
+          <p class="label">Page not found</p>
+          <p>This page wandered off, or never existed. Happens to the best of us. Here are a few good places to go instead.</p>
+        </div>
 
-      <ul class="lost-links">
-        <li><a href="/">← Home</a></li>
-        <li><a href="/#works-heading">Selected work</a></li>
-        <li><a href="/play.html">Peek</a></li>
-        <li><a href="mailto:stephypak@gmail.com">Say hi</a></li>
-      </ul>
-    </main>
+        <ul class="go mono">
+          <li><a href="/"><span>Home</span><span>→</span></a></li>
+          <li><a href="/#works-heading"><span>Selected work</span><span>→</span></a></li>
+          <li><a href="/play.html"><span>Peek</span><span>→</span></a></li>
+          <li><a href="mailto:stephypak@gmail.com"><span>Say hi</span><span>→</span></a></li>
+        </ul>
+      </main>
 
+      <footer class="colophon mono">
+        <p>Set in Instrument Sans &amp; DM Mono.<br />Vibe-coded in Vancouver, BC.</p>
+        <p><a href="/">Back home ↩</a></p>
+      </footer>
+    </div>
   </body>
 </html>
