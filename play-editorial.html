@@ -1,0 +1,376 @@
+<!doctype html>
+<!--
+  =====================================================================
+    PEEK PAGE — EDITORIAL TEST VERSION  (play-editorial.html)
+  =====================================================================
+    Trial run of the Peek page in the same editorial style as
+    index-editorial.html. Your real Peek page (play.html) is untouched.
+
+    WHAT'S IN HERE (top to bottom)
+    ---------------------------------------------------------------
+    1. CROP MARKS + MASTHEAD ... name, back to work
+    2. ABOUT .................. bio + facts                            ✏️
+    3. PHOTO GRID ............. photos + a "New batch" button         ✏️
+       (the photos themselves are listed in the script at the bottom)
+    4. COLOPHON ............... footer
+  =====================================================================
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Stephy Pak — Brand Designer in Vancouver</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="./favicon.ico" sizes="16x16 32x32" />
+    <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&display=swap" />
+    <style>
+      :root {
+        --ink: #0c0a24; --paper: #fdfdfd; --pink: #d6338a; --grey: #8a8899;
+        --mono: "DM Mono", ui-monospace, monospace;
+        --edge: clamp(1rem, 2.5vw, 2.25rem);
+      }
+      html { box-sizing: border-box; }
+      *, *::before, *::after { box-sizing: inherit; }
+      * { margin: 0; }
+      ul, ol, dl, dd { padding: 0; list-style: none; }
+      img { display: block; max-width: 100%; height: auto; }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; color: inherit; }
+      ::selection { background: var(--pink); color: #fff; }
+      body { font-family: "Instrument Sans", sans-serif; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+      .mono { font-family: var(--mono); font-size: 0.75rem; line-height: 1.3; letter-spacing: 0.02em; text-transform: uppercase; }
+      .label { color: var(--grey); margin-bottom: 0.35rem; }
+      .pink { color: var(--pink); }
+
+      /* 1. CROP MARKS + MASTHEAD */
+      .sheet { position: relative; padding: 2.75rem var(--edge) 2rem; }
+      .crop { position: absolute; width: 18px; height: 18px; pointer-events: none; }
+      .crop::before, .crop::after { content: ""; position: absolute; background: var(--pink); }
+      .crop::before { width: 18px; height: 1px; top: 0; }
+      .crop::after  { width: 1px; height: 18px; left: 0; }
+      .crop.tl { top: 14px; left: 14px; } .crop.tr { top: 14px; right: 14px; transform: scaleX(-1); }
+      .crop.bl { bottom: 14px; left: 14px; transform: scaleY(-1); } .crop.br { bottom: 14px; right: 14px; transform: scale(-1); }
+      .masthead { display: flex; justify-content: space-between; align-items: baseline; }
+      .masthead .name { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; }
+      .masthead a:hover { color: var(--pink); }
+
+      /* 2. ABOUT */
+      .about {
+        display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem var(--edge);
+        padding: clamp(2.5rem, 5vw, 4rem) 0 1rem;   /* ✏️ last number = space above the photos */
+      }
+      .statement {
+        grid-column: 1 / -1;
+        font-size: clamp(2.5rem, 6.5vw, 6.5rem); font-weight: 500; line-height: 0.98; letter-spacing: -0.035em;
+        max-width: 14ch;
+      }
+      .portrait { grid-column: 1 / 4; }
+      .portrait .frame { aspect-ratio: 4 / 5; background: #ecebe8; display: grid; place-items: center; color: var(--grey); }
+      .portrait figcaption { margin-top: 0.5rem; }
+      .bio { grid-column: 1 / 8; }
+      .bio-lead { text-wrap: balance; max-width: 30ch; font-weight: 400; font-size: clamp(1.25rem, 1.9vw, 1.6rem); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 1.25rem; }
+      .bio-p { font-size: 0.95rem; line-height: 1.5; max-width: 50ch; margin-bottom: 0.9rem;
+        text-wrap: pretty;   /* evens out the ragged right edge: no lonely words, smoother line lengths */ }
+      .facts { grid-column: 9 / 13; }
+      .facts dl { border-top: 1px solid var(--ink); }
+      .facts .project-credit { padding: 0.55rem 0; border-bottom: 1px solid #d9d8e0; }
+      .facts dt { color: var(--grey); margin-bottom: 0.15rem; }
+      .facts a { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+      .facts a:hover, .links a:hover { color: var(--pink); }
+      .links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin-top: 1rem; }
+
+      /* 3. PHOTO GRID */
+      .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .grid-head { display: flex; justify-content: flex-end; }
+      /* The swirl button */
+      .new-batch {
+        display: inline-flex; align-items: center; gap: 0.6rem;
+        background: none; border: 0; padding: 0; cursor: pointer; color: var(--ink);
+      }
+      .fishcake { display: inline-block; font-size: 2.25rem; line-height: 1;      /* ✏️ emoji size */
+        font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+        transition: transform 0.6s ease; animation: glow 2.4s ease-in-out infinite; }
+      /* Soft pink glow that pulses so people notice they can click it */
+      @keyframes glow {
+        0%, 100% { filter: drop-shadow(0 0 0 rgba(214, 51, 138, 0)); }
+        50%      { filter: drop-shadow(0 0 6px rgba(214, 51, 138, 0.75)) drop-shadow(0 0 14px rgba(214, 51, 138, 0.35)); }
+      }
+      .new-batch:hover .fishcake { animation: none; filter: drop-shadow(0 0 8px rgba(214, 51, 138, 0.8)); }
+      .new-batch:hover .fishcake, .new-batch:focus-visible .fishcake { transform: rotate(-360deg); }
+      .new-batch-label { opacity: 0; transform: translateX(6px); transition: opacity 0.2s, transform 0.2s; order: -1; color: var(--pink); }
+      .new-batch:hover .new-batch-label, .new-batch:focus-visible .new-batch-label { opacity: 1; transform: none; }
+      .new-batch.is-spinning .fishcake { transform: rotate(-720deg); transition-duration: 0.8s; }
+      /* Spotify link in the bio */
+      .music { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+      .music:hover { color: var(--pink); }
+      .photos {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);      /* ✏️ photos per row on laptops */
+        gap: 0.5rem;                                 /* ✏️ space between photos */
+        align-items: start;
+        padding: 0.75rem 0 5rem;
+        transition: opacity 0.25s;
+      }
+      .photos.is-swapping { opacity: 0; }
+      .photo img, .photo video { display: block; width: 100%; aspect-ratio: 4 / 5 !important; object-fit: cover; background: #ecebe8; }   /* ✏️ every photo cropped to the same shape for a clean grid */
+      .photo figcaption { margin-top: 0.3rem; display: flex; gap: 0.6rem; }
+      .photo .n { color: var(--pink); }
+      @media (max-width: 1100px) { .photos { grid-template-columns: repeat(4, 1fr); } }
+
+      /* LIGHTBOX — full-screen view when you click a photo */
+      .photo { cursor: zoom-in; }
+      .photo img, .photo video { transition: opacity 0.15s; }
+      .photo:hover img, .photo:hover video { opacity: 0.85; }
+      .lightbox {
+        position: fixed; inset: 0; z-index: 100;
+        display: none; align-items: center; justify-content: center;
+        background: var(--paper);                    /* ✏️ backdrop colour */
+        padding: 3.5rem var(--edge);
+      }
+      .lightbox.is-open { display: flex; animation: lb-in 0.2s ease; }
+      @keyframes lb-in { from { opacity: 0; } }
+      .lb-media { max-width: 100%; max-height: 100%; display: flex; }
+      .lb-media img, .lb-media video { max-width: 100%; max-height: calc(100vh - 7rem); width: auto; height: auto; object-fit: contain; }
+      .lb-btn {
+        position: absolute; background: none; border: 0; cursor: pointer; color: var(--ink);
+        font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.02em; text-transform: uppercase;
+        padding: 0.75rem;
+      }
+      .lb-btn:hover, .lb-btn:focus-visible { color: var(--pink); }
+      .lb-close { top: 0.75rem; right: calc(var(--edge) - 0.75rem); }
+      .lb-count { position: absolute; top: 1.5rem; left: var(--edge); }
+      .lb-prev, .lb-next { top: 50%; transform: translateY(-50%); font-size: 1.5rem; font-family: inherit; }
+      .lb-prev { left: calc(var(--edge) - 0.75rem); }
+      .lb-next { right: calc(var(--edge) - 0.75rem); }
+      @media (max-width: 760px) { .lb-prev, .lb-next { top: auto; bottom: 0.75rem; transform: none; } }
+
+      /* 4. COLOPHON */
+      .colophon { display: flex; justify-content: space-between; gap: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--ink); }
+
+      /* PHONES */
+      @media (max-width: 760px) {
+        .bio, .facts { grid-column: 1 / -1; }
+        .photos { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+        .new-batch-label { opacity: 1; transform: none; }   /* phones can't hover, so always show it */
+      }
+      @media (prefers-reduced-motion: reduce) { .photos, .fishcake { transition: none; animation: none; filter: drop-shadow(0 0 6px rgba(214, 51, 138, 0.6)); } }
+    </style>
+  </head>
+
+  <body id="top">
+    <div class="sheet">
+      <span class="crop tl" aria-hidden="true"></span><span class="crop tr" aria-hidden="true"></span>
+      <span class="crop bl" aria-hidden="true"></span><span class="crop br" aria-hidden="true"></span>
+
+      <!-- 1. MASTHEAD -->
+      <header class="masthead">
+        <a href="index-editorial.html" class="name">Stephy Pak</a>
+        <a href="index-editorial.html" class="mono">← Back to work</a>
+      </header>
+
+      <!-- 2. ABOUT ✏️ -->
+      <section class="about" aria-labelledby="about-heading">
+
+
+        <div class="bio">
+          <h1 class="bio-lead" id="about-heading">Hi, I'm Stephy. I design brands, but mostly I'm curious about how people live, dress and spend their time.</h1>
+          <p class="bio-p">I feel electrified wandering new cities, islands and the side streets nobody put on the map, and I always come home with a camera roll full of shop signs, packaging and street style.</p>
+          <p class="bio-p">Fashion is how I read a place. I work in luxury retail, and I love the details people feel before they notice them: how a store sounds, how a bag gets wrapped, what a colour says before anyone speaks. (For the record, I'm&nbsp;a&nbsp;True&nbsp;Summer.)</p>
+          <p class="bio-p">Wherever I am, I go looking for galleries, record shops, zines and pop-ups, and I keep the small stuff: tickets, tags, receipts with good type. Some&nbsp;of&nbsp;it is in the photos below.</p>
+          <p class="bio-p">I don't think there's anything wrong with eating well, dressing well and exploring the world. It's never a waste. What I love about design is getting into the things that shape those experiences.</p>
+          <!-- ✏️ Song: skydiiiving by gush. To change it, paste a new Spotify song link into href="…" below
+               (in Spotify: ••• → Share → Copy Song Link) -->
+          <p class="bio-p">And outside of all that, I'm <a class="music" href="https://open.spotify.com/track/0mTtxGZIYFbSP0XNCcKNuS" title="skydiiiving by gush" target="_blank" rel="noopener">following the music ♫</a></p>
+
+        </div>
+
+        <div class="facts mono">
+          <p class="label">Quick facts</p>
+          <dl class="project-credits peek-facts">
+            <div class="project-credit"><dt>Based in</dt><dd>Vancouver, BC</dd></div>
+            <div class="project-credit"><dt>Studying</dt><dd>Visual Communication, Branding — <a href="https://www.ideaschoolofdesign.com/" target="_blank" rel="noopener">IDEA School of Design ↗</a></dd></div>
+            <div class="project-credit"><dt>Graduating</dt><dd>Spring 2027</dd></div>
+            <div class="project-credit"><dt>Recognition</dt><dd><a href="https://descan.ca/2025-salazar-student-award-winners/" target="_blank" rel="noopener">Honourable Mention, Interactive/UX/UI — DesCan Vancouver Salazar Student Awards 2025 ↗</a></dd></div>
+            <div class="project-credit"><dt>Member</dt><dd><a href="https://rgd.ca/" target="_blank" rel="noopener">RGD — Association of Registered Graphic Designers (Student) ↗</a></dd></div>
+          </dl>
+          <ul class="links">
+            <li><a href="mailto:stephypak@gmail.com">Email</a></li>
+            <li><a href="#" target="_blank">Instagram</a></li>
+            <li><a href="#" target="_blank">LinkedIn</a></li>
+            <li><a href="assets/stephy-pak-resume.pdf" target="_blank">Resume ↗</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 3. PHOTO GRID ✏️ (the photo list is in the script at the bottom) -->
+      <section aria-labelledby="photos-heading">
+        <!-- 🌀 New batch: click the swirl to see a different set of photos -->
+        <div class="grid-head">
+          <h2 class="visually-hidden" id="photos-heading">Peek photos</h2>
+          <button type="button" class="new-batch" aria-label="New batch of photos" title="New batch">
+            <!-- 🍥 the real emoji: each device draws its own (Apple's on iPhone/Mac) -->
+            <span class="fishcake" aria-hidden="true">🍥</span>
+            <span class="new-batch-label mono">New batch</span>
+          </button>
+        </div>
+        <div class="photos" aria-live="polite"></div>
+      </section>
+
+      <!-- 4. COLOPHON -->
+      <footer class="colophon mono">
+        <p>Set in Instrument Sans &amp; DM Mono.<br />Vibe-coded in Vancouver, BC.</p>
+        <p><a href="#top">Back to top ↑</a></p>
+      </footer>
+    </div>
+
+    <!-- LIGHTBOX (filled in by the script below) -->
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <span class="lb-count mono"></span>
+      <button type="button" class="lb-btn lb-close">Close ✕</button>
+      <button type="button" class="lb-btn lb-prev" aria-label="Previous photo">←</button>
+      <div class="lb-media"></div>
+      <button type="button" class="lb-btn lb-next" aria-label="Next photo">→</button>
+    </div>
+
+    <!-- =================================================================
+         PHOTO LIST + "NEW BATCH" BUTTON
+         ✏️ ADD YOUR PHOTOS HERE. One line per photo:
+             { src: "assets/peek/okinawa-01.jpg", w: 1200, h: 1500,
+               alt: "describe what's in the photo", caption: "short label" },
+           • for a video, add  video: "assets/peek/clip.mp4",  and use a
+             still frame as src (it shows while the video loads)
+           • put the files in a folder called  assets/peek/
+           • w and h = the photo's real width and height (keeps the shape)
+           • 12 photos show at a time ("one batch"). Each click of
+             "New batch" shows the next 12. Add as many as you like.
+         ================================================================= -->
+    <script>
+      var PHOTOS = [
+        { src: "assets/peek/gallery-installation.jpg", w: 1200, h: 1600, alt: "Installation of hanging plant sculptures on wheeled stands, lit by bare bulbs in a white gallery", caption: "Gallery" },
+        { src: "assets/peek/craft-table-cat.jpg", w: 1200, h: 1600, alt: "Handmade suede cat toy with wooden button eyes on a black craft table with ribbons and buttons", caption: "Craft table" },
+        { src: "assets/peek/photo-book.jpg", w: 1600, h: 1225, alt: "Open photo book showing a black-and-white spread of two girls walking down a dirt road, Vicco, Kentucky, 1959", caption: "Photo book" },
+        { src: "assets/peek/street-sign.jpg", w: 1600, h: 953, alt: "Two people holding a hand-painted sign that reads I need money for weed", caption: "Street sign" },
+        { src: "assets/peek/tea-tasting.jpg", w: 1600, h: 1200, alt: "Tea tasting table with a clay teapot, small cups, green tea cakes and sesame brittle", caption: "Tea" },
+        { src: "assets/peek/lodge-at-night.jpg", w: 1141, h: 673, alt: "Large wooden lodge with glowing windows at dusk", caption: "Night" },
+        { src: "assets/peek/light-room.jpg", w: 967, h: 1547, alt: "Silhouettes of people inside an immersive installation of hanging strings of light", caption: "Light room" },
+        { src: "assets/peek/sushi-sketch.jpg", w: 1600, h: 1016, alt: "Pencil sketch of a sashimi plate with oysters and a hot sauce bottle, labelled sushi night", caption: "Sketchbook" },
+        { src: "assets/peek/blossoms.jpg", w: 1600, h: 1200, alt: "Pink cherry blossom trees in full bloom with sun flare", caption: "Blossoms" },
+        { src: "assets/peek/fit-check-boots.jpg", w: 1600, h: 1200, alt: "Overhead shot of friends in black boots and knee socks on a patterned red carpet", caption: "Fit check" },
+        { src: "assets/peek/concrete-courtyard.jpg", w: 1600, h: 1200, alt: "Looking down at black boots facing a concrete courtyard with grass and a stone wall", caption: "Concrete" },
+        { src: "assets/peek/forest-canopy.jpg", w: 1600, h: 1200, alt: "Looking up into a dense green forest canopy with light coming through", caption: "Canopy" },
+        { src: "assets/peek/festival-stage.jpg", w: 1170, h: 647, alt: "Crowd facing a bright festival stage washed in purple light", caption: "Set" },
+        { src: "assets/peek/life-drawing.jpg", w: 1200, h: 1600, alt: "Blue pencil figure drawings on a large pad on an easel", caption: "Life drawing" },
+        { src: "assets/peek/pre-festival-fit.jpg", w: 1200, h: 1600, alt: "Overhead outfit shot: pink paisley scarf, grey denim jacket, spiked cuff and lace skirt", caption: "Fit check" },
+        { src: "assets/peek/porch-cat.jpg", w: 1200, h: 1600, alt: "Orange cat resting on a wooden porch of a white house with a corrugated roof", caption: "Porch cat" },
+        { src: "assets/peek/lace-veil.jpg", w: 1600, h: 1200, alt: "Close-up of a silver lace and sequin scarf wrapped over a head against a blue sky", caption: "Veil" },
+        { src: "assets/peek/charm.jpg", w: 1200, h: 1600, alt: "Small silver charm with a cat face on grey stone", caption: "Charm" },
+        { src: "assets/peek/vintage-shop.jpg", w: 1200, h: 1600, alt: "Inside a small vintage clothing shop with racks of jackets and a desk", caption: "Vintage shop" },
+        { src: "assets/peek/mountain-view.jpg", w: 1200, h: 1600, alt: "Mountain valley view framed by two pine trees, with clay pots and white flowers in front", caption: "View" },
+        { src: "assets/peek/vintage-shop-cat.jpg", w: 1200, h: 1600, alt: "Tabby cat walking between racks of clothes in a vintage shop", caption: "Shop cat" },
+        { src: "assets/peek/tote-bag.jpg", w: 1376, h: 1600, alt: "Black tote bag printed be creative, do good, think smart, live well, on a train", caption: "Tote" },
+        { src: "assets/peek/stadium-show.jpg", w: 1600, h: 1200, alt: "Dark stadium full of phone lights with smoke rising over the stage", caption: "Stadium" },
+        { src: "assets/peek/archive-feed.jpg", w: 739, h: 1600, alt: "Phone screenshot of an archive.org feed of old fashion and magazine images", caption: "Archive" },
+        { src: "assets/peek/bag-charm.jpg", w: 1200, h: 1600, alt: "Beaded keychain with suede cord hanging from a turquoise leather bag over a striped top", caption: "Bag charm" },
+        { src: "assets/peek/gingham-bag.jpg", w: 1200, h: 1600, alt: "Red gingham paper shop bag with a character sticker, held up in a pink character goods shop", caption: "Gingham" },
+        { src: "assets/peek/cat-toast.jpg", w: 1600, h: 1200, alt: "Cat-shaped toasts with cheese and marshmallows on cat-face plates", caption: "Cat toast" },
+        { src: "assets/peek/paper-stacks.jpg", w: 1600, h: 1200, alt: "Gallery installation of stacked old papers under a draped cream curtain on patterned rugs", caption: "Installation" },
+        { src: "assets/peek/cd-find.jpg", w: 1600, h: 1200, alt: "Hand holding a shrink-wrapped Cicada CD in front of a wall of CDs", caption: "Record shop" },
+        { src: "assets/peek/sea-rocks.jpg", w: 1600, h: 1200, alt: "Waves breaking on brown rocks with cargo ships on the horizon", caption: "Coast" },
+        { src: "assets/peek/kfc-commute.jpg", w: 1200, h: 1600, alt: "Man in a suit walking past parked scooters carrying a KFC bag", caption: "Street" },
+        { src: "assets/peek/yard-dog.jpg", w: 1600, h: 1200, alt: "White dog lying beside a wooden doghouse in front of a tiled-roof house", caption: "Yard dog" },
+        { src: "assets/peek/glasses-repair.jpg", w: 1200, h: 1600, alt: "Man in a cap fixing a pair of glasses in a cluttered shop full of clocks", caption: "Repair" },
+        { src: "assets/peek/tonkatsu.jpg", w: 1200, h: 1600, alt: "Chopsticks dipping a cutlet into sauce beside shredded cabbage and kimbap", caption: "Dinner" },
+        { src: "assets/peek/decked-scooter.jpg", w: 1200, h: 1600, alt: "Scooter covered in plush toys, stickers and rainbow streamers", caption: "Scooter" },
+        { src: "assets/peek/black-cat.jpg", w: 1200, h: 1600, alt: "Black cat stretching on a concrete floor near a plywood scratching post", caption: "Black cat" },
+        { src: "assets/peek/gallery-shoes.jpg", w: 1200, h: 1600, alt: "Gallery print of wooden shoe lasts wearing red heels against a blue sky", caption: "Gallery" },
+        { src: "assets/peek/etching.jpg", w: 1600, h: 1200, alt: "Detail of a framed etching with the caption Mejor es holgar", caption: "Etching" },
+        { src: "assets/peek/karaoke-sign.jpg", w: 1600, h: 1200, alt: "Karaoke sign illustration of a woman with orange hair wearing headphones", caption: "Sign" },
+        { src: "assets/peek/ribbons.jpg", w: 1600, h: 1200, alt: "Pile of pastel ribbons in gingham, polka dot and satin, with a coral ribbon rose", caption: "Ribbons" },
+        { src: "assets/peek/lace-shop.jpg", w: 1600, h: 1200, alt: "Market stall hung with cream lace trims, rolls and collars", caption: "Lace shop" },
+        { src: "assets/peek/repetto-spread.jpg", w: 1200, h: 1600, alt: "Open book spread on Repetto shoes with numbered product captions", caption: "Book" },
+        { src: "assets/peek/skyline-phone.jpg", w: 1200, h: 1600, alt: "Phone showing a video of the same skyline it is held up against, on a beach at night", caption: "Night" },
+        { src: "assets/peek/volcano-fog.jpg", w: 1600, h: 1200, alt: "Fog over a volcanic hillside with terraced walls and autumn shrubs", caption: "Fog" },
+        { src: "assets/peek/bar-drinks.jpg", w: 1200, h: 1600, alt: "Green cocktail and sparkling drink on a wooden table in a bar covered in posters", caption: "Bar" },
+        { src: "assets/peek/shoot-break.jpg", w: 1600, h: 1200, alt: "Overhead shot of a friend in white boots holding a camera next to a phone on a tiled floor", caption: "Shoot" },
+        { src: "assets/peek/memorial-square.jpg", w: 1600, h: 1200, alt: "View over a large plaza with orange-roofed halls and patterned gardens", caption: "Square" },
+        { src: "assets/peek/winter-trees.jpg", w: 1600, h: 1200, alt: "Bare trees framing a hillside town at dusk", caption: "Winter" },
+        { src: "assets/peek/print-studio.jpg", w: 1600, h: 1200, alt: "Printmaker holding up a lithograph portrait over other prints in a studio", caption: "Print studio" },
+        { src: "assets/peek/sticker.jpg", w: 1200, h: 1600, alt: "Small sticker of a woman cycling, tagged indiestreet, on a black wall", caption: "Sticker" },
+        { src: "assets/peek/flea-market.jpg", w: 1200, h: 1600, alt: "Antique porcelain and framed posters laid out on a blue mat in front of shutters", caption: "Flea market" },
+        { src: "assets/peek/angel-wings.jpg", w: 1052, h: 1600, alt: "Two girls with angel-wing accessories crossing a wet street under a clear umbrella", caption: "Street style" },
+        { src: "assets/peek/collage-bundle.jpg", w: 1273, h: 1600, alt: "Wrapped collage bundle of papers tied with polka-dot ribbon and a beaded charm", caption: "Collage" },
+        { src: "assets/peek/fog-coast.jpg", w: 1526, h: 1600, alt: "Foggy sea over black volcanic rocks with green shrubs and a gull", caption: "Coast" },
+        { video: "assets/peek/scooter-cat.mp4", src: "assets/peek/scooter-cat.jpg", w: 1080, h: 1920, alt: "Tabby cat sitting on a parked scooter in a narrow lit alley at night", caption: "Scooter cat" },
+        { video: "assets/peek/gallery-portrait.mp4", src: "assets/peek/gallery-portrait.jpg", w: 1080, h: 1920, alt: "Child standing in a white gallery looking at a screen showing a woman's face", caption: "Gallery" },
+        { video: "assets/peek/tuxedo-cat.mp4", src: "assets/peek/tuxedo-cat.jpg", w: 1080, h: 810, alt: "Black and white cat on a stone ledge being petted", caption: "Street cat" },
+        { video: "assets/peek/arcade.mp4", src: "assets/peek/arcade.jpg", w: 1080, h: 1920, alt: "Two old arcade cabinets with glowing screens and round stools", caption: "Arcade" },
+        { video: "assets/peek/plaza.mp4", src: "assets/peek/plaza.jpg", w: 1080, h: 608, alt: "People walking under a white curved canopy in a paved plaza", caption: "Plaza" },
+      ];
+      var PER_BATCH = 12;                                        // ✏️ photos per batch
+
+      (function () {
+        var grid = document.querySelector(".photos");
+        var btn = document.querySelector(".new-batch");
+        // Shuffle once so the order feels fresh every visit
+        var pool = PHOTOS.slice();
+        for (var i = pool.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = pool[i]; pool[i] = pool[j]; pool[j] = t; }
+        var total = Math.max(1, Math.ceil(pool.length / PER_BATCH));
+        var batch = 0;
+
+        function render() {
+          var start = batch * PER_BATCH;
+          var html = "";
+          pool.slice(start, start + PER_BATCH).forEach(function (p, k) {
+            var media = p.video
+              ? '<video autoplay muted loop playsinline preload="metadata" poster="' + p.src + '" aria-label="' + p.alt + '"><source src="' + p.video + '" type="video/mp4" /></video>'
+              : '<img src="' + p.src + '" width="' + p.w + '" height="' + p.h + '" loading="lazy" alt="' + p.alt + '" />';
+            html += '<figure class="photo" tabindex="0" data-i="' + (start + k) + '">' + media + '</figure>';
+          });
+          grid.innerHTML = html;
+        }
+        btn.addEventListener("click", function () {
+          batch = (batch + 1) % total;                           // loops back to the first batch at the end
+          grid.classList.add("is-swapping");
+          btn.classList.add("is-spinning");
+          setTimeout(function () { btn.classList.remove("is-spinning"); }, 800);
+          setTimeout(function () { render(); grid.classList.remove("is-swapping"); }, 250);
+        });
+        render();
+
+        // ---- LIGHTBOX: click a photo → full screen, arrows / keys / swipe to move ----
+        var lb = document.querySelector(".lightbox"), lbMedia = lb.querySelector(".lb-media"),
+            lbCount = lb.querySelector(".lb-count"), current = 0, lastFocus = null;
+        function show(i) {
+          current = (i + pool.length) % pool.length;           // wraps around at both ends
+          var p = pool[current];
+          lbMedia.innerHTML = p.video
+            ? '<video autoplay muted loop playsinline poster="' + p.src + '" aria-label="' + p.alt + '"><source src="' + p.video + '" type="video/mp4" /></video>'
+            : '<img src="' + p.src + '" alt="' + p.alt + '" />';
+          lbCount.textContent = String(current + 1).padStart(2, "0") + " / " + String(pool.length).padStart(2, "0");
+        }
+        function open(i) { lastFocus = document.activeElement; show(i); lb.classList.add("is-open"); document.body.style.overflow = "hidden"; lb.querySelector(".lb-close").focus(); }
+        function close() { lb.classList.remove("is-open"); lbMedia.innerHTML = ""; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
+        grid.addEventListener("click", function (e) { var f = e.target.closest(".photo"); if (f) open(+f.dataset.i); });
+        grid.addEventListener("keydown", function (e) { var f = e.target.closest(".photo"); if (f && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); open(+f.dataset.i); } });
+        lb.querySelector(".lb-close").addEventListener("click", close);
+        lb.querySelector(".lb-prev").addEventListener("click", function () { show(current - 1); });
+        lb.querySelector(".lb-next").addEventListener("click", function () { show(current + 1); });
+        lb.addEventListener("click", function (e) { if (e.target === lb) close(); });   // click the background to close
+        document.addEventListener("keydown", function (e) {
+          if (!lb.classList.contains("is-open")) return;
+          if (e.key === "Escape") close();
+          if (e.key === "ArrowRight") show(current + 1);
+          if (e.key === "ArrowLeft") show(current - 1);
+        });
+        var x0 = null;                                          // phone swipe
+        lb.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+        lb.addEventListener("touchend", function (e) {
+          if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+          if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+        });
+      })();
+    </script>
+  </body>
+</html>
