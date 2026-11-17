@@ -1,0 +1,5 @@
+# Lets search engines visit every page, and points them to the sitemap.
+User-agent: *
+Allow: /
+
+Sitemap: https://stephypak.com/sitemap.xml

@@ -1,18 +1,24 @@
 STEPHY PAK PORTFOLIO — HOW TO USE
 
-1. Open in VS Code:  File → Open Folder → choose this "stephy-pak-portfolio" folder.
+1. Open in VS Code:  File → Open Folder → choose this folder.
 2. Preview it:       right-click index.html → "Open with Live Server".
                      (Install the "Live Server" extension first if you don't have it.)
 3. Save (Cmd+S) and the browser updates by itself.
 
 WHAT'S WHERE
-  index.html            homepage (hero + work list)
-  project-1.html        Booth Fest
-  project-2.html        Patches
-  project-3.html        Feral By Design
-  project-4.html        Deep Breakfast
-  play.html             Peek page (placeholder for now)
-  styles/style.css      all the styling — colours and font are at the very top
+  index.html             homepage (hero + work list)
+  booth-fest.html        Booth Fest
+  patches.html           Patches
+  feral-by-design.html   Feral By Design
+  deep-breakfast.html    Deep Breakfast
+  play.html              Peek page (about me + collection + feed)
+  404.html               "pretty lost." page for broken links
+  cute.html              secret page (type "cute" on the homepage)
+  favicon.ico            tab icon for old browsers
+  sitemap.xml            list of pages for Google  ← keep it updated!
+  robots.txt             points search engines to the sitemap
+  styles/style.css       all the styling — colours and font are at the very top
+  assets/favicon/        tab icons (SVG + PNG + iPhone home-screen icon)
   assets/branding-images/   the eye GIF + floppy arrow
   assets/projects/          PUT YOUR PROJECT IMAGES HERE
 
@@ -21,3 +27,20 @@ TO ADD YOUR OWN STUFF
   - Images: drop them in assets/projects/, then change
     src="assets/projects/placeholder.svg"  →  src="assets/projects/your-image.jpg"
   - Social links: search for  href="#"  in each page and paste your real links.
+
+ALT TEXT (the words in alt="…" on every image)
+  Screen readers read it out loud, and Google reads it to understand your images.
+  - Describe what's actually in the image, like you're telling someone on the phone:
+      alt="Yellow Patches poster reading 'In your space' taped to a brick wall"
+  - Include the project name and what the piece is (poster, packaging, spread…).
+  - Under ~125 characters. Don't start with "Image of…".
+  - Purely decorative images (like the eye GIF) get an empty alt="" on purpose.
+  - Videos use aria-label="…" instead of alt (see the hero on patches.html).
+
+SEO CHECKLIST — EVERY TIME YOU ADD A NEW PAGE
+  1. Give it its own <title> (under 60 characters: what it is | Stephy Pak).
+  2. Give it its own <meta name="description"> (120–160 characters).
+  3. Update <link rel="canonical"> to the page's real address.
+  4. Copy the favicon lines from any other page's <head>.
+  5. Add it to sitemap.xml (and remove pages you delete).
+  6. Name the file after the project, lowercase with dashes: my-project.html

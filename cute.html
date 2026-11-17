@@ -1,0 +1,95 @@
+<!doctype html>
+<!--
+  =====================================================================
+    EASTER EGG PAGE  (cute.html)
+  =====================================================================
+    The secret page. There's no link to it anywhere — visitors find it
+    by typing the word "cute" on the homepage (the same word the
+    typewriter types and deletes). The little script at the bottom of
+    index.html listens for it. There's also a hint in the browser
+    console for the curious (right-click → Inspect → Console).
+
+    It's left out of sitemap.xml and marked "noindex" on purpose,
+    so Google doesn't spoil the surprise.
+
+    WHAT'S IN HERE
+    ---------------------------------------------------------------
+    1. FLOATING NAME
+    2. BIG LINE ......... "pretty cute."                         ✏️
+    3. OUTTAKES ......... a few things that didn't make the cut  ✏️
+    4. COMMA RAIN ....... falling pink commas (just for fun)
+
+    ✏️ = things you'll want to edit
+    Anything in [square brackets] is a placeholder — replace it.
+  =====================================================================
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>You found it | Stephy Pak</title>
+    <!-- Keeps Google from listing the secret page -->
+    <meta name="robots" content="noindex" />
+
+    <link rel="icon" href="./favicon.ico" sizes="16x16 32x32" />
+    <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./assets/favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="./assets/favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+
+  <body class="work-page lost-page egg-page">
+
+    <!-- 1. FLOATING NAME -->
+    <header class="project-header">
+      <a href="index.html#top" class="project-header-name">Stephy Pak</a>
+    </header>
+
+    <!-- 4. COMMA RAIN — purely decorative, hidden from screen readers.
+         Each comma gets its own position (--x), speed (--d) and delay (--w). -->
+    <div class="comma-rain" aria-hidden="true">
+      <span style="--x: 6%;  --d: 7s;  --w: 0s">,</span>
+      <span style="--x: 18%; --d: 9s;  --w: 2s">,</span>
+      <span style="--x: 29%; --d: 6s;  --w: 4s">,</span>
+      <span style="--x: 41%; --d: 10s; --w: 1s">,</span>
+      <span style="--x: 53%; --d: 8s;  --w: 3s">,</span>
+      <span style="--x: 64%; --d: 7s;  --w: 5s">,</span>
+      <span style="--x: 76%; --d: 9s;  --w: 0.5s">,</span>
+      <span style="--x: 88%; --d: 6s;  --w: 2.5s">,</span>
+      <span style="--x: 95%; --d: 11s; --w: 4.5s">,</span>
+    </div>
+
+    <main class="lost">
+      <!-- 2. BIG LINE ✏️ -->
+      <h1 class="hero-slogan lost-slogan">
+        <span class="hero-slogan-line">ok fine<span class="hero-comma">,</span></span>
+        <span class="hero-slogan-line hero-slogan-indent">pretty cute.</span>
+      </h1>
+
+      <!-- ✏️ The note -->
+      <p class="lost-note">
+        <span class="lost-code">You found the secret word</span>
+        The typewriter on the homepage almost said it, then changed its mind.
+        Here are a few things that didn't make it into the portfolio.
+      </p>
+
+      <!-- 3. OUTTAKES ✏️
+           Same rules as the Peek feed: put images in assets/peek/,
+           change the src, describe each one in alt="…".
+           To add one, copy a <figure> … </figure> line. -->
+      <div class="peek-feed egg-feed">
+        <figure><img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
+        <figure><img src="assets/projects/placeholder.svg" width="1200" height="1200" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
+        <figure><img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe image]" /><figcaption>[Caption]</figcaption></figure>
+      </div>
+
+      <ul class="lost-links">
+        <li><a href="index.html">← Back to being smart</a></li>
+        <li><a href="play.html">Peek</a></li>
+      </ul>
+    </main>
+
+  </body>
+</html>

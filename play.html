@@ -33,10 +33,32 @@
 -->
 <html lang="en">
   <head>
-    <title>Peek | Stephy Pak</title>
-    <meta name="description" content="About Stephy Pak, plus photos, drawings and the things she loves." />
+    <!-- charset first: tells the browser how to read the letters (é, —, etc.) -->
     <meta charset="utf-8" />
+    <!-- Makes the site fit phone screens properly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✏️ SEO: the TITLE is the blue link in Google + the browser tab text.
+         Aim for under 60 characters: what it is, then your name. -->
+    <title>About Stephy Pak — Branding Designer in Vancouver</title>
+    <!-- ✏️ SEO: the DESCRIPTION is the grey text under that link in Google.
+         Aim for 120–160 characters. Every page gets its own. -->
+    <meta name="description" content="Meet Stephy Pak, a Vancouver branding designer graduating from Capilano University's IDEA School of Design in 2027, plus photos, drawings and things she loves." />
+    <!-- Tells Google the one "official" address of this page -->
+    <link rel="canonical" href="https://stephypak.com/play.html" />
+
+    <!-- FAVICON (the little icon in the browser tab) — one line per browser type:
+           .svg = modern browsers (stays sharp at any size)
+           .png = browsers that can't use SVG (16px tab + 32px for sharp screens)
+           .ico = very old browsers (it sits in the main folder, where they look for it)
+           apple-touch-icon = when someone saves your site to an iPhone home screen -->
+    <link rel="icon" href="./favicon.ico" sizes="16x16 32x32" />
+    <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./assets/favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="./assets/favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
+
+    <!-- Connects your style file -->
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
@@ -70,19 +92,23 @@
         </figure>
 
         <div class="peek-bio">
-          <!-- ✏️ Your bio. Each <p> is one paragraph. -->
-          <p class="project-brief">Hi, I'm Stephy, a designer focused on branding.</p>
-          <p class="peek-bio-text">I'm drawn to the fun side of branding: pop-ups, launches and brands you can step into. My favourite projects are the collaborative ones that get out into the world, especially if there's travel and new people involved.</p>
+          <!-- ✏️ Your bio. Each <p> is one paragraph.
+               DRAFT — James asked for more here. Read it out loud and change
+               anything that doesn't sound like you. -->
+          <p class="project-brief">Hi, I'm Stephy, a branding designer in my final year of Visual Communication at Capilano University's IDEA School of Design.</p>
+          <p class="peek-bio-text">I'm drawn to the fun side of branding: pop-ups, launches and brands you can step into. I like identities that live off the screen, in posters, packaging, events and objects people want to keep, and I care about how a brand feels as much as how it looks.</p>
+          <p class="peek-bio-text">My work moves between strategy and making. My capstone, <a href="feral-by-design.html">Feral By Design</a>, is an awareness campaign about Jeju Island's feral cats, built from interviews with locals. <a href="patches.html">Patches</a> is a platform brand I took from wordmark to posters and website. In 2025, a team project I worked on with Crescille Buyuccan and Shilo Sun received an <a href="https://descan.ca/2025-salazar-student-award-winners/" target="_blank" rel="noopener">honourable mention at the DesCan Vancouver Salazar Student Awards ↗</a>.</p>
+          <p class="peek-bio-text">My favourite projects are the collaborative ones that get out into the world, especially if there's travel and new people involved. I've called both Edmonton and Vancouver home, I speak English and (some) Cantonese, and I'm heading toward branding and marketing, especially in fashion and luxury.</p>
           <p class="peek-bio-text">Outside of design, I'm following the music.</p>
 
           <!-- ✏️ Quick facts — same style as the credits on project pages.
                Copy a <div class="project-credit">…</div> line to add one. -->
           <dl class="project-credits peek-facts">
             <div class="project-credit"><dt>Based in</dt><dd>Vancouver, BC</dd></div>
-            <div class="project-credit"><dt>Studying</dt><dd>Visual Communication, Branding — IDEA School of Design</dd></div>
+            <div class="project-credit"><dt>Studying</dt><dd>Visual Communication, Branding — <a href="https://www.capilanou.ca/" target="_blank" rel="noopener">IDEA School of Design, Capilano University ↗</a></dd></div>
             <div class="project-credit"><dt>Graduating</dt><dd>Spring 2027</dd></div>
-            <div class="project-credit"><dt>Recognition</dt><dd>Honourable Mention, Interactive/UX/UI — DesCan Vancouver Salazar Awards 2025</dd></div>
-            <div class="project-credit"><dt>Member</dt><dd>RGD (Student)</dd></div>
+            <div class="project-credit"><dt>Recognition</dt><dd><a href="https://descan.ca/2025-salazar-student-award-winners/" target="_blank" rel="noopener">Honourable Mention, Interactive/UX/UI — DesCan Vancouver Salazar Student Awards 2025 ↗</a></dd></div>
+            <div class="project-credit"><dt>Member</dt><dd><a href="https://rgd.ca/" target="_blank" rel="noopener">RGD — Association of Registered Graphic Designers (Student) ↗</a></dd></div>
             <!-- Optional — delete the  < ! - -  and  - - >  around this line to show it:
             <div class="project-credit"><dt>Currently</dt><dd>[Something you're up to right now]</dd></div>
             -->

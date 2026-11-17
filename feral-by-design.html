@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   =====================================================================
-    PROJECT PAGE 3 — FERAL BY DESIGN  (project-3.html)
+    PROJECT PAGE 3 — FERAL BY DESIGN  (feral-by-design.html)
   =====================================================================
     All four project pages are built the same way, so once you know
     one, you know them all.
@@ -28,10 +28,32 @@
 -->
 <html lang="en">
   <head>
-    <!-- ✏️ Text in the browser tab -->
-    <title>Feral By Design | Stephy Pak</title>
+    <!-- charset first: tells the browser how to read the letters (é, —, etc.) -->
     <meta charset="utf-8" />
+    <!-- Makes the site fit phone screens properly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✏️ SEO: the TITLE is the blue link in Google + the browser tab text.
+         Aim for under 60 characters: what it is, then your name. -->
+    <title>Feral By Design — Awareness Campaign | Stephy Pak</title>
+    <!-- ✏️ SEO: the DESCRIPTION is the grey text under that link in Google.
+         Aim for 120–160 characters. Every page gets its own. -->
+    <meta name="description" content="Feral By Design is Stephy Pak's capstone awareness campaign about Jeju Island's feral cats and the human choices behind invasive species." />
+    <!-- Tells Google the one "official" address of this page -->
+    <link rel="canonical" href="https://stephypak.com/feral-by-design.html" />
+
+    <!-- FAVICON (the little icon in the browser tab) — one line per browser type:
+           .svg = modern browsers (stays sharp at any size)
+           .png = browsers that can't use SVG (16px tab + 32px for sharp screens)
+           .ico = very old browsers (it sits in the main folder, where they look for it)
+           apple-touch-icon = when someone saves your site to an iPhone home screen -->
+    <link rel="icon" href="./favicon.ico" sizes="16x16 32x32" />
+    <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./assets/favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="./assets/favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
+
+    <!-- Connects your style file -->
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
@@ -110,7 +132,7 @@
          ================================================================= -->
     <footer class="project-footer">
       <a href="index.html#works-heading" class="project-back">← All work</a>
-      <a href="project-4.html" class="project-next">
+      <a href="deep-breakfast.html" class="project-next">
         <span class="project-next-label">Next</span>
         <span class="project-next-title">Deep Breakfast →</span>
       </a>

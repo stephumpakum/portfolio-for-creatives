@@ -15,6 +15,7 @@
     4. FLOPPY ARROW .... scrolls down to your work
     5. WORK LIST ....... "Selected work" + your 4 projects           ✏️
     6. TYPEWRITER ...... the script that types the slogan
+    7. EASTER EGG ...... type "cute" → secret page (cute.html)
 
     ✏️ = things you'll want to edit
 
@@ -27,7 +28,7 @@
      |  style.css to style it  the content you see on the page
      opening tag (p = paragraph)
 
-    <a href="project-1.html">  = a link. href = where it goes.
+    <a href="booth-fest.html">  = a link. href = where it goes.
     <img src="assets/…" alt="…"> = an image. src = the file,
                                    alt = a description for screen readers.
     Notes like this whole block start with  < ! - -  and end with  - - >
@@ -40,19 +41,61 @@
        1. HEAD — information about the page (nothing here is visible)
        ================================================================= -->
   <head>
-    <!-- ✏️ Text in the browser tab -->
-    <title>Stephy Pak — Designer</title>
-    <!-- ✏️ The description Google shows under your site in search results -->
-    <meta name="description" content="Stephy Pak is a Vancouver-based designer working across branding, print, digital and packaging." />
+    <!-- charset first: tells the browser how to read the letters (é, —, etc.) -->
     <meta charset="utf-8" />
     <!-- Makes the site fit phone screens properly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✏️ SEO: the TITLE is the blue link in Google + the browser tab text.
+         Aim for under 60 characters: what it is, then your name. -->
+    <title>Stephy Pak — Branding &amp; Graphic Designer, Vancouver</title>
+    <!-- ✏️ SEO: the DESCRIPTION is the grey text under that link in Google.
+         Aim for 120–160 characters. Every page gets its own. -->
+    <meta name="description" content="Stephy Pak is a Vancouver-based branding and graphic designer working across print, digital and packaging, graduating from CapU's IDEA School of Design in 2027." />
+    <!-- Tells Google the one "official" address of this page -->
+    <link rel="canonical" href="https://stephypak.com/" />
+
+    <!-- FAVICON (the little icon in the browser tab) — one line per browser type:
+           .svg = modern browsers (stays sharp at any size)
+           .png = browsers that can't use SVG (16px tab + 32px for sharp screens)
+           .ico = very old browsers (it sits in the main folder, where they look for it)
+           apple-touch-icon = when someone saves your site to an iPhone home screen -->
+    <link rel="icon" href="./favicon.ico" sizes="16x16 32x32" />
+    <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./assets/favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="./assets/favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
+
     <!-- Connects your style file -->
     <link rel="stylesheet" href="./styles/style.css" />
     <!-- Hides the slogan for a split second until the typewriter starts, so
          it doesn't flash. Laptops only — phones just show the slogan. -->
     <script>
       if (window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches) document.documentElement.classList.add("js-typing");
+    </script>
+
+    <!-- SEO / E-E-A-T: a hidden "ID card" about you that Google reads.
+         It backs up your experience and credibility (school, award, membership).
+         ✏️ When you have real Instagram / LinkedIn / Behance links, add them
+         inside "sameAs" like this:  "sameAs": ["https://www.linkedin.com/in/…"],
+         ✏️ Add new awards as another {…} block inside "award". -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Stephy Pak",
+      "url": "https://stephypak.com/",
+      "jobTitle": "Branding and Graphic Designer",
+      "email": "mailto:stephypak@gmail.com",
+      "address": { "@type": "PostalAddress", "addressLocality": "Vancouver", "addressRegion": "BC", "addressCountry": "CA" },
+      "affiliation": { "@type": "CollegeOrUniversity", "name": "Capilano University — IDEA School of Design", "url": "https://www.capilanou.ca/" },
+      "knowsLanguage": ["English", "Cantonese"],
+      "memberOf": { "@type": "Organization", "name": "Association of Registered Graphic Designers (RGD)", "url": "https://rgd.ca/" },
+      "award": [
+        "Honourable Mention, Interactive/UX/UI — DesCan Vancouver Salazar Student Awards 2025 (Nanijauniaravit, with Crescille Buyuccan and Shilo Sun)"
+      ],
+      "subjectOf": { "@type": "WebPage", "name": "2025 Salazar Student Award Winners", "url": "https://descan.ca/2025-salazar-student-award-winners/" }
+    }
     </script>
   </head>
 
@@ -158,7 +201,7 @@
 
         <!-- THE PROJECTS
              Each project is one <li> … </li> block. In each one:
-               href="project-1.html" ........ which page it opens
+               href="booth-fest.html" ........ which page it opens
                project-index-title .......... ✏️ project name
                project-index-category ....... ✏️ small label on the right
                img src="…" .................. ✏️ cover image
@@ -170,7 +213,7 @@
 
           <!-- Project 1 -->
           <li class="project-index-item">
-            <a href="project-1.html" class="project-index-link">
+            <a href="booth-fest.html" class="project-index-link">
               <span class="project-index-title">Booth Fest</span>
               <span class="project-index-category">[Category]</span>
               <img src="assets/projects/placeholder.svg" width="1920" height="1080" class="project-index-preview" loading="lazy" alt="Booth Fest project cover" />
@@ -179,7 +222,7 @@
 
           <!-- Project 2 -->
           <li class="project-index-item">
-            <a href="project-2.html" class="project-index-link">
+            <a href="patches.html" class="project-index-link">
               <span class="project-index-title">Patches</span>
               <span class="project-index-category">[Category]</span>
               <img src="assets/projects/placeholder.svg" width="1920" height="1080" class="project-index-preview" loading="lazy" alt="Patches project cover" />
@@ -188,7 +231,7 @@
 
           <!-- Project 3 -->
           <li class="project-index-item">
-            <a href="project-3.html" class="project-index-link">
+            <a href="feral-by-design.html" class="project-index-link">
               <span class="project-index-title">Feral By Design</span>
               <span class="project-index-category">Campaign</span>
               <img src="assets/projects/placeholder.svg" width="1920" height="1080" class="project-index-preview" loading="lazy" alt="Feral By Design project cover" />
@@ -197,7 +240,7 @@
 
           <!-- Project 4 -->
           <li class="project-index-item">
-            <a href="project-4.html" class="project-index-link">
+            <a href="deep-breakfast.html" class="project-index-link">
               <span class="project-index-title">Deep Breakfast</span>
               <span class="project-index-category">[Category]</span>
               <img src="assets/projects/placeholder.svg" width="1920" height="1080" class="project-index-preview" loading="lazy" alt="Deep Breakfast project cover" />
@@ -282,6 +325,27 @@
         // Replay when someone hovers over the slogan (only after it's finished)
         h.addEventListener("mouseenter", function () {
           if (!playing) play();
+        });
+      })();
+    </script>
+
+
+    <!-- =================================================================
+         7. EASTER EGG  (JavaScript)
+         Type the word "cute" anywhere on the homepage → opens cute.html.
+         Plus a little hint in the browser console for curious people
+         (right-click → Inspect → Console).
+         ✏️ To change the secret word, change "cute" on the SECRET WORD line.
+         ================================================================= -->
+    <script>
+      (function () {
+        var secret = "cute";                                    // ✏️ SECRET WORD
+        var typed = "";
+        console.log("%cpretty curious, huh? try typing the word the typewriter deletes.", "color:#d6338a;font-size:14px");
+        document.addEventListener("keydown", function (e) {
+          if (e.metaKey || e.ctrlKey || e.altKey || e.key.length !== 1) return;
+          typed = (typed + e.key.toLowerCase()).slice(-secret.length);   // remembers the last few letters
+          if (typed === secret) window.location.href = "cute.html";
         });
       })();
     </script>

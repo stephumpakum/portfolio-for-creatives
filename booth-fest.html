@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   =====================================================================
-    PROJECT PAGE 2 — PATCHES  (project-2.html)
+    PROJECT PAGE 1 — BOOTH FEST  (booth-fest.html)
   =====================================================================
     All four project pages are built the same way, so once you know
     one, you know them all.
@@ -28,14 +28,37 @@
 -->
 <html lang="en">
   <head>
-    <!-- ✏️ Text in the browser tab -->
-    <title>Patches | Stephy Pak</title>
+    <!-- charset first: tells the browser how to read the letters (é, —, etc.) -->
     <meta charset="utf-8" />
+    <!-- Makes the site fit phone screens properly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✏️ SEO: the TITLE is the blue link in Google + the browser tab text.
+         Aim for under 60 characters: what it is, then your name. -->
+    <title>Booth Fest — Design Project | Stephy Pak, Vancouver Designer</title>
+    <!-- ✏️ SEO: the DESCRIPTION is the grey text under that link in Google.
+         Aim for 120–160 characters. Every page gets its own. -->
+    <meta name="description" content="Booth Fest by Stephy Pak, a Vancouver-based branding and graphic designer. See the brief, process and final work for this project." />
+    <!-- Tells Google the one "official" address of this page -->
+    <link rel="canonical" href="https://stephypak.com/booth-fest.html" />
+
+    <!-- FAVICON (the little icon in the browser tab) — one line per browser type:
+           .svg = modern browsers (stays sharp at any size)
+           .png = browsers that can't use SVG (16px tab + 32px for sharp screens)
+           .ico = very old browsers (it sits in the main folder, where they look for it)
+           apple-touch-icon = when someone saves your site to an iPhone home screen -->
+    <link rel="icon" href="./favicon.ico" sizes="16x16 32x32" />
+    <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./assets/favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="./assets/favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png" />
+
+    <!-- Connects your style file -->
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
   <body class="project-page">
+
     <!-- =================================================================
          1. FLOATING NAME
          Stays in the corner as you scroll. Clicking it goes back to the
@@ -46,24 +69,12 @@
     </header>
 
     <main class="project">
+
       <!-- ===============================================================
            2. HERO IMAGE — your strongest image of this project ✏️
            =============================================================== -->
-
-      <video autoplay muted loop playsinline>
-        <source
-          src="assets/projects/patches/patches-hero.mp4"
-          type="video/mp4"
-        />
-      </video>
       <figure class="project-figure">
-        <img
-          src="assets/projects/patches/patches-hero.mp4"
-          width="1920"
-          height="1080"
-          loading="eager"
-          alt="[Describe the image]"
-        />
+        <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="eager" alt="[Describe the image]" />
       </figure>
 
       <!-- ===============================================================
@@ -73,27 +84,12 @@
            To remove one, delete its line.
            =============================================================== -->
       <section class="project-about" aria-label="About this project">
-        <p class="project-brief">
-          [Two or three sentences on the brief: what Patches is, who it&#x27;s
-          for, and what you set out to make.]
-        </p>
+        <p class="project-brief">[Two or three sentences on the brief: what Booth Fest is, who it&#x27;s for, and what you set out to make.]</p>
         <dl class="project-credits">
-          <div class="project-credit">
-            <dt>Project</dt>
-            <dd>Patches</dd>
-          </div>
-          <div class="project-credit">
-            <dt>Role</dt>
-            <dd>Designer</dd>
-          </div>
-          <div class="project-credit">
-            <dt>Context</dt>
-            <dd>[Course or client]</dd>
-          </div>
-          <div class="project-credit">
-            <dt>Year</dt>
-            <dd>[Year]</dd>
-          </div>
+          <div class="project-credit"><dt>Project</dt><dd>Booth Fest</dd></div>
+          <div class="project-credit"><dt>Role</dt><dd>Designer</dd></div>
+          <div class="project-credit"><dt>Context</dt><dd>[Course or client]</dd></div>
+          <div class="project-credit"><dt>Year</dt><dd>[Year]</dd></div>
         </dl>
       </section>
 
@@ -107,48 +103,25 @@
 
       <!-- Full-width image -->
       <figure class="project-figure">
-        <img
-          src="assets/projects/placeholder.svg"
-          width="1920"
-          height="1080"
-          loading="lazy"
-          alt="[Describe the image]"
-        />
+        <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe the image]" />
         <figcaption>[Optional caption]</figcaption>
       </figure>
 
       <!-- Two images side by side (they stack on phones) -->
       <div class="project-pair">
         <figure class="project-figure">
-          <img
-            src="assets/projects/placeholder.svg"
-            width="1200"
-            height="1500"
-            loading="lazy"
-            alt="[Describe the image]"
-          />
+          <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe the image]" />
         </figure>
         <figure class="project-figure">
-          <img
-            src="assets/projects/placeholder.svg"
-            width="1200"
-            height="1500"
-            loading="lazy"
-            alt="[Describe the image]"
-          />
+          <img src="assets/projects/placeholder.svg" width="1200" height="1500" loading="lazy" alt="[Describe the image]" />
         </figure>
       </div>
 
       <!-- Full-width image -->
       <figure class="project-figure">
-        <img
-          src="assets/projects/placeholder.svg"
-          width="1920"
-          height="1080"
-          loading="lazy"
-          alt="[Describe the image]"
-        />
+        <img src="assets/projects/placeholder.svg" width="1920" height="1080" loading="lazy" alt="[Describe the image]" />
       </figure>
+
     </main>
 
     <!-- =================================================================
@@ -158,10 +131,11 @@
          ================================================================= -->
     <footer class="project-footer">
       <a href="index.html#works-heading" class="project-back">← All work</a>
-      <a href="project-3.html" class="project-next">
+      <a href="patches.html" class="project-next">
         <span class="project-next-label">Next</span>
-        <span class="project-next-title">Feral By Design →</span>
+        <span class="project-next-title">Patches →</span>
       </a>
     </footer>
+
   </body>
 </html>

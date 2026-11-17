@@ -1,37 +1,40 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<url>
-<loc>https://stephypak.com/</loc>
-<lastmod>2026-11-10T22:57:47+00:00</lastmod>
-<priority>1.0000</priority>
-</url>
-<url>
-<loc>https://stephypak.com/index.html</loc>
-<lastmod>2026-11-10T22:57:47+00:00</lastmod>
-<priority>0.8000</priority>
-</url>
-<url>
-<loc>https://stephypak.com/play.html</loc>
-<lastmod>2026-11-10T22:57:47+00:00</lastmod>
-<priority>0.8000</priority>
-</url>
-<url>
-<loc>https://stephypak.com/project-1.html</loc>
-<lastmod>2026-11-10T22:57:47+00:00</lastmod>
-<priority>0.8000</priority>
-</url>
-<url>
-<loc>https://stephypak.com/project-2.html</loc>
-<lastmod>2026-11-10T22:57:47+00:00</lastmod>
-<priority>0.8000</priority>
-</url>
-<url>
-<loc>https://stephypak.com/project-3.html</loc>
-<lastmod>2026-11-10T22:57:47+00:00</lastmod>
-<priority>0.8000</priority>
-</url>
-<url>
-<loc>https://stephypak.com/project-4.html</loc>
-<lastmod>2026-11-10T22:57:47+00:00</lastmod>
-<priority>0.8000</priority>
-</url>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SITEMAP — a list of every page you want Google to find.
+
+  ✏️ UPDATE THIS EVERY TIME YOU ADD, REMOVE OR RENAME A PAGE:
+     • New page?      Copy a whole <url> … </url> block, change the <loc>.
+     • Removed page?  Delete its <url> … </url> block.
+     • Renamed page?  Change its <loc>.
+     • Changed a page? Update its <lastmod> to today (YYYY-MM-DD).
+
+  Left out on purpose: 404.html and cute.html (the secret page).
+  After launching, submit https://stephypak.com/sitemap.xml in
+  Google Search Console so Google knows it's there.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://stephypak.com/</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://stephypak.com/booth-fest.html</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://stephypak.com/patches.html</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://stephypak.com/feral-by-design.html</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://stephypak.com/deep-breakfast.html</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://stephypak.com/play.html</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
 </urlset>

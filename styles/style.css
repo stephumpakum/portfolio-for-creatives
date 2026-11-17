@@ -9,16 +9,17 @@
  *   CONTENTS                                   (Cmd+F to jump to one)
  *   ---------------------------------------------------------------
  *   1. FONT + COLOURS ........ the whole look lives here ✏️
- *   2. BASICS ................ makes every browser start the same
+ *   2. CSS RESET ............. makes every browser start the same
  *   3. HOMEPAGE — TOP ROW .... your name, intro, links, the eye GIF
  *   4. HOMEPAGE — SLOGAN ..... "pretty smart." + the typewriter
  *   5. HOMEPAGE — ARROW ...... the floppy disk scroll arrow
  *   6. HOMEPAGE — WORK LIST .. "Selected work", star, project titles
  *   7. HOMEPAGE — BIGGER SCREENS (tablets + laptops)
  *   8. HOMEPAGE — MOUSE HOVER EFFECTS (laptops only)
- *   9. PROJECT PAGES ......... project-1.html … project-4.html
+ *   9. PROJECT PAGES ......... booth-fest.html, patches.html, feral-by-design.html, deep-breakfast.html
  *  10. PEEK PAGE ............. play.html
  *  11. REDUCED MOTION ........ calmer version for people who need it
+ *  12. 404 + EASTER EGG ...... 404.html ("pretty lost.") + cute.html
  *
  *   ✏️  = a value you might want to change
  *
@@ -74,44 +75,98 @@
 
 
 /* =====================================================================
-   2. BASICS
-   Removes the browser's built-in spacing and sets the default font,
-   so every page starts from a clean slate. You won't need to touch this.
+   2. CSS RESET  (+ border-box)
+   Every browser (Chrome, Safari, Firefox, Edge) comes with its own
+   built-in styles: different margins, different heading sizes, form
+   fields in a different font, etc. A "reset" wipes those differences
+   out so your site looks the same in every browser, and starts from
+   a clean slate. You won't need to touch this.
    ===================================================================== */
 
-/* Makes width/height include padding — much easier to size things. */
+/* BORDER-BOX — the best practice James will explain:
+   By default, CSS adds padding and borders ON TOP of the width you set.
+     width: 300px + padding: 20px  →  the box is actually 340px wide 😬
+   border-box keeps padding + border INSIDE the width you set.
+     width: 300px + padding: 20px  →  the box is 300px wide ✅
+   It's set once on <html>, and every element "inherits" it — so if
+   one day you need the old behaviour for a single component, you
+   can change it there and everything inside follows. */
+html {
+  box-sizing: border-box;
+}
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
-/* Removes default gaps around headings, paragraphs, lists, etc. */
-html,
-body,
-h1, h2, h3, p, ul, ol, li, figure, figcaption, dl, dt, dd {
+/* Removes every browser's default outside spacing (margins), and the
+   default inside spacing (padding) on lists, figures, etc. */
+* {
   margin: 0;
+}
+ul, ol, dl, dd, figure, figcaption, blockquote, fieldset, legend {
   padding: 0;
 }
 
-/* Smooth scrolling when you click the floppy arrow. */
+/* Stops phones (mostly iPhones) from enlarging text on their own
+   when you turn them sideways. */
 html {
-  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-/* The default font + colours for the whole site. */
+/* Smooth scrolling when you click the floppy arrow
+   (only for people who haven't asked their device to reduce motion). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* The default font + colours for the whole site.
+   min-height: 100% = the page always fills the screen. */
 body {
+  min-height: 100vh;
   font-family: "Instrument Sans", sans-serif;
   background: var(--color-page-bg);
   color: var(--color-page-text);
   -webkit-font-smoothing: antialiased;   /* crisper text on Macs */
 }
 
-/* Images never spill out of their box. */
+/* Headings: no awkward single word left alone on the last line. */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+/* Paragraphs: avoid one lonely word on the last line, and let
+   very long words/links break instead of overflowing on phones. */
+p {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+/* Images + videos: behave like solid blocks (no mystery gap under them)
+   and never spill out of their box. */
 img,
+picture,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 svg {
   max-width: 100%;
   height: auto;
+}
+
+/* Buttons + form fields use the site font instead of the browser's. */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
 }
 
 /* No underlines on links. */
@@ -574,7 +629,7 @@ a {
 
 
 /* =====================================================================
-   9. PROJECT PAGES  (project-1.html … project-4.html)
+   9. PROJECT PAGES  (booth-fest.html, patches.html, feral-by-design.html, deep-breakfast.html)
    Order on the page: floating name → image 1 → brief + credits →
    more images → "Next" project.
    ===================================================================== */
@@ -646,7 +701,8 @@ a {
 .project-figure {
   margin: 0 0 1rem;          /* ✏️ 1rem = gap under each image */
 }
-.project-figure img {
+.project-figure img,
+.project-figure video {
   display: block;
   width: 100%;
   height: auto;
@@ -817,6 +873,20 @@ a {
 }
 .peek-facts .project-credit dt {
   font-size: 0.6875rem;
+}
+/* Links inside the bio + facts (award, RGD, school, projects):
+   thin underline so people can tell they're clickable, pink on hover. */
+.peek-bio-text a,
+.peek-facts dd a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--duration-fast);
+}
+.peek-bio-text a:hover,
+.peek-facts dd a:hover {
+  color: var(--color-pink);
 }
 
 /* EMAIL · INSTAGRAM · LINKEDIN · RÉSUMÉ */
@@ -1090,5 +1160,101 @@ a {
   .peek-object img,
   .peek-feed img {
     transition: none;
+  }
+}
+
+
+/* =====================================================================
+   12. 404 PAGE + EASTER EGG PAGE
+   404.html ("pretty lost.") and cute.html (the secret page).
+   They reuse the homepage slogan styles, plus a few extras below.
+   ===================================================================== */
+
+.lost {
+  min-height: calc(100vh - 4.5rem);
+  min-height: calc(100svh - 4.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem clamp(1rem, 2.5vw, 2.25rem) 3rem;
+}
+.lost-slogan {
+  font-size: clamp(3.125rem, 11vw, 11rem);   /* ✏️ same size as the homepage slogan */
+  line-height: 0.98;
+}
+.lost-note {
+  max-width: 34rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+/* "ERROR 404" — small typewriter-style label above the note */
+.lost-code {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-pink);
+}
+/* HOME · SELECTED WORK · PEEK · SAY HI */
+.lost-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.lost-links a {
+  color: inherit;
+  transition: color var(--duration-fast);
+}
+.lost-links a:hover,
+.lost-links a:focus-visible {
+  color: var(--color-pink);
+}
+
+/* --- Easter egg page --- */
+.egg-page {
+  overflow-x: hidden;
+}
+.egg-feed {
+  max-width: 48rem;
+}
+/* Falling pink commas */
+.comma-rain {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;         /* never blocks clicks */
+  overflow: hidden;
+}
+.comma-rain span {
+  position: absolute;
+  top: -10vh;
+  left: var(--x);
+  font-size: clamp(2rem, 5vw, 4.5rem);   /* ✏️ comma size */
+  font-weight: 500;
+  color: var(--color-pink);
+  opacity: 0.35;                          /* ✏️ how see-through they are */
+  animation: comma-fall var(--d) linear var(--w) infinite;
+}
+.egg-page .lost {
+  position: relative;
+  z-index: 1;                   /* content sits above the commas */
+}
+@keyframes comma-fall {
+  to {
+    transform: translateY(120vh) rotate(200deg);
+  }
+}
+/* Calmer version: no falling commas for people who reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .comma-rain {
+    display: none;
   }
 }
